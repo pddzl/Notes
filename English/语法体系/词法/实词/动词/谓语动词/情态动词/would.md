@@ -15,8 +15,6 @@
 
 掌握这个核心思想，大部分 **would** 的用法都能自然理解。
 
----
-
 # 什么是 would？
 
 **would** 是一个**情态动词（Modal Verb）**。
@@ -30,8 +28,6 @@
 - 过去习惯
 - 推测
 - 不肯、拒绝
-
----
 
 # 1. 表示过去将来（Future in the Past）
 
@@ -70,8 +66,6 @@ I knew she would win.
 ```
 
 我知道她会赢。
-
----
 
 # 2. 表示礼貌请求（Polite Request）
 
@@ -117,8 +111,6 @@ Would you help me?
 
 更加礼貌。
 
----
-
 # 3. 表示想要、愿意（Would Like）
 
 ## 含义
@@ -155,8 +147,6 @@ I would like...
 
 > 我想……
 
----
-
 # 4. 表示假设 / 条件（Conditional）
 
 > **包含虚拟语气，是 would 最重要的用法。**
@@ -170,8 +160,6 @@ I would like...
 - 典型虚拟语气
 - 省略 if 的条件表达
 - "本来会……"
-
----
 
 ## ① 虚拟语气
 
@@ -197,8 +185,6 @@ I would travel around the world.
 If I had more time,
 I would learn Japanese.
 ```
-
----
 
 ## ② 省略 if 的条件表达
 
@@ -249,8 +235,6 @@ That would be great.
 
 > 如果你今天能发，那就太好了。
 
----
-
 ## ③ 本来会……
 
 例如：
@@ -270,8 +254,6 @@ I would help you.
 表示：
 
 > 本来我会帮你，但我现在很忙。
-
----
 
 # 5. 表示过去习惯（Past Habit）
 
@@ -299,8 +281,6 @@ we would go fishing.
 
 每年夏天我们都会去钓鱼。
 
----
-
 ## 与 used to 的区别
 
 **used to**
@@ -315,8 +295,6 @@ we would go fishing.
 ```text
 I used to live in Beijing.
 ```
-
----
 
 **would**
 
@@ -335,8 +313,6 @@ We would visit Grandma every Sunday.
 ```text
 ❌ I would live in Beijing.
 ```
-
----
 
 # 6. 表示推测（Expectation / Guess）
 
@@ -382,8 +358,6 @@ That would be the postman.
 probably
 ```
 
----
-
 # 7. 表示拒绝、不肯、无法（Refusal）
 
 通常用于：
@@ -424,7 +398,6 @@ The car wouldn't start.
 
 > 不肯、不能。
 
----
 
 # 常见固定搭配
 
@@ -436,8 +409,6 @@ The car wouldn't start.
 I'd like some water.
 ```
 
----
-
 ## would rather
 
 宁愿
@@ -445,8 +416,6 @@ I'd like some water.
 ```text
 I'd rather stay home.
 ```
-
----
 
 ## would prefer
 
@@ -456,8 +425,6 @@ I'd rather stay home.
 I'd prefer coffee.
 ```
 
----
-
 ## would love to
 
 非常想
@@ -466,8 +433,6 @@ I'd prefer coffee.
 I'd love to go.
 ```
 
----
-
 ## would mind
 
 介意
@@ -475,8 +440,6 @@ I'd love to go.
 ```text
 Would you mind closing the door?
 ```
-
----
 
 # would 与 will 的区别
 
@@ -500,8 +463,6 @@ Would you help me?
 ```
 
 能麻烦你帮一下吗？
-
----
 
 # would、could、should 的区别
 
@@ -540,21 +501,17 @@ Should you open the door?
 
 你应该开门。
 
----
-
 # 总结：7 种核心用法
 
-| 用法 | 含义 | 例句 |
-|------|------|------|
-| 过去将来 | 相对于过去的将来 | He said he would come. |
-| 礼貌请求 | 更委婉地请求 | Would you help me? |
-| 想要、愿意 | would like | I'd like some tea. |
-| 假设 / 条件（包含虚拟语气） | 如果……就会…… | If I were rich... / That would be great. |
-| 过去习惯 | 过去经常做某事 | We would play together every day. |
-| 推测 | 应该是…… | That would be Tom. |
-| 不肯、拒绝 | wouldn't | He wouldn't listen. / The car wouldn't start. |
-
----
+| 用法              | 含义         | 例句                                            |
+| --------------- | ---------- | --------------------------------------------- |
+| 过去将来            | 相对于过去的将来   | He said he would come.                        |
+| 礼貌请求            | 更委婉地请求     | Would you help me?                            |
+| 想要、愿意           | would like | I'd like some tea.                            |
+| 假设 / 条件（包含虚拟语气） | 如果……就会……   | If I were rich... / That would be great.      |
+| 过去习惯            | 过去经常做某事    | We would play together every day.             |
+| 推测              | 应该是……      | That would be Tom.                            |
+| 不肯、拒绝           | wouldn't   | He wouldn't listen. / The car wouldn't start. |
 
 # 一句话记忆
 
