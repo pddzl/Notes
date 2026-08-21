@@ -141,3 +141,65 @@ This means:
 
 ## Load
 
+**CPU load** is a measure of **how many tasks are currently competing for CPU execution or are stuck in uninterruptible waiting states**.
+
+In Linux, it is commonly represented by **load average**, for example:
+
+```
+load average: 0.50, 1.20, 2.00
+```
+
+These are the average loads over:
+
+```
+1 minute    5 minutes    15 minutes
+```
+
+Simple way to think about it
+
+Imagine a CPU as a checkout counter:
+
+- **CPU utilization** → how busy the cashier actually is.
+- **CPU load** → how many customers are waiting for service.
+
+So:
+
+```text
+CPU utilization = "How much CPU time is being used?"
+CPU load        = "How much work is waiting for/using CPU?"
+```
+
+Example
+
+Suppose you have **4 CPU cores**.
+
+`Load = 2`
+
+There are roughly 2 tasks competing for execution capacity, so the system has plenty of CPU capacity.
+
+`Load = 4`
+
+Roughly one runnable task per CPU core.
+
+`Load = 8`
+
+There is more demand than the 4 cores can execute simultaneously, so tasks may be waiting.
+
+Important
+
+CPU load is **not a percentage**.
+
+For a 4-core server:
+
+```text
+Load 1     → low
+Load 4     → roughly full CPU demand
+Load 8     → significant contention
+```
+
+
+But Linux load also includes tasks in **uninterruptible sleep**, commonly related to I/O. Therefore, a high load doesn't necessarily mean the CPU itself is 100% utilized.
+
+**In one sentence:**
+
+> **CPU load represents the amount of work competing for CPU resources (plus certain uninterruptible waits), while CPU utilization represents the percentage of CPU execution capacity actually being used.**
