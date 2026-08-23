@@ -19,13 +19,9 @@
 
 [[shall]]
 
-[[might]]
+[[may & might]]
 
-[[may]]
-
-[[could]]
-
-[[can]]
+[[can & could & be able to]]
 
 [[must]]
 
