@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/语法体系/词法/实词/动词/谓语动词/情态动词/can & could & be able to.md",
+                "file": "English/语法体系/词法/实词/动词/谓语动词/语态.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "can & could & be able to"
+              "title": "语态"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/语法体系/词法/实词/动词/谓语动词/情态动词/can & could & be able to.md",
+                "file": "English/语法体系/词法/实词/动词/谓语动词/语态.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,8 +171,9 @@
   },
   "active": "bf2ef972f069ca06",
   "lastOpenFiles": [
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/README.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/can & could & be able to.md",
+    "English/语法体系/词法/实词/动词/谓语动词/语态.md",
+    "English/语法体系/词法/实词/动词/谓语动词/情态动词/README.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/could.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/may & might.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/may.md",
@@ -196,7 +197,6 @@
     "OS/Windows.md",
     "Programming/JAVA/two.md",
     "English/Synonym.md",
-    "English/Phrase.md",
     "Database/OLAP",
     "Monitor/prometheus",
     "English/语法体系/词法/实词/动词/谓语动词/时态",
