@@ -76,4 +76,20 @@ He can run.
 
 ## 情态动词
 
-[can] (https://github.com/pddzl/Notes/blob/main/English/%E8%AF%AD%E6%B3%95%E4%BD%93%E7%B3%BB/%E8%AF%8D%E6%B3%95/%E5%AE%9E%E8%AF%8D/%E5%8A%A8%E8%AF%8D/%E8%B0%93%E8%AF%AD%E5%8A%A8%E8%AF%8D/%E6%83%85%E6%80%81%E5%8A%A8%E8%AF%8D/can.md)
+[[will]]
+
+[[shall]]
+
+[[might]]
+
+[[may]]
+
+[[could]]
+
+[[can]]
+
+[[must]]
+
+[[should]]
+
+[[would]]
