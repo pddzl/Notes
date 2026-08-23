@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/语法体系/词法/实词/动词/谓语动词/语态.md",
+                "file": "English/语法体系/词法/实词/动词/非谓语/独立主格.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "语态"
+              "title": "独立主格"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/语法体系/词法/实词/动词/谓语动词/语态.md",
+                "file": "English/语法体系/词法/实词/动词/非谓语/独立主格.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,8 +171,13 @@
   },
   "active": "bf2ef972f069ca06",
   "lastOpenFiles": [
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/can & could & be able to.md",
+    "English/语法体系/词法/实词/动词/非谓语/动词不定式(Infinitive).md",
+    "English/语法体系/词法/实词/动词/非谓语/独立主格.md",
+    "English/语法体系/词法/实词/动词/非谓语/动词ing形式&动词过去分词.md",
+    "English/语法体系/词法/实词/动词/非谓语/动名词.md",
+    "English/语法体系/词法/实词/动词/非谓语",
     "English/语法体系/词法/实词/动词/谓语动词/语态.md",
+    "English/语法体系/词法/实词/动词/谓语动词/情态动词/can & could & be able to.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/README.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/could.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/may & might.md",
@@ -193,10 +198,6 @@
     "English/语法体系/词法/实词/名词.md",
     "English/语法体系/词法/实词/格.md",
     "OS/Linux.md",
-    "Monitor/Metrics.md",
-    "OS/Windows.md",
-    "Programming/JAVA/two.md",
-    "English/Synonym.md",
     "Database/OLAP",
     "Monitor/prometheus",
     "English/语法体系/词法/实词/动词/谓语动词/时态",
@@ -206,7 +207,6 @@
     "English/语法体系/词法/实词/动词/谓语动词",
     "English/语法体系/词法/实词/动词/谓语动词",
     "English/语法体系/词法/实词/动词",
-    "trinasolar/飞天云",
     "Untitled.canvas",
     "p2.jpg"
   ]
