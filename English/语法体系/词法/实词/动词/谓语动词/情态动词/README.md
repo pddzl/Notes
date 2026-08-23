@@ -15,7 +15,7 @@
 
 英语中，则经常通过一类特殊的动词来表达这些含义，这类动词叫：
 
-> **情态动词（Modal Verbs）**
+> 情态动词（Modal Verbs）
 
 
 ```text
@@ -73,3 +73,7 @@ He can run.
 > **情态 = 说话人对事情的态度、判断或看法。**
 > 
 > **情态动词 = 用来表达这种情态的特殊动词。**
+
+## 情态动词
+
+[can] (https://github.com/pddzl/Notes/blob/main/English/%E8%AF%AD%E6%B3%95%E4%BD%93%E7%B3%BB/%E8%AF%8D%E6%B3%95/%E5%AE%9E%E8%AF%8D/%E5%8A%A8%E8%AF%8D/%E8%B0%93%E8%AF%AD%E5%8A%A8%E8%AF%8D/%E6%83%85%E6%80%81%E5%8A%A8%E8%AF%8D/can.md)
