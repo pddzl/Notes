@@ -431,3 +431,41 @@ v. 飙升、飞涨
 
 > Lions roam the savanna. 狮子在稀树草原四处游荡。 
 > He roamed across Europe for years. 他多年辗转漫游欧洲。
+
+## 模仿
+
+### imitate
+
+`/ˈɪmɪteɪt/`
+
+侧重：模仿外在行为、声音、样子；照搬表象，不一定懂原理
+
+1. 人模仿动作、语气、神态：copy behaviour/speech
+
+> Children imitate adults. 孩子模仿大人。
+
+2. 也可仿制物品
+
+> 核心：**学样子、复刻表象**，可褒可贬。
+
+### simulate
+
+`/ˈsɪmjuleɪt`
+
+侧重：模拟、仿真；造出一个近似环境 / 场景，用于实验、测试（科技高频） 不是复制实物，而是**搭建虚拟环境复现过程**。
+
+> simulate flight conditions 模拟飞行条件 
+> The software simulates real‑world traffic. 软件仿真现实交通。 
+> 核心：**构建仿真环境，用于实验演练**；也可表示 “假装”：simulate illness 装病。
+
+### emulate
+
+`/ˈemjuleɪt/`
+
+1. 褒义：努力赶超、效仿（榜样）= strive to equal or surpass
+
+> emulate a role model 效仿榜样，向榜样看齐
+
+2. 技术：**仿真、兼容（硬件 / 软件）**，让 A 系统表现得像 B 系统
+
+> This chip emulates old hardware. 该芯片仿真旧硬件。
