@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "K8S/网络/multus.md",
+                "file": "K8S/Network/multus.md",
                 "mode": "source",
                 "source": false
               },
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "K8S/网络/multus.md",
+                "file": "K8S/Network/multus.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -172,6 +172,7 @@
   "active": "980e120057af0bba",
   "lastOpenFiles": [
     "English/Synonym.md",
+    "K8S/Network/multus.md",
     "Monitor/TSDB.md",
     "English/语法体系/词法/实词/动词/非谓语/独立主格.md",
     "English/语法体系/词法/实词/动词/非谓语/动词不定式(Infinitive).md",
@@ -197,7 +198,6 @@
     "English/语法体系/词法/实词/动词/谓语动词/时态/过去完成时.md",
     "English/语法体系/词法/虚词/介词.md",
     "English/语法体系/词法/实词/形容词.md",
-    "English/语法体系/词法/实词/名词.md",
     "Database/OLAP",
     "Monitor/prometheus",
     "English/语法体系/词法/实词/动词/谓语动词/时态",

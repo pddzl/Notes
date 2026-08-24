@@ -1,4 +1,4 @@
-查看所有的网络附加定义1
+查看所有的网络附加定义
 
 `kubectl get network-attachment-definitions -A`
 
