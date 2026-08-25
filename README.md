@@ -139,8 +139,9 @@
 <details>
 <summary>OS</summary>
 
-- [CPU.md](OS/Linux/CPU.md)
-- [Firewalld.md](OS/Linux/Firewalld.md)
+- Linux 
+	- [CPU.md](OS/Linux/CPU.md)
+	- [Firewalld.md](OS/Linux/Firewalld.md)
 - [Windows.md](OS/Windows.md)
 
 </details>
