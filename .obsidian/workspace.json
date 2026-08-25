@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "bd698268b770aeec",
+        "id": "714f1a7227c2d147",
         "type": "tabs",
         "children": [
           {
-            "id": "7f9780283eb4ecca",
+            "id": "109fd0d9f832dab3",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -169,13 +169,18 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6721eeaf1fbd2efb",
+  "active": "109fd0d9f832dab3",
   "lastOpenFiles": [
+    "OS/Linux/Firewalld.md",
+    "OS/Windows.md",
+    "OS/Linux/CPU.md",
+    "OS/Linux/CPU.md",
+    "OS/Linux",
+    "README.md",
     "Inspect/Process.md",
     "Inspect/OS.md",
     "Inspect/Container.md",
     "Inspect/Middleware/Kafka.md",
-    "README.md",
     "English/Phrase.md",
     "AI/API.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/may %26 might.md",
@@ -194,10 +199,6 @@
     "English/语法体系/词法/实词/动词/谓语动词/语态.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/can & could & be able to.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/README.md",
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/could.md",
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/may & might.md",
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/may.md",
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/would.md",
     "Database/OLAP",
     "Monitor/prometheus",
     "English/语法体系/词法/实词/动词/谓语动词/时态",
@@ -206,7 +207,6 @@
     "English/语法体系/词法/实词/动词/谓语动词/情态动词",
     "English/语法体系/词法/实词/动词/谓语动词",
     "English/语法体系/词法/实词/动词/谓语动词",
-    "English/语法体系/词法/实词/动词",
     "Untitled.canvas",
     "p2.jpg"
   ]

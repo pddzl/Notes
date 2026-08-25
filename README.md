@@ -107,17 +107,6 @@
 </details>
 
 <details>
-<summary>Inspect</summary>
-
-- [Container.md](Inspect/Container.md)
-- [Process.md](Inspect/Process.md)
-- [OS.md](Inspect/OS.md)
-- Middleware
-  - [Kafka.md](Inspect/Middleware/Kafka.md)
-
-</details>
-
-<details>
 <summary>K8S</summary>
 
 - Network
@@ -150,7 +139,8 @@
 <details>
 <summary>OS</summary>
 
-- [Linux.md](OS/Linux.md)
+- [CPU.md](OS/Linux/CPU.md)
+- [Firewalld.md](OS/Linux/Firewalld.md)
 - [Windows.md](OS/Windows.md)
 
 </details>

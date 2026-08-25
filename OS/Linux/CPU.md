@@ -1,33 +1,16 @@
-# Firewall
-
-Question: CentOS7 uses firewalld, why does iptables command still works
-
-> **`firewalld` is not a replacement for `iptables`; it is a management layer on top of `iptables` on CentOS 7.**
-
-                 firewall-cmd
-                      │
-                      ▼
-                 firewalld daemon
-                      │
-             translates rules into
-                      │
-                      ▼
-                iptables (kernel)
-                      │
-                      ▼
-             Linux Netfilter framework
-
-On newer systems, such as **RHEL 8/9**, **CentOS Stream 8/9**, and **Rocky Linux 8/9**, the backend is often **nftables** instead of legacy iptables.
-
-# CPU
-
 ## Utilization
 
-**CPU utilization** means **the percentage of CPU processing capacity currently being used**.
+### Definition
 
-Question: Does CPU utilization indicate how much CPU time is being consumed.
+CPU utilization means the percentage of CPU processing capacity currently being used.
 
-CPU utilization is essentially **how much of the available CPU execution time is being consumed by running work during a given measurement interval**.
+### Question 
+
+#### one
+
+> question: Does CPU utilization indicate how much CPU time is being consumed.
+
+CPU utilization is essentially how much of the available CPU execution time is being consumed by running work during a given measurement interval.
 
 Think of a CPU core as having a stream of **time slices**:
 
@@ -54,21 +37,19 @@ CPU utilization = 0.8 / 1.0 × 100%
 
 So your statement:
 
-> CPU utilization indicates how much CPU time is being consumed.
+`CPU utilization indicates how much CPU time is being consumed.`
 
 is basically correct.
 
 More precisely:
 
-> **CPU utilization is the percentage of CPU execution time that the CPU spends doing work rather than being idle.**
+`CPU utilization is the percentage of CPU execution time that the CPU spends doing work rather than being idle`
 
 One important point
 
 A process doesn't permanently "own" a CPU time slice.
 
 The scheduler repeatedly gives runnable processes opportunities to execute:
-
-CPU
 
 ```
 CPU
@@ -94,7 +75,9 @@ And this is why **100% CPU utilization doesn't necessarily mean one process is u
 
 For a multi-core machine, the same principle applies independently to each core, and monitoring tools usually normalize the result to **0–100% of total CPU capacity**.
 
-Question: how to calculate cpu utilization in centos
+#### two
+
+> question: how to calculate cpu utilization in centos
 
 ```
 top - 14:03:46 up 558 days, 19:14,  4 users,  load average: 154.34, 139.43, 90.65
@@ -123,15 +106,13 @@ Method 1: Standard CPU utilization (Linux definition)
 
 Linux considers **I/O wait as non-idle CPU time**, so:
 
-CPU Utilization = 100 - id (100 - 9.0 = 91.0%)
-
-**CPU Utilization = 91.0%**
+`CPU Utilization = 100 - id (100 - 9.0 = 91.0%)`
 
 Method 2: Actual CPU busy doing work
 
 If you want to know how much CPU is actually executing code (excluding I/O wait):
 
-CPU Busy = us + sy + ni + hi + si (14.0 + 0.2 + 0.0 + 0.1 + 0.1) = 14.4%
+`CPU Busy = us + sy + ni + hi + si (14.0 + 0.2 + 0.0 + 0.1 + 0.1) = 14.4%`
 
 This means:
 
@@ -141,7 +122,9 @@ This means:
 
 ## Load
 
-**CPU load** is a measure of **how many tasks are currently competing for CPU execution or are stuck in uninterruptible waiting states**.
+### Definition
+
+CPU load is a measure of how many tasks are currently competing for CPU execution or are stuck in uninterruptible waiting states.
 
 In Linux, it is commonly represented by **load average**, for example:
 
@@ -185,9 +168,7 @@ Roughly one runnable task per CPU core.
 
 There is more demand than the 4 cores can execute simultaneously, so tasks may be waiting.
 
-Important
-
-CPU load is **not a percentage**.
+Important: CPU load is **not a percentage**.
 
 For a 4-core server:
 
@@ -202,15 +183,19 @@ But Linux load also includes tasks in **uninterruptible sleep**, commonly relate
 
 **In one sentence:**
 
-> **CPU load represents the amount of work competing for CPU resources (plus certain uninterruptible waits), while CPU utilization represents the percentage of CPU execution capacity actually being used.**
+```text
+CPU load represents the amount of work competing for CPU resources (plus certain uninterruptible waits), while CPU utilization represents the percentage of CPU execution capacity actually being used
+```
 
 ## Iowait
 
-**I/O wait (`iowait`)** is The percentage of time that the CPU is idle while there are processes waiting for I/O to complete.
+### Definition
+
+I/O wait (`iowait`) is The percentage of time that the CPU is idle while there are processes waiting for I/O to complete.
 
 Or, more simply:
 
-> **`iowait` = CPU idle time associated with outstanding I/O.**
+`iowait = CPU idle time associated with outstanding I/O.`
 
 A better mental model
 
@@ -255,13 +240,13 @@ CPU is idle because I/O is outstanding
 iowait
 ```
 
-
 ### Question
 
-#### 1 
-when process are waiting for I/O to complete, does it release cpu time slice
+#### one
 
-Yes. **Normally, when a process blocks waiting for I/O, it gives up the CPU rather than continuing to consume its CPU time slice.**
+> Q: when process are waiting for I/O to complete, does it release cpu time slice
+
+Yes. Normally, when a process blocks waiting for I/O, it gives up the CPU rather than continuing to consume its CPU time slice.
 
 For example:
 
@@ -356,18 +341,23 @@ CPU has no runnable work
 
 The key idea is:
 
-> **A process waiting for I/O normally releases the CPU, but the CPU may still have other processes to run.**
+```
+A process waiting for I/O normally releases the CPU, but the CPU may still have other processes to run.
+```
 
 That's why **one process having high I/O wait doesn't necessarily mean the CPU is idle**—other processes may use the CPU while it waits.
 
-#### 2
-they release cpu time slice immediately, so why does cpu have many iowait time, i think it should always be zero
+#### two
+
+> Q: they release cpu time slice immediately, so why does cpu have many iowait time, i think it should always be zero
 
 Exactly — this is a **very common point of confusion**. Your reasoning is correct about the **process**, but `iowait` is measured from the **CPU's perspective**, not from an individual process's perspective.
 
 The key is:
 
-> **A process releases the CPU while waiting for I/O, but `iowait` can still be recorded for the CPU during that period.**
+```
+A process releases the CPU while waiting for I/O, but iowait can still be recorded for the CPU during that period.
+```
 
 Imagine a 4-core server
 
@@ -395,11 +385,7 @@ There may be **no other runnable processes**.
 
 The CPUs have nothing useful to execute, but the system is specifically waiting on I/O.
 
-Linux can account this time as:
-
-```text
-iowait
-```
+Linux can account this time as `iowait`
 
 Compare two situations
 
@@ -408,13 +394,9 @@ Situation A — genuinely idle
 ```text
 No process needs CPU
 No I/O is outstanding
-
         ↓
-
 CPU has nothing to do
-
         ↓
-
 idle
 ```
 
@@ -495,12 +477,10 @@ Strictly speaking, **`iowait` does not mean "the CPU itself is waiting for I/O."
 
 This distinction matters because Linux's `iowait` accounting has some subtleties, especially on multicore systems. You shouldn't interpret:
 
-> `30% iowait = CPU spent 30% of its processing capacity doing I/O`
+`30% iowait = CPU spent 30% of its processing capacity doing I/O`
 
 That interpretation is misleading.
 
 A better mental model is:
 
-> **High iowait means there is significant I/O-related waiting and potentially not enough other runnable work to keep the CPU busy.**
-
-And for your HANA monitoring, that's why **high iowait is a signal to investigate storage latency/throughput**, rather than a signal that the CPU itself is overloaded.
+`High iowait means there is significant I/O-related waiting and potentially not enough other runnable work to keep the CPU busy.`
