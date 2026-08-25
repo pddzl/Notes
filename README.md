@@ -91,7 +91,7 @@
       - [介词.md](English/语法体系/词法/虚词/介词.md)
       - [冠词.md](English/语法体系/词法/虚词/冠词.md)
   - 句法
-    - [基本句型.md](English/语法体系/句法/基本句型.md)
+    - [基本句型.md](五大句型.md)
   - other
     - [时间表达.md](English/语法体系/other/时间表达.md)
     - [时间&地点.md](English/语法体系/other/时间%26地点.md)

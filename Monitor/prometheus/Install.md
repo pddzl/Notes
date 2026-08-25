@@ -1,5 +1,4 @@
 
-
 ```shell
 mkdir /data/app && cd /data/app
 mv /tmp/prometheus-3.7.2.linux-amd64.tar.gz /data/app && tar -zxv -f prometheus-3.7.2.linux-amd64.tar.gz
