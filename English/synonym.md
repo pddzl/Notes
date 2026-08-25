@@ -469,3 +469,62 @@ v. 飙升、飞涨
 2. 技术：**仿真、兼容（硬件 / 软件）**，让 A 系统表现得像 B 系统
 
 > This chip emulates old hardware. 该芯片仿真旧硬件。
+
+## 足够的
+
+ample / sufficient / adequate 三者都表 “足够的”，充足程度由低到高：adequate ＜ sufficient ＜ ample
+
+### adequate
+
+`/ˈædɪkwət/`
+
+刚好达标，**勉强够用，没有富余**，刚满足最低要求，暗含 “不算好，但凑合”
+
+- adequate supplies 够用的物资（刚够，不多）
+
+> The room is adequate for two people. 
+> 这个房间两个人住勉强够用。
+
+### sufficient
+
+`/səˈfɪʃnt/`
+
+正式（写作高频，雅思作文），数量**足以满足需求**，达到客观需要的量，不强调多余，只强调 “够用、达标”
+
+> We have sufficient evidence. 我们有充足的证据。 
+> sufficient time 足够的时间
+
+### ample 
+
+`/ˈæmpl/`
+
+充裕、绰绰有余，还有富余，量比实际需要还要多
+
+> There is ample time for discussion. 有充裕的时间可供讨论。
+
+## 丰富的
+
+> 丰富度：plentiful ＜ abundant
+
+### plentiful
+
+`/ˈplentɪfl/`
+
+普通用词；**侧重：当下易得、货源充足、够用有余**，多形容实物（食物、果蔬、物产），偏向现实供应，**语气通俗**网易有道。
+
+> Strawberries are plentiful in summer. 
+> 夏天草莓大量上市、随处可以买到。
+
+- 常见：food, fruit, fish, supply, goods
+- ❌ 极少修饰抽象名词：不写 plentiful evidence /plentiful time
+
+### abundant
+
+正式书面（雅思阅读 / 写作高频）；**数量比 plentiful 更大，侧重客观天然储量、盛产**；可以实物，也可以抽象（证据、机会、资源）。 
+固定搭配：**be abundant in sth** 富于……
+
+> The forest is abundant in wildlife. 
+> 这片森林野生动物种类繁多。
+
+> There is abundant evidence to support this theory. 
+> 有大量证据支持该理论。
