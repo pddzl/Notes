@@ -12,6 +12,7 @@ touch /etc/systemd/system/prometheus.service
 ```
 
 `/etc/systemd/system/prometheus.service`
+
 ```shell
 [Unit]
 Description=Prometheus Monitoring System
@@ -35,8 +36,7 @@ WantedBy=multi-user.target
 ```
 
 ```shell
-systemctl daemon-reload
-systemctl enable prometheus
+systemctl daemon-reload && systemctl enable prometheus
 ```
 
 ```shell
