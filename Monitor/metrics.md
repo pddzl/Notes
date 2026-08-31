@@ -2,3 +2,8 @@
 
 ### TCP
 
+#### ESTABLISHED
+#### TIME-WAIT
+#### CLOSE-WAIT
+#### SYN-SENT
+#### SYN-RECV

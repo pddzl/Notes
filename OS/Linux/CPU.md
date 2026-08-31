@@ -240,11 +240,9 @@ CPU is idle because I/O is outstanding
 iowait
 ```
 
-### Question
+### FAQ
 
-#### one
-
-> Q: when process are waiting for I/O to complete, does it release cpu time slice
+#### Q1. when process are waiting for I/O to complete, does it release cpu time slice
 
 Yes. Normally, when a process blocks waiting for I/O, it gives up the CPU rather than continuing to consume its CPU time slice.
 
@@ -347,9 +345,7 @@ A process waiting for I/O normally releases the CPU, but the CPU may still have 
 
 That's why **one process having high I/O wait doesn't necessarily mean the CPU is idle**—other processes may use the CPU while it waits.
 
-#### two
-
-> Q: they release cpu time slice immediately, so why does cpu have many iowait time, i think it should always be zero
+#### Q2. they release cpu time slice immediately, so why does cpu have many iowait time, i think it should always be zero
 
 Exactly — this is a **very common point of confusion**. Your reasoning is correct about the **process**, but `iowait` is measured from the **CPU's perspective**, not from an individual process's perspective.
 
