@@ -907,4 +907,78 @@ v. 摧毁，毁灭
 - The crisis devastated the economy. 这场危机重创经济。
 
 派生词：devastating adj. 毁灭性的
+
 a devastating blow 毁灭性打击
+
+## 习俗 / 规范
+
+| 单词         | 核心重心         | 典型场景      | 内核            |
+| ---------- | ------------ | --------- | ------------- |
+| norm       | 现实层面的普遍状态    | 群体行为、统计标准 | 事实：大家实际上这么做   |
+| convention | 社会公认的礼仪 / 程式 | 社交礼仪、文体格式 | 共识：按传统理应这么做   |
+| custom     | 地域 / 民族传承风俗  | 地方文化、民族传统 | 文化：代代传下来的本土习惯 |
+
+### norm 
+
+`/nɔːm/ n`
+
+现实常态；群体潜规范 
+侧重实际发生的普遍行为，观察视角，不一定被推崇，可用于统计数值。
+
+- social norms 社会潜规范
+- above/below the norm 高于 / 低于常态
+
+> Working overtime is the norm in this industry. 
+> 加班是这个行业的常态。（客观描述现状，未必是好事）
+
+### convention 
+
+`/kənˈvenʃn/ n`
+
+社会礼俗；程式惯例
+长期沿袭、社会默认应当遵守的礼仪、格式、社交范式；也可指大型会议。多用于社交、文体、写作格式。
+
+- social conventions 社交礼节
+- literary conventions 文学创作的惯用范式
+
+> It is a convention to remove shoes indoors. 进屋脱鞋是约定俗成的礼节。
+
+### custom 
+
+`/ˈkʌstəm/ n`
+
+风俗，地方传统
+多指特定民族、地域、族群代代传承的风俗习惯，带有文化、本土色彩；复数 customs 海关。
+
+- local customs 当地风俗
+- traditional customs 传统习俗
+
+> It’s an old custom to give red envelopes. 发红包是一项古老风俗。
+
+## 道德
+
+- **ethics**：外界的伦理准则（行业、群体）
+- morals：人的内在品行（个人）
+
+例句速记
+
+- It goes against professional ethics. 这违背职业伦理。（行业）
+- He has no morals. 他没有道德底线。（个人）
+### ethic 
+
+`/ˈeθɪk/ n.`
+
+单数 ethic：道德信条、价值操守
+
+复数ethics（更常用）：伦理；行业 / 职业道德规范
+侧重：公共、行业、社会层面的整套伦理体系
+例：business ethics 商业伦理；work ethic 敬业操守
+
+### moral 
+
+`/ˈmɒrəl/`
+
+adj. 道德上的，道义上的 
+n. 复数morals：个人的道德品行、是非观 
+侧重：个人的善恶观念、人品操守
+例：moral dilemma 道德困境；a person of high morals 品行高尚的人
