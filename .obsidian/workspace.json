@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Monitor/prometheus/Architecture.md",
+                "file": "English/phrase.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Architecture"
+              "title": "phrase"
             }
           }
         ]
@@ -80,7 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 292.59765625
+    "width": 294.984375
   },
   "right": {
     "id": "030717baafeb33ef",
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Monitor/prometheus/Architecture.md",
+                "file": "English/phrase.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,25 +171,27 @@
   },
   "active": "a4dcfc723b9eaf3b",
   "lastOpenFiles": [
+    "English/synonym.md",
+    "English/phrase.md",
+    "English/语法体系/词法/实词/动词/谓语动词/情态动词/must.md",
+    "English/语法体系/词法/实词/动词/谓语动词/情态动词/may & might.md",
+    "English/语法体系/词法/实词/动词/谓语动词/情态动词/may %26 might.md",
+    "English/语法体系/词法/实词/动词/谓语动词/情态动词/can & could & be able to.md",
+    "Monitor/prometheus/Architecture.md",
     "Monitor/zabbix-architecture.md",
     "Monitor/Metrics.md",
     "OS/Linux/TCP.md",
     "README.md",
     "OS/Linux/CPU.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/would.md",
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/may & might.md",
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/may %26 might.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/should.md",
-    "English/Synonym.md",
     "English/语法体系/句法/逗号的用法.md",
     "English/语法体系/词法/虚词/介词.md",
-    "English/Phrase.md",
     "English/语法体系/概述.md",
     "English/语法体系/词法/概述.md",
     "English/语法体系/词法/实词/副词.md",
     "English/语法体系/other/时间表达.md",
     "English/语法体系/other/时间&地点.md",
-    "Monitor/prometheus/Architecture.md",
     "Monitor/prometheus/Install.md",
     "Monitor/Zabbix.md",
     "English/语法体系/句法/三大结构/README.md",
@@ -198,8 +200,6 @@
     "English/语法体系/句法/三大结构/复合句/状语从句",
     "English/语法体系/句法/三大结构/复合句/定语从句.md",
     "English/语法体系/句法/三大结构/复合句",
-    "English/语法体系/句法/三大结构/并列句.md",
-    "English/语法体系/句法/三大结构/并列句.md",
     "English/语法体系/句法/三大结构",
     "OS/Linux",
     "English/语法体系/词法/实词/动词/非谓语",

@@ -33,8 +33,8 @@
 <details>
 <summary>English</summary>
 
-- [Phrase.md](English/Phrase.md)
-- [Synonym.md](English/Synonym.md)
+- [Phrase.md](phrase.md)
+- [Synonym.md](synonym.md)
 - 雅思
   - 阅读
     - [句子结构.md](English/雅思/阅读/句子结构.md)
