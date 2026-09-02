@@ -90,14 +90,53 @@ economic chaos
 
 > **Focus:** Nobody is in control.
 
-## 伤害
+## 伤害的
 
 ### detrimental
 
-普通用词，客观 “会造成伤害”，可用于人、物、化学物质
+普通用词，客观 会造成伤害，可用于人、物、化学物质
 ### harmful
 
-**偏抽象、间接损害**，多指对利益、发展、机会、效率产生不良影响，不多指肉体直接受伤；语气更强，正式书面。
+偏抽象、间接损害，多指对利益、发展、机会、效率产生不良影响，不多指肉体直接受伤；语气更强，正式书面
+
+## 伤害
+
+**hurt < harm < damage < impair**
+
+- hurt：侧重肉体疼痛 / 情感受伤
+- harm：泛指带来不良伤害（可轻可重，抽象居多）
+- damage：财物、物品受损，价值 / 功能被破坏（大多可修复）
+- impair：削弱、损害功能 / 能力（偏书面、雅思高频，多指长期 / 持续性削弱）
+
+### hurt
+
+动词：感到疼痛；使受伤；情感伤心
+多用于人 / 动物，肉体痛或心灵受伤
+
+```text
+My knee hurts. 我膝盖疼。
+The criticism hurt him. 这番话伤了他。一般不用于物体、抽象机能
+```
+
+### harm
+
+`v./n.` 伤害、损害（通用词）
+对象：健康、名誉、环境、利益（抽象为主，也可指身体），不一定看得见破损
+
+```text
+Smoking harms your health. 吸烟损害健康
+固定搭配：do harm to sb = harm sb
+```
+
+### impair
+
+`v.` 削弱、损害（雅思阅读 / 听力高频; 正式书面词） 
+重点：削弱某种能力、功能，不一定有肉眼可见破损
+常用搭配：impair memory /impair vision /impair judgement /impair hearing
+
+```text
+Lack of sleep impairs concentration. 睡眠不足削弱专注力
+```
 
 ## 选择
 
@@ -849,66 +888,139 @@ adj. 狂怒的，暴怒的
 
 > a furious storm 狂风暴雨
 
-## 摧毁
+## 损坏 / 摧毁
 
-强度梯度（从小到大）
+damage < ruin < destroy < devastate
 
-ruin(糟蹋 损毁 尚可抢救) < destroy(彻底毁坏 难复原) < devastate(毁灭性重创 大片 / 精神重创)
+- **damage** → 损坏，但整体还在，通常可以修复
+- **ruin** → 毁掉价值 / 功能 / 结果，不一定物理上消失
+- **destroy** → 摧毁，使原有结构或存在状态消失
+- **devastate** → 造成大范围、毁灭性的破坏或巨大冲击
+
+### damage
+
+`/ˈdæmɪdʒ/`
+
+`v.` 损坏; 损害
+
+重点：局部或一定程度的损坏，主体通常仍然存在，通常有可能修复
+
+既可以用于具体事物，也可以用于名誉、关系、经济等抽象事物
+
+```text
+damage the car 损坏汽车
+damage the building 损坏建筑物
+damage one's reputation 损害某人的名誉
+damage the relationship 损害关系
+```
 
 ### ruin 
 
 `/ˈruːɪn/`
 
-v. 毁坏; 毁掉; 使破败
+`v.`毁坏；毁掉；使...失去价值
 
-> 重点：不一定完全粉碎，价值、功能、体验被毁掉；还看得见残骸，可部分修复。可用于实物、抽象（生活、计划、名声、心情）。
+重点：不一定把东西“摧毁”，而是使其原有的价值、功能、效果或计划彻底失败
 
-搭配：
+东西可能仍然存在，但已经失去了原来的用途或价值，因此通常不值得修复。
 
-- ruin one’s reputation 毁掉名声
-- ruin the holiday 毁掉假期
-- The storm ruined the crops. 暴风雨毁坏了庄稼。
+尤其常用于**抽象事物**：
 
-名词：ruins 废墟
+`计划, 旅行, 职业, 人生, 心情, 名声, 收成`
 
-- in ruins 沦为废墟
+```text
+ruin the trip 毁掉旅行
+ruin the plan 搞砸计划
+ruin his career 断送他的职业生涯
+ruin one's life 毁掉某人的人生
+ruin the harvest 使收成泡汤
+```
+
+名词
+
+ruins `/ruːɪnz/`  
+n. 废墟；遗迹
+
+```text
+The ancient city is now in ruins.  
+这座古城如今已沦为废墟
+```
 
 ### destroy
 
 `/dɪˈstrɔɪ/`
 
-v. 摧毁，毁灭
+`v.` 摧毁 毁灭
 
-> 外力彻底破坏，物体基本丧失原有形态，大多不可复原; 实物为主, 也可抽象（希望、证据）。程度高于 ruin。
+重点：使原有的结构、形态或存在状态遭到彻底破坏，通常很难恢复到原来的状态
 
-搭配：
+```text
+destroy the building 摧毁建筑物
+destroy the car 彻底毁坏汽车
+destroy the evidence 销毁证据
+destroy someone's hopes 摧毁某人的希望
+destroy the ecosystem 摧毁生态系统
+```
 
-- destroy the building 摧毁建筑
-- destroy evidence 销毁证据
-- destroy confidence 摧毁信心
+相比 `ruin`，`destroy` 更强调物理上的彻底破坏，但也可以用于抽象事物
 
-例句：The fire destroyed the whole factory. 大火烧毁了整座工厂。
+> ruin = 东西可能还在，但价值 / 功能 / 结果没了  
+> destroy = 东西本身的结构 / 形态 / 存在状态被摧毁
+
+> The rain ruined my phone.  
+> 雨水把我的手机弄坏了，手机可能还在，但不能正常使用。
+
+> The fire destroyed my phone.  
+> 火把我的手机彻底烧毁了。
 
 ### devastate 
 
-`/ˈdevəsteɪt/`
+`/ˈdevəsteɪt/`  
 
-**v. 彻底摧毁；重创；使悲痛欲绝**
+`v.` 彻底摧毁；使遭受毁灭性破坏；使悲痛欲绝
 
-> 程度最强。两层：
+重点：造成极其严重、广泛或毁灭性的破坏 / 打击
 
-1. 实物：大片区域被夷为废墟（灾难、战争）
-2. 抽象：情绪、经济遭受毁灭性打击，强调冲击带来巨大创伤。
+它通常不是单纯强调“东西被弄坏”，而是强调破坏程度非常严重，影响范围很大，或者造成巨大的情感冲击
 
-搭配：
+主要有两类用法：
 
-- devastate the region 重创该地区
-- be devastated by grief 悲痛欲绝
-- The crisis devastated the economy. 这场危机重创经济。
+1. 实物 / 地区：造成毁灭性破坏
 
-派生词：devastating adj. 毁灭性的
+常用于：
 
+`战争, 地震, 飓风, 洪水, 火灾, 城市, 地区, 经济`
+
+```text
+devastate the city 重创城市
+devastate the coastal area 重创沿海地区
+devastate the economy 重创经济
+be devastated by the earthquake 遭受地震的毁灭性打击
+```
+
+2. 抽象 / 情感：造成巨大打击
+
+```text
+devastate someone  
+使某人遭受巨大打击；使某人悲痛欲绝
+
+She was devastated by the loss  
+她因这次失去而悲痛欲绝。
+
+The news devastated him.  
+这个消息给了他沉重的打击。
+```
+
+派生词
+
+devastating `/ˈdevəsteɪtɪŋ/`  
+`adj.` 毁灭性的；造成巨大打击的
+
+```text
 a devastating blow 毁灭性打击
+devastating news 令人极度痛苦的消息
+a devastating earthquake 造成毁灭性破坏的地震
+```
 
 ## 习俗 / 规范
 
@@ -982,3 +1094,56 @@ adj. 道德上的，道义上的
 n. 复数morals：个人的道德品行、是非观 
 侧重：个人的善恶观念、人品操守
 例：moral dilemma 道德困境；a person of high morals 品行高尚的人
+
+## 重要
+
+强度梯度
+
+important（通用） < vital < crucial ≈ critical
+
+- important: 单纯重要，基础通用
+- vital: 维持运转 / 生存必需（vital = related to life）
+- crucial: 决定成败, 缺少则整件事失败
+- critical: 同 crucial；额外可表 危急、批判性
+
+### important 
+
+`/ɪmˈpɔːtnt/`
+
+普通词：重要的，日常、学术通用，强度最低
+含义：有价值、不能忽略，但缺了不一定全盘失败
+搭配：important factor /meeting/issue
+
+> It’s important to wear a seatbelt. 系安全带很重要。
+
+### vital 
+
+`/ˈvaɪtl/`
+
+至关重要的；维持生命 / 运转必需的
+词根：life（生命），核心：缺了就难以维持正常运转
+搭配：vital role /vital information /vital to sth
+
+> Water is vital for human survival. 水对人类生存不可或缺。
+
+### crucial
+
+`/ˈkruːʃl/`
+
+决定性的，关键的
+核心：这一点决定成败, 关键时刻必不可少
+搭配：crucial moment / crucial evidence / crucial for success
+
+> This test is crucial to our final result. 这次测试对我们最终成绩起决定性作用。
+
+### critical
+
+`/ˈkrɪtɪkl/`
+
+两层核心义（雅思高频，务必区分） 
+crucial 关键的（决定结果），和 crucial 经常互换
+a critical stage 关键阶段  
+
+危重的；危急的（独有含义，crucial/vital/important 没有） 
+critical condition 病情危重 
+额外：critical 还可表示 “批判性的；挑剔的”（critical thinking 批判性思维）
