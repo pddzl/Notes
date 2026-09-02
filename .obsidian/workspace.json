@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/phrase.md",
+                "file": "English/语法体系/词法/实词/副词.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "phrase"
+              "title": "副词"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/phrase.md",
+                "file": "English/语法体系/词法/实词/副词.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,8 +171,13 @@
   },
   "active": "a4dcfc723b9eaf3b",
   "lastOpenFiles": [
-    "English/synonym.md",
+    "English/语法体系/词法/实词/副词.md",
+    "English/语法体系/词法/实词/副词.md",
+    "English/语法体系/词法/实词/格.md",
+    "English/语法体系/词法/实词/动词/谓语动词/README.md.md",
+    "English/语法体系/词法/实词/动词/谓语动词/情态动词/shall.md",
     "English/phrase.md",
+    "English/synonym.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/must.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/may & might.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/may %26 might.md",
@@ -189,16 +194,11 @@
     "English/语法体系/词法/虚词/介词.md",
     "English/语法体系/概述.md",
     "English/语法体系/词法/概述.md",
-    "English/语法体系/词法/实词/副词.md",
     "English/语法体系/other/时间表达.md",
     "English/语法体系/other/时间&地点.md",
     "Monitor/prometheus/Install.md",
-    "Monitor/Zabbix.md",
-    "English/语法体系/句法/三大结构/README.md",
-    "English/语法体系/句法/三大结构/复合句/README.md",
     "English/语法体系/句法/三大结构/复合句/名称性从句",
     "English/语法体系/句法/三大结构/复合句/状语从句",
-    "English/语法体系/句法/三大结构/复合句/定语从句.md",
     "English/语法体系/句法/三大结构/复合句",
     "English/语法体系/句法/三大结构",
     "OS/Linux",
