@@ -4,21 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "235d04c9b6206e31",
+        "id": "a755db9abff7cfb0",
         "type": "tabs",
         "children": [
           {
-            "id": "134deef84d89eae0",
+            "id": "4658598da8ac4823",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/synonym.md",
+                "file": "English/语法体系/句法/三大结构/复合句/名称性从句/宾语从句.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "synonym"
+              "title": "宾语从句"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/synonym.md",
+                "file": "English/语法体系/句法/三大结构/复合句/名称性从句/宾语从句.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -169,34 +169,34 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "134deef84d89eae0",
+  "active": "4658598da8ac4823",
   "lastOpenFiles": [
-    "Git/commit convention.md",
+    "English/synonym.md",
+    "English/语法体系/句法/三大结构/复合句/名称性从句/同位语从句.md",
+    "English/语法体系/句法/三大结构/复合句/名称性从句/表语从句.md",
+    "English/语法体系/句法/三大结构/复合句/名称性从句/宾语从句.md",
+    "English/语法体系/句法/三大结构/复合句/名称性从句/主语从句.md",
+    "English/语法体系/句法/三大结构/复合句/README.md",
+    "Monitor/TSDB.md",
+    "Monitor/Metrics.md",
     "English/语法体系/词法/实词/副词.md",
+    "OS/Linux/TCP.md",
+    "Git/commit convention.md",
     "Git/branch.md",
     "English/语法体系/词法/实词/格.md",
     "English/语法体系/词法/实词/动词/谓语动词/README.md.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/shall.md",
     "English/phrase.md",
-    "English/synonym.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/must.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/may & might.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/may %26 might.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/can & could & be able to.md",
     "Monitor/prometheus/Architecture.md",
     "Monitor/zabbix-architecture.md",
-    "Monitor/Metrics.md",
-    "OS/Linux/TCP.md",
     "README.md",
     "OS/Linux/CPU.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/would.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/should.md",
-    "English/语法体系/句法/逗号的用法.md",
-    "English/语法体系/词法/虚词/介词.md",
-    "English/语法体系/概述.md",
-    "English/语法体系/词法/概述.md",
-    "English/语法体系/other/时间表达.md",
-    "English/语法体系/other/时间&地点.md",
     "English/语法体系/句法/三大结构/复合句/名称性从句",
     "English/语法体系/句法/三大结构/复合句/状语从句",
     "English/语法体系/句法/三大结构/复合句",

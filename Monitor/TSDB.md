@@ -1,8 +1,8 @@
-# What is a Time Series Database?
+# What is a Time Series Database
 
-A **Time Series Database (TSDB)** is a database designed specifically for storing and querying data that **changes over time**.
+A Time Series Database (TSDB) is a database designed specifically for storing and querying data that changes over time.
 
-Every record in a TSDB has a **timestamp**, which is one of the most important parts of the data.
+Every record in a TSDB has a timestamp, which is one of the most important parts of the data.
 
 ## Example
 
@@ -16,17 +16,17 @@ For example, every minute you collect CPU usage:
 
 Unlike a traditional database, the primary question is usually:
 
-> **"What was the value over a period of time?"**
+> What was the value over a period of time?
 
 rather than:
 
-> **"Find the row with ID = 123."**
+> Find the row with ID = 123
 
-## What is a Time Series?
+## What is a Time Series
 
 A simple way to understand a time series is:
 
-> **Time Series = Metric + Labels + Timestamp + Value**
+> Time Series = Metric + Labels + Timestamp + Value
 
 Prometheus and VictoriaMetrics organize data as **time series**.
 
@@ -36,7 +36,7 @@ For example:
 server.net.if.in{ip="10.13.96.51", IFNAME="bond0"}
 ```
 
-This identifies **one time series**.
+This identifies one time series.
 
 Its data might look like:
 
@@ -48,7 +48,7 @@ Its data might look like:
 | 10:03:00  | 1101234 |
 | ...       |     ... |
 
-Notice that the **labels identify the series**:
+Notice that the labels identify the series:
 
 ```text
 ip="10.13.96.51"
@@ -77,7 +77,7 @@ represents one time series:
 
 ### Key idea
 
-A traditional database is often organized around **entities and records**:
+A traditional database is often organized around entities and records:
 
 ```text
 User
@@ -86,7 +86,7 @@ Product
 Employee
 ```
 
-A time-series database is organized around **measurements and time**:
+A time-series database is organized around measurements and time:
 
 ```text
 CPU usage over time
@@ -96,4 +96,4 @@ Disk I/O over time
 Request latency over time
 ```
 
-So for monitoring systems such as **Prometheus and VictoriaMetrics**, the fundamental object is not simply a row — it is a **time series**.
+So for monitoring systems such as Prometheus and VictoriaMetrics, the fundamental object is not simply a row — it is a time series.

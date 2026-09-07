@@ -831,7 +831,7 @@ means the connection has already been closed but is being retained temporarily.
 
 `TIME-WAIT` is important for TCP reliability.
 
-The client does **not** immediately disappear after sending the final ACK.
+The client does not immediately disappear after sending the final ACK.
 
 Instead:
 
