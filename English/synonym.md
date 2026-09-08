@@ -1147,3 +1147,42 @@ a critical stage 关键阶段
 危重的；危急的（独有含义，crucial/vital/important 没有） 
 critical condition 病情危重 
 额外：critical 还可表示 “批判性的；挑剔的”（critical thinking 批判性思维）
+
+## 旋转
+
+1. rotate: 绕自身轴转（自转，中性，学术常用）
+2. revolve: 绕外部中心点转（公转）
+3. spin: 快速地自转，强调速度快
+
+### rotate
+
+`/rəʊˈteɪt/ v.`
+
+核心：绕自身轴心转动；轮换
+侧重：物体以自己中心轴旋转；也可表示人员 / 班次轮换
+
+> The Earth rotates on its axis. 地球绕地轴自转
+
+### revolve
+
+`/rɪˈvɒlv/ v.`
+
+核心：绕外部中心公转（也可泛指旋转）
+关键区分：revolve = 绕外面的点转
+
+```text
+The Earth revolves around the Sun. 地球绕太阳公转
+固定搭配：revolve around sth 以...为中心
+```
+
+### spin 
+
+`/spɪn/ v./n.`
+
+核心：快速、高速自转；打转 
+侧重：速度快，常带有离心感，可伴随缠绕 / 甩动；口语高频
+
+```text
+The wheel spun wildly. 轮子飞速打转
+spin a coin 捻转硬币
+```

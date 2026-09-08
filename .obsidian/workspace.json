@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/语法体系/句法/三大结构/复合句/名词性从句/主语从句.md",
+                "file": "English/synonym.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "主语从句"
+              "title": "synonym"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/语法体系/句法/三大结构/复合句/名词性从句/主语从句.md",
+                "file": "English/synonym.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,13 +171,15 @@
   },
   "active": "38903f7f409132af",
   "lastOpenFiles": [
+    "English/雅思/阅读/重点短语&句式.md",
+    "English/phrase.md",
+    "English/synonym.md",
     "English/语法体系/How.md",
-    "English/语法体系/句法/三大结构/复合句/名词性从句/主语从句.md",
-    "English/语法体系/句法/三大结构/复合句/定语从句.md",
-    "English/语法体系/句法/三大结构/复合句/名词性从句/同位语从句.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句/表语从句.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句/宾语从句.md",
-    "English/synonym.md",
+    "English/语法体系/句法/三大结构/复合句/名词性从句/同位语从句.md",
+    "English/语法体系/句法/三大结构/复合句/名词性从句/主语从句.md",
+    "English/语法体系/句法/三大结构/复合句/定语从句.md",
     "English/语法体系/句法/三大结构/复合句/README.md",
     "Monitor/TSDB.md",
     "Monitor/Metrics.md",
@@ -188,7 +190,6 @@
     "English/语法体系/词法/实词/格.md",
     "English/语法体系/词法/实词/动词/谓语动词/README.md.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/shall.md",
-    "English/phrase.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/must.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/may & might.md",
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/may %26 might.md",
@@ -196,7 +197,6 @@
     "Monitor/prometheus/Architecture.md",
     "Monitor/zabbix-architecture.md",
     "README.md",
-    "OS/Linux/CPU.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句",
     "English/语法体系/句法/三大结构/复合句/状语从句",
     "English/语法体系/句法/三大结构/复合句",
