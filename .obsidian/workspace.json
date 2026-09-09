@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/雅思/阅读/重点短语&句式.md",
+                "file": "English/语法体系/句法/三大结构/复合句/状语从句/比较状语从句.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "重点短语&句式"
+              "title": "比较状语从句"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/雅思/阅读/重点短语&句式.md",
+                "file": "English/语法体系/句法/三大结构/复合句/状语从句/比较状语从句.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,6 +171,19 @@
   },
   "active": "38903f7f409132af",
   "lastOpenFiles": [
+    "English/语法体系/句法/三大结构/复合句/状语从句/时间状语从句.md",
+    "English/语法体系/句法/三大结构/复合句/状语从句/比较状语从句.md",
+    "English/语法体系/句法/逗号的用法.md",
+    "English/语法体系/句法/三大结构/复合句/状语从句/README.md",
+    "English/语法体系/句法/句子成分/状语.md",
+    "English/语法体系/句法/句子成分",
+    "English/语法体系/句法/句子成分.md",
+    "English/雅思/写作/写作高频词汇&表达.md",
+    "English/雅思/口语/口语高频词汇&表达.md",
+    "English/雅思/听力/听力重点单词&词组.md",
+    "English/雅思/阅读/句子结构.md",
+    "English/雅思/阅读/易错词汇.md",
+    "English/雅思/阅读/重点短语&句式.md",
     "English/语法体系/句法/三大结构/README.md",
     "English/语法体系/句法/三大结构/复合句/README.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句/宾语从句.md",
@@ -180,23 +193,11 @@
     "English/语法体系/句法/三大结构/复合句/名词性从句/表语从句.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句/主语从句1.md",
     "English/语法体系/How.md",
-    "English/雅思/阅读/重点短语&句式.md",
-    "English/雅思/听力/听力重点单词&词组.md",
     "English/synonym.md",
     "English/phrase.md",
     "English/语法体系/句法/三大结构/复合句/定语从句.md",
     "Monitor/TSDB.md",
     "Monitor/Metrics.md",
-    "English/语法体系/词法/实词/副词.md",
-    "OS/Linux/TCP.md",
-    "Git/commit convention.md",
-    "Git/branch.md",
-    "English/语法体系/词法/实词/格.md",
-    "English/语法体系/词法/实词/动词/谓语动词/README.md.md",
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/shall.md",
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/must.md",
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/may & might.md",
-    "English/语法体系/词法/实词/动词/谓语动词/情态动词/may %26 might.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句",
     "English/语法体系/句法/三大结构/复合句/状语从句",
     "English/语法体系/句法/三大结构/复合句",
@@ -206,7 +207,6 @@
     "Database/OLAP",
     "Monitor/prometheus",
     "English/语法体系/词法/实词/动词/谓语动词/时态",
-    "English/语法体系/词法/实词/名词.pdf",
     "Untitled.canvas",
     "p2.jpg"
   ]
