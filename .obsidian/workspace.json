@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/synonym.md",
+                "file": "English/语法体系/句法/三大结构/复合句/名词性从句/表语从句.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "synonym"
+              "title": "表语从句"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/synonym.md",
+                "file": "English/语法体系/句法/三大结构/复合句/名词性从句/表语从句.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,14 +171,15 @@
   },
   "active": "38903f7f409132af",
   "lastOpenFiles": [
-    "English/雅思/阅读/重点短语&句式.md",
-    "English/phrase.md",
-    "English/synonym.md",
-    "English/语法体系/How.md",
-    "English/语法体系/句法/三大结构/复合句/名词性从句/表语从句.md",
-    "English/语法体系/句法/三大结构/复合句/名词性从句/宾语从句.md",
-    "English/语法体系/句法/三大结构/复合句/名词性从句/同位语从句.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句/主语从句.md",
+    "English/语法体系/句法/三大结构/复合句/名词性从句/表语从句.md",
+    "English/语法体系/句法/三大结构/复合句/名词性从句/同位语从句.md",
+    "English/语法体系/句法/三大结构/复合句/名词性从句/宾语从句.md",
+    "English/语法体系/How.md",
+    "English/雅思/阅读/重点短语&句式.md",
+    "English/雅思/听力/听力重点单词&词组.md",
+    "English/synonym.md",
+    "English/phrase.md",
     "English/语法体系/句法/三大结构/复合句/定语从句.md",
     "English/语法体系/句法/三大结构/复合句/README.md",
     "Monitor/TSDB.md",
@@ -196,7 +197,6 @@
     "English/语法体系/词法/实词/动词/谓语动词/情态动词/can & could & be able to.md",
     "Monitor/prometheus/Architecture.md",
     "Monitor/zabbix-architecture.md",
-    "README.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句",
     "English/语法体系/句法/三大结构/复合句/状语从句",
     "English/语法体系/句法/三大结构/复合句",
