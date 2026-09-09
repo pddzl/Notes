@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/语法体系/句法/三大结构/README.md",
+                "file": "English/雅思/阅读/重点短语&句式.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "重点短语&句式"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/语法体系/句法/三大结构/README.md",
+                "file": "English/雅思/阅读/重点短语&句式.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,8 +171,8 @@
   },
   "active": "38903f7f409132af",
   "lastOpenFiles": [
-    "English/语法体系/句法/三大结构/复合句/README.md",
     "English/语法体系/句法/三大结构/README.md",
+    "English/语法体系/句法/三大结构/复合句/README.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句/宾语从句.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句/同位语从句.md",
     "English/语法体系/句法/五大句型.md",
