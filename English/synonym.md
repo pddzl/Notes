@@ -1,5 +1,4 @@
-
-## 混乱
+## 1. 混乱
 
 These three words all describe **disorder**, but they focus on **different kinds of disorder**.
 
@@ -90,7 +89,7 @@ economic chaos
 
 > **Focus:** Nobody is in control.
 
-## 伤害的
+## 2. 伤害的
 
 ### detrimental
 
@@ -99,7 +98,7 @@ economic chaos
 
 偏抽象、间接损害，多指对利益、发展、机会、效率产生不良影响，不多指肉体直接受伤；语气更强，正式书面
 
-## 伤害
+## 3. 伤害
 
 **hurt < harm < damage < impair**
 
@@ -138,7 +137,7 @@ Smoking harms your health. 吸烟损害健康
 Lack of sleep impairs concentration. 睡眠不足削弱专注力
 ```
 
-## 选择
+## 4. 选择
 
 ### opt
 
@@ -151,7 +150,7 @@ opt to do sth
 
 普通的**选择**，可以是随便选、本能选、深思熟虑选，范围最广。
 
-## 提高
+## 5. 提高
 
 ### lift
 搬东西、提振心情、解除禁令
@@ -164,14 +163,14 @@ opt to do sth
 ### heighten
 加剧紧张、风险、情绪
 
-## 法律
+## 6. 法律
 
 ### law
 单部法律，可数，生效执行；可以指科学定律
 ### legislation
 立法行为 / 整套法规，不可数，不用 a，无复数；多指议会审议中的法案
 
-## 增强
+## 7. 增强
 
 ### strength
 
@@ -210,7 +209,7 @@ opt to do sth
 
 > 语感：锦上添花，**让质量 / 体验 / 价值变得更优**
 
-## 合并
+## 8. 合并
 
 ### combine
 把多方放在一起，还可以保留各自特性，中性通用
@@ -219,7 +218,7 @@ opt to do sth
 ### conflate
 错误地把两件**本不该混为一谈**的事物等同、混淆在一起（大多贬义）
 
-## 碎片
+## 9. 碎片
 
 ### segment
 划分出来，边界清楚（不一定坏）
@@ -230,7 +229,7 @@ opt to do sth
 ### snippet
 短小摘录，只言片语（文字 / 音频）
 
-## 污染
+## 10. 污染
 
 ### pollute
 
@@ -239,7 +238,7 @@ opt to do sth
 
 干净物体被外来坏东西混入沾染，可以小范围：食物、血液、实验样品、器械；被脏东西混进去、沾染玷污
 
-## 连续
+## 11. 连续
 
 ### consecutive
 
@@ -254,8 +253,8 @@ opt to do sth
 
 核心：相继发生、接踵而至；侧重一件事跟着另一件发生，侧重先后次序与更迭，书面感更强；很多场景可和 consecutive 互换，但侧重点不同
 
-✅ successive 更强调**更替、一波接一波**；
-✅ consecutive 侧重**按顺序计数、连成序列**
+successive 更强调**更替、一波接一波**；
+consecutive 侧重**按顺序计数、连成序列**
 
 - successive governments 一届接一届的政府（政权更迭，首选 successive，不用 consecutive）
 - successive failures 接连不断的失败
@@ -264,8 +263,8 @@ opt to do sth
 
 consecutive vs successive 最简区分
 
-- 单纯罗列数字、次数、赛程计数 → **consecutive**
-- 事物更迭、一代接一代、一波接一波 → **successive**
+- 单纯罗列数字、次数、赛程计数 → consecutive
+- 事物更迭、一代接一代、一波接一波 → successive
 ### continuous
 
 核心：不间断、无中断（时间 / 空间上连成一片）
@@ -273,7 +272,7 @@ consecutive vs successive 最简区分
 
 - continuous rain 连绵不断的雨（雨一直下，没有停）
 - continuous noise 持续不断的噪音
-⚠️ 区别 continual：continual 是反复发生、中间有停顿
+区别 continual：continual 是反复发生、中间有停顿
 
 > The machine runs continuously. 机器不间断运转。
 
@@ -289,15 +288,17 @@ consecutive vs successive 最简区分
 
 > These tasks must be completed in sequential order. 这些任务必须按先后顺序完成。
 
-## 保留
+## 11. 保留
 
 一句话区分口诀
 
-✅ retain = 保住（不丢）
-✅ maintain = 维持（不变、保养）
-✅ sustain = 支撑（续命 / 承受冲击）
+retain = 保住（不丢）
+maintain = 维持（不变、保养）
+sustain = 支撑（续命 / 承受冲击）
 
 ### retain
+
+**retention** /rɪˈtenʃn/ n.
 
 核心：保有、留住，防止失去；侧重 “所有权、占有、记忆、人员”
 强调东西本来属于自己，努力保住，不流失。
@@ -338,14 +339,14 @@ sustain growth 维持增长
 sustain damage 遭受损坏
 sustain losses 蒙受损失
 
-## 弯曲
+## 12. 弯曲
 ### bend
 
 **通用：把平直物体弯折，可以是平缓弯，也可以折出角度**，不一定断裂。
 
 > Bend your knees. 弯曲膝盖。 
 > The branch bent in the wind. 树枝被风吹弯。
->  👉 重点：**施加外力产生弯曲**，是基础词；可指身体、金属、棍子。
+>  重点：**施加外力产生弯曲**，是基础词；可指身体、金属、棍子。
 
 ### curve
 
@@ -353,8 +354,9 @@ sustain losses 蒙受损失
 
 > The road curves to the left. 
 > 道路向左呈弧形拐弯。 
-> Her lips curved into a smile. 她嘴角弯起微笑。 👉 区分 bend vs curve：
+> Her lips curved into a smile. 她嘴角弯起微笑。 
 
+> 区分 bend vs curve：
 - bend：强调动作 “掰弯”；
 - curve：强调结果 “呈圆弧线条”。
 
@@ -364,16 +366,16 @@ sustain losses 蒙受损失
 
 > Her hair curls naturally. 她头发自然卷曲。 
 > He curled up on the sofa. 他蜷在沙发上。 
-> 👉 形态：一圈一圈向内收拢；curl up 固定搭配：蜷起身体。
+> 形态：一圈一圈向内收拢；curl up 固定搭配：蜷起身体。
 
 ### crook
 
-**局部生硬拐出一个钩状、尖角弯折**，小范围拐一个钩子。
+局部生硬拐出一个钩状、尖角弯折，小范围拐一个钩子。
 
 > She crooked her finger to call me. 她勾手指叫我。
-> 👉 名词 crook：钩子；骗子。
+> 名词 crook：钩子；骗子。
 > the crook of the arm 胳膊肘内侧（手臂弯折成钩的地方）
-> 👉 和 bend 对比：crook 多指**局部勾状小弯折**，不是大弧度。
+> 和 bend 对比：crook 多指**局部勾状小弯折**，不是大弧度。
 
 ### twist
 
@@ -382,7 +384,7 @@ sustain losses 蒙受损失
 > Twist the cap off. 拧开盖子。 
 > He twisted his ankle. 他扭伤脚踝。 
 > The rope twisted together. 绳子拧在一起。 
-> 👉 关键动作：**旋转扭力**，不是单纯折弯。
+> 关键动作：**旋转扭力**，不是单纯折弯。
 
 ### distort
 
@@ -391,9 +393,9 @@ sustain losses 蒙受损失
 > The heat distorted the plastic. 
 > 高温把塑料烤得变形。 
 > The media distorted the truth. 媒体歪曲真相。 
-> 👉 带有 “变形后不正常、失真” 的负面含义。
+> 带有 “变形后不正常、失真” 的负面含义。
 
-## 激增
+## 13. 激增
 
 ### spike
 
@@ -422,7 +424,7 @@ v. 飙升、飞涨
 搭配：soaring prices; costs soar 
 例句：Inflation soared to 18%. 通货膨胀飙升至 18%。
 
-## 散步
+## 14. 散步
 
 |单词|核心侧重|典型场景|感情 / 关键点|
 |---|---|---|---|
@@ -473,7 +475,7 @@ v. 飙升、飞涨
 > Lions roam the savanna. 狮子在稀树草原四处游荡。 
 > He roamed across Europe for years. 他多年辗转漫游欧洲。
 
-## 模仿
+## 15. 模仿
 
 ### imitate
 
@@ -481,7 +483,7 @@ v. 飙升、飞涨
 
 侧重：模仿外在行为、声音、样子；照搬表象，不一定懂原理
 
-1. 人模仿动作、语气、神态：copy behaviour/speech
+1. 人模仿动作、语气、神态：copy behaviour / speech
 
 > Children imitate adults. 孩子模仿大人。
 
@@ -511,7 +513,7 @@ v. 飙升、飞涨
 
 > This chip emulates old hardware. 该芯片仿真旧硬件。
 
-## 足够的
+## 16. 足够的
 
 ample / sufficient / adequate 三者都表 “足够的”，充足程度由低到高：adequate ＜ sufficient ＜ ample
 
@@ -519,7 +521,7 @@ ample / sufficient / adequate 三者都表 “足够的”，充足程度由低�
 
 `/ˈædɪkwət/`
 
-刚好达标，**勉强够用，没有富余**，刚满足最低要求，暗含 “不算好，但凑合”
+刚好达标，勉强够用，没有富余，刚满足最低要求，暗含 “不算好，但凑合”
 
 - adequate supplies 够用的物资（刚够，不多）
 
@@ -543,7 +545,7 @@ ample / sufficient / adequate 三者都表 “足够的”，充足程度由低�
 
 > There is ample time for discussion. 有充裕的时间可供讨论。
 
-## 丰富的
+## 17. 丰富的
 
 > 丰富度：plentiful ＜ abundant
 
@@ -557,7 +559,7 @@ ample / sufficient / adequate 三者都表 “足够的”，充足程度由低�
 > 夏天草莓大量上市、随处可以买到。
 
 - 常见：food, fruit, fish, supply, goods
-- ❌ 极少修饰抽象名词：不写 plentiful evidence /plentiful time
+- 极少修饰抽象名词：不写 plentiful evidence /plentiful time
 
 ### abundant
 
@@ -570,7 +572,7 @@ ample / sufficient / adequate 三者都表 “足够的”，充足程度由低�
 > There is abundant evidence to support this theory. 
 > 有大量证据支持该理论。
 
-## 初期的
+## 18. 初期的
 
 initial：顺序上的第一个（已发生）
 incipient：萌芽、苗头，刚刚要出现（还没壮大）
@@ -625,7 +627,7 @@ preliminary data：正式实验之前的预备数据
 例句：We’ve finished preliminary research. 
 我们完成了前期预备调研。
 
-## 意识
+## 19. 感知、意识相关
 
 ### conscious 
 
@@ -648,14 +650,22 @@ preliminary data：正式实验之前的预备数据
 
 `/əˈweə(r)/ adj`
 
-**知道的、察觉到的**
+知道的、察觉到的
 
 > 侧重 “信息传入大脑，了解事实”，不一定刻意；只是知道这个客观情况，不一定内心深思。 
-> 固定搭配：**be aware of sth**
+> 固定搭配：be aware of sth
 
-- I am aware of the risks. 我知晓这些风险。
+- I am aware of the risks. 我知晓这些风险
 
-## 厌恶
+### perceptual
+
+`/pəˈseptʃuəl/` adj. 感知的，知觉的【学术 / 心理学】
+
+来自 perceive 这是形容词，不能说 be perceptual of sth 只用来修饰名词：描述人的感官、知觉过程本身
+搭配：perceptual ability 感知能力；perceptual error 知觉错误
+例句：perceptual differences 感知上的差异。
+
+## 20. 厌恶
 
 ### hate 
 
@@ -669,7 +679,7 @@ preliminary data：正式实验之前的预备数据
 
 正式书面用词，语气极强，指发自内心的、难以忍受的厌恶，比普通 hate 程度更深，多用于书面、雅思写作。
 
-## 鄙视
+## 21. 鄙视
 
 `contempt (n.)` 蔑视，鄙夷（名词，无动词）; 道德层面的鄙夷，藐视规则人品
 `disdain (n./v.)` 不屑，鄙夷 ; 摆脸上的轻蔑，嘲讽不屑
@@ -711,7 +721,7 @@ preliminary data：正式实验之前的预备数据
 搭配：despise sb/sth 鄙视某人 / 某物 
 例句：I despise people who lie constantly. 我鄙视经常撒谎的人。
 
-## 罪犯
+## 22. 罪犯
 
 ### convict
 
@@ -724,7 +734,7 @@ preliminary data：正式实验之前的预备数据
 
 泛指一切触犯法律、实施犯罪行为的人，侧重 “行为上是罪犯”，范围更广，不管有没有被法庭判刑。 只要做了犯罪的事，都可以叫 criminal，包含还没被抓捕、审判的嫌疑人。
 
-## 累
+## 23. 累
 
 ### tired
 
@@ -748,7 +758,7 @@ preliminary data：正式实验之前的预备数据
 厌倦的，不耐烦的
 weary of waiting 等得不耐烦
 
-## 卫生
+## 24. 卫生
 
 ### hygienic 
 
@@ -785,11 +795,11 @@ weary of waiting 等得不耐烦
 
 例句：The refugee camp lacks basic sanitary facilities. 难民营缺少基础卫生设施。
 
-## 猛烈的
+## 25. 猛烈的
 
-**fierce**：激烈、猛烈。重点在**强度大**，不一定残忍，可用于竞争、风、情绪，可褒。
-**savage**：野蛮粗暴。带 “缺少文明约束” 色彩，可以是暴力，也可以是言辞猛烈。
-**brutal**：冷酷残暴。重点在**伤害、痛苦**，多指实实在在的残酷暴行，也形容现实环境严酷。
+fierce：激烈、猛烈。重点在强度大，不一定残忍，可用于竞争、风、情绪，可褒。
+savage：野蛮粗暴。带 “缺少文明约束” 色彩，可以是暴力，也可以是言辞猛烈。
+brutal：冷酷残暴。重点在伤害、痛苦，多指实实在在的残酷暴行，也形容现实环境严酷。
 
 ### fierce 
 
@@ -844,7 +854,7 @@ weary of waiting 等得不耐烦
 
 例句：The war brought brutal suffering to civilians. 战争给平民带来残酷的苦难。
 
-## 生气
+## 26. 生气
 
 强度梯度
 
@@ -888,14 +898,14 @@ adj. 狂怒的，暴怒的
 
 > a furious storm 狂风暴雨
 
-## 损坏 / 摧毁
+## 27. 损坏 / 摧毁
 
 damage < ruin < destroy < devastate
 
-- **damage** → 损坏，但整体还在，通常可以修复
-- **ruin** → 毁掉价值 / 功能 / 结果，不一定物理上消失
-- **destroy** → 摧毁，使原有结构或存在状态消失
-- **devastate** → 造成大范围、毁灭性的破坏或巨大冲击
+damage: 损坏，但整体还在，通常可以修复
+ruin: 毁掉价值 / 功能 / 结果，不一定物理上消失
+destroy: 摧毁，使原有结构或存在状态消失
+devastate: 造成大范围、毁灭性的破坏或巨大冲击
 
 ### damage
 
@@ -1022,7 +1032,7 @@ devastating news 令人极度痛苦的消息
 a devastating earthquake 造成毁灭性破坏的地震
 ```
 
-## 习俗 / 规范
+## 28. 习俗 / 规范
 
 | 单词         | 核心重心         | 典型场景      | 内核            |
 | ---------- | ------------ | --------- | ------------- |
@@ -1067,7 +1077,7 @@ a devastating earthquake 造成毁灭性破坏的地震
 
 > It’s an old custom to give red envelopes. 发红包是一项古老风俗。
 
-## 道德
+## 29. 道德
 
 - **ethics**：外界的伦理准则（行业、群体）
 - morals：人的内在品行（个人）
@@ -1095,7 +1105,7 @@ n. 复数morals：个人的道德品行、是非观
 侧重：个人的善恶观念、人品操守
 例：moral dilemma 道德困境；a person of high morals 品行高尚的人
 
-## 重要
+## 30. 重要
 
 强度梯度
 
@@ -1148,7 +1158,7 @@ a critical stage 关键阶段
 critical condition 病情危重 
 额外：critical 还可表示 “批判性的；挑剔的”（critical thinking 批判性思维）
 
-## 旋转
+## 31. 旋转
 
 1. rotate: 绕自身轴转（自转，中性，学术常用）
 2. revolve: 绕外部中心点转（公转）
@@ -1186,3 +1196,164 @@ The Earth revolves around the Sun. 地球绕太阳公转
 The wheel spun wildly. 轮子飞速打转
 spin a coin 捻转硬币
 ```
+
+## 32. 治疗
+
+### treatment
+
+`/ˈtriːtmənt/` n. 治疗（最通用)）
+
+侧重：整套医疗处置过程，范围最大。医院里医生给的所有诊治都叫 treatment（吃药、手术、理疗都算） 
+
+搭配：medical treatment 医治；receive treatment 接受治疗
+
+> She is undergoing treatment for back injury. 她正在接受背部损伤的治疗
+
+### remedy
+
+`/ˈremədi/` n. 疗法；补救办法
+
+侧重：消除问题 / 病痛的方法，可医疗，也可引申补救（非医学也能用）；常指偏方、简易对策、补救方案
+
+搭配：a remedy for colds 感冒疗法；remedy for social problems 社会问题的补救措施 动词含义：纠正、补救
+
+> This herbal remedy helps relieve pain. 这种草药疗法有助于缓解疼痛
+
+### therapy
+
+`/ˈθerəpi/` n. 理疗；心理疗法；康复治疗
+
+侧重：长期、系统性康复 / 调理，一般不靠手术、大剂量药物；多指物理治疗、心理治疗
+
+搭配：physical therapy 物理理疗；speech therapy 言语治疗；therapy session 心理诊疗时段
+
+> He goes to therapy twice a week. 他每周两次做康复 / 心理疏导
+
+## 33. 药房
+
+### pharmacy
+
+`/ˈfɑːməsi/` n. 
+
+核心：药房；药剂配药的地方
+
+重点：专业配药，有持证药师（pharmacist），可以开具 / 调配处方药 prescription。 
+
+两层用法：
+1. （医院里的）药房
+2. 独立药店（侧重药品业务）
+
+搭配：hospital pharmacy 医院药房；community pharmacy 社区药房
+例句： Pick up your prescription at the pharmacy. 去药房取处方药。
+
+### drugstore
+
+`/ˈdrʌɡstɔː(r)/` 【美式专用】n. 
+
+核心：美式药妆店, 药房业务只是其中一部分，更大卖点是日用品、化妆品、零食、饮料、贺卡、简单杂货。 也有药师，也能拿处方药，但本质是兼顾零售的综合小店
+
+> 典型代表：CVS、Walgreens
+
+例句： I’m going to the drugstore to buy shampoo and painkillers. 我去药妆店买洗发水和止痛药
+
+## 34. 先驱
+
+### forerunner
+
+`/ˈfɔːrʌnə(r)/` n.
+
+核心：前身、先兆；先行者
+
+侧重：出现在后面更大事物之前，不一定主动开拓，只是 “先出现的事物 / 人”
+
+重点：时间在前，是后续事物的铺垫、雏形、预兆。 可形容人，也可以形容物品、思想、现象
+
+搭配：forerunner of sth … 的前身 / 先驱
+
+例句： The abacus was the forerunner of the modern computer. 算盘是现代计算机的前身。
+
+### pioneer
+
+`/ˌpaɪəˈnɪə(r)/` n. /v.
+
+核心: 开拓者、先锋
+
+侧重主动冒险、开拓新领域（新技术、新大陆、新理论），是主动去开创的人。 几乎都用来形容人
+
+动词 pioneer = 开创，这个用法 forerunner 没有
+
+搭配：a pioneer in sth 在某领域的先驱
+
+例句： She was a pioneer in women’s education. 她是女子教育领域的开拓者
+
+## 35. 创造
+
+### create
+
+`/kriˈeɪt/` v.
+
+创造；创作
+
+> 侧重：从无到有产生出来，适用范围最广。可以是实物、艺术、机会、问题、情感。 不一定需要全新技术，可以把已有要素组合。
+
+例句：
+create a painting 创作一幅画
+create opportunities 创造机会
+create problems 制造问题
+
+### contrive
+
+`/kənˈtraɪv/` v.
+
+1. 刻意谋划、设法做成（常带心机，不一定是发明实物）
+2. 精心造出（偏拼凑、设计出；有点勉强、人为）
+
+> 侧重：动脑筋想办法达成；造出的东西多是人为设计，有时暗含不够自然。
+
+搭配：
+- contrive a plan 谋划出一套方案
+- contrive a device 设法造出一个装置
+- contrive to do sth 设法（竟）做成某事
+
+> He contrived an excuse. 他编造出一个借口
+
+### invent
+
+`/ɪnˈvent/` v.
+
+发明；编造
+
+> 两层意思
+
+1. **发明**：创造出从前不存在的全新器物、技术（科技层面）
+
+> invent the telephone 发明电话
+
+2. 虚构、捏造（借口、故事）
+
+> invent an excuse 编造借口
+
+## 36. 固执的
+
+1. stubborn：单纯犟，性格顽固（日常通用，还能修饰污渍 / 顽疾）
+2. obstinate：明知不对还硬扛，贬义更重，偏书面
+
+### stubborn
+
+`/ˈstʌbən/` 更常用，口语 + 书面
+
+核心：不肯改变想法 / 做法，性格层面顽固；中性～贬义，日常高频
+
+- 可形容人、动物
+- 侧重：不愿意让步，犟 例句：He is stubborn. 他很犟
+- 搭配：stubborn resistance 顽强抵抗；stubborn stain 顽固污渍（还可以形容污渍、病痛难消除，obstinate 一般不这么用）
+
+### obstinate
+
+`/ˈɒbstɪnət/` 偏正式，贬义更强
+
+核心：明知自己错了、证据摆在眼前，仍然执意不改，带有 “不讲理、冥顽不灵” 的负面味道
+
+多用于人，正式书面 / 学术
+
+例句：obstinate refusal 执意拒绝

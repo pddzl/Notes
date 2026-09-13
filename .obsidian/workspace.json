@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/雅思/听力/听力重点单词&词组.md",
+                "file": "English/synonym.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "听力重点单词&词组"
+              "title": "synonym"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/雅思/听力/听力重点单词&词组.md",
+                "file": "English/synonym.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,8 +171,13 @@
   },
   "active": "4f0d183aa901a384",
   "lastOpenFiles": [
-    "English/雅思/阅读/重点短语&句式.md",
+    "English/phrase.md",
+    "English/雅思/口语/casual.md",
+    "English/synonym.md",
+    "English/雅思/写作/写作高频词汇&表达.md",
+    "English/雅思/口语/口语高频词汇&表达.md",
     "English/雅思/听力/听力重点单词&词组.md",
+    "English/雅思/阅读/重点短语&句式.md",
     "OS/Linux/Process.md",
     "README.md",
     "Pasted image 20260909221227.png",
@@ -192,13 +197,8 @@
     "English/语法体系/句法/逗号的用法.md",
     "English/语法体系/句法/句子成分",
     "English/语法体系/句法/句子成分.md",
-    "English/雅思/写作/写作高频词汇&表达.md",
-    "English/雅思/口语/口语高频词汇&表达.md",
     "English/雅思/阅读/句子结构.md",
     "English/雅思/阅读/易错词汇.md",
-    "English/语法体系/句法/三大结构/README.md",
-    "English/语法体系/句法/三大结构/复合句/README.md",
-    "English/语法体系/句法/三大结构/复合句/名词性从句/宾语从句.md",
     "English/语法体系/句法/三大结构/复合句/名词性从句",
     "English/语法体系/句法/三大结构/复合句/状语从句",
     "English/语法体系/句法/三大结构/复合句",

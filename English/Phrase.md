@@ -255,3 +255,7 @@ The moon appeared against the dark sky.
 这里可以理解成
 
 > A 在 B 的背景/衬托下出现
+
+## fresh off the boat
+
+初来乍到
