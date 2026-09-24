@@ -3,14 +3,14 @@
 <details>
 <summary>AI</summary>
 
-- [API.md](AI/API.md)
-- [LLM.md](AI/LLM.md)
-- [LangChain.md](AI/LangChain.md)
-- [MCP vs RAG.md](AI/MCP%20vs%20RAG.md)
-- [proper name.md](AI/proper%20name.md)
+- [API.md](API.md)
+- [LLM.md](LLM.md)
+- [LangChain.md](LangChain.md)
+- [MCP vs RAG.md](MCP%20vs%20RAG.md)
+- [proper name.md](proper%20name.md)
 - OpenClaw
-  - [Configure.md](AI/OpenClaw/Configure.md)
-  - [Install.md](AI/OpenClaw/Install.md)
+  - [Configure.md](Configure.md)
+  - [Install.md](IT/AI/OpenClaw/Install.md)
 
 </details>
 
@@ -18,15 +18,15 @@
 <summary>Database</summary>
 
 - OLTP
-  - [MySQL.md](Database/OLTP/MySQL.md)
-  - [MongoDB.md](Database/OLTP/MongoDB.md)
+  - [MySQL.md](MySQL.md)
+  - [MongoDB.md](MongoDB.md)
 
 </details>
 
 <details>
 <summary>Docker</summary>
 
-- [Container.md](Docker/Container.md)
+- [Container.md](Container.md)
 
 </details>
 
@@ -102,7 +102,7 @@
 <summary>Git</summary>
 
 - [branch.md](Git/branch.md)
-- [commit convention.md](Git/commit%20convention.md)
+- [commit convention.md](commit%20convention.md)
 
 </details>
 
@@ -110,29 +110,29 @@
 <summary>K8S</summary>
 
 - Network
-  - [multus.md](K8S/Network/multus.md)
+  - [multus.md](multus.md)
 
 </details>
 
 <details>
 <summary>Middleware</summary>
 
-- [Kafka.md](Middleware/Kafka.md)
+- [Kafka.md](Kafka.md)
 
 </details>
 
 <details>
 <summary>Monitor</summary>
 
-- [TSDB.md](Monitor/TSDB.md)
-- [监控体系.md](Monitor/监控体系.md)
-- [Grafana.md](Monitor/Grafana.md)
-- [Zabbix.md](Monitor/Zabbix.md)
-- [node_exporter.md](Monitor/node_exporter.md)
-- [kafka_exporter.md](Monitor/kafka_exporter.md)
+- [TSDB.md](TSDB.md)
+- [监控体系.md](监控体系.md)
+- [Grafana.md](Grafana.md)
+- [Zabbix.md](Zabbix.md)
+- [node_exporter.md](node_exporter.md)
+- [kafka_exporter.md](kafka_exporter.md)
 - prometheus
-  - [Install.md](Monitor/prometheus/Install.md)
-  - [avg vs avg_over_time.md](Monitor/prometheus/avg%20vs%20avg_over_time.md)
+  - [Install.md](IT/Monitor/prometheus/Install.md)
+  - [avg vs avg_over_time.md](avg%20vs%20avg_over_time.md)
 
 </details>
 
@@ -140,31 +140,31 @@
 <summary>OS</summary>
 
 - Linux 
-	- [CPU.md](OS/Linux/CPU.md)
-	- [Firewalld.md](OS/Linux/Firewalld.md)
-	- [TCP.md](OS/Linux/TCP.md)
-- [Windows.md](OS/Windows.md)
+	- [CPU.md](CPU.md)
+	- [Firewalld.md](Firewalld.md)
+	- [TCP.md](TCP.md)
+- [Windows.md](Windows.md)
 
 </details>
 
 <details>
 <summary>Programming</summary>
 
-- [Microservice.md](Programming/Microservice.md)
+- [Microservice.md](Microservice.md)
 - Frontend
-  - [Browser.md](Programming/Frontend/Browser.md)
+  - [Browser.md](Browser.md)
 - go
-  - [Structure.md](Programming/go/Structure.md)
-  - [go-zero.md](Programming/go/go-zero.md)
-  - [执行循序.md](Programming/go/执行循序.md)
-  - [[]Struct vs []*Struct.md](Programming/go/%5B%5DStruct%20vs%20%5B%5D%2AStruct.md)
-  - [why recommend []*Struct in ORM-like behavior.md](Programming/go/why%20recommend%20%5B%5D%2AStruct%20in%20ORM-like%20behavior.md)
+  - [Structure.md](Structure.md)
+  - [go-zero.md](go-zero.md)
+  - [执行循序.md](执行循序.md)
+  - [[]Struct vs []*Struct.md]([]Struct%20vs%20[]*Struct.md)
+  - [why recommend []*Struct in ORM-like behavior.md](why%20recommend%20[]*Struct%20in%20ORM-like%20behavior.md)
 - JAVA
-  - [Memory.md](Programming/JAVA/Memory.md)
-  - [two.md](Programming/JAVA/two.md)
-  - [DB OP.md](Programming/JAVA/DB%20OP.md)
+  - [Memory.md](Memory.md)
+  - [two.md](two.md)
+  - [DB OP.md](DB%20OP.md)
   - Spring
-    - [SpringBoot.md](Programming/JAVA/Spring/SpringBoot.md)
-    - [注解.md](Programming/JAVA/Spring/注解.md)
+    - [SpringBoot.md](SpringBoot.md)
+    - [注解.md](注解.md)
 
 </details>
