@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/语法体系/词法/虚词/冠词.md",
+                "file": "English/语法体系/词法/虚词/介词/with.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "冠词"
+              "title": "with"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/语法体系/词法/虚词/冠词.md",
+                "file": "English/语法体系/词法/虚词/介词/with.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,6 +171,12 @@
   },
   "active": "39c55c5fa98fdd97",
   "lastOpenFiles": [
+    "English/语法体系/词法/虚词/介词/README.md",
+    "English/语法体系/词法/虚词/介词/with.md",
+    "English/语法体系/词法/虚词/介词1.md",
+    "English/语法体系/词法/虚词/介词/of.md",
+    "English/语法体系/词法/虚词/介词",
+    "English/语法体系/词法/虚词/冠词.md",
     "English/语法体系/词法/实词/格.md",
     "English/语法体系/other/逗号在英语中的作用.md",
     "English/语法体系/other/时间表达.md",
@@ -192,12 +198,7 @@
     "IT/Database/OLTP/MongoDB.md",
     "IT/IAM.md",
     "IT/OS/Linux/Process.md",
-    "IT/OS/Linux/Firewalld.md",
-    "IT/OS/Linux/CPU.md",
-    "IT/AI/OpenClaw/Configure.md",
-    "IT/K8S/Network/multus.md",
     "IT",
-    "English/雅思/口语/casual.md",
     "Pasted image 20260909221227.png",
     "English/语法体系/句法/句子成分",
     "English/语法体系/句法/三大结构/复合句/名词性从句",
@@ -207,7 +208,6 @@
     "IT/OS/Linux",
     "English/语法体系/词法/实词/动词/非谓语",
     "IT/Database/OLAP",
-    "IT/Monitor/prometheus",
     "Untitled.canvas",
     "p2.jpg"
   ]
