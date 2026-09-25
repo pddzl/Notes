@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/语法体系/词法/实词/格.md",
+                "file": "English/语法体系/词法/虚词/冠词.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "格"
+              "title": "冠词"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/语法体系/词法/实词/格.md",
+                "file": "English/语法体系/词法/虚词/冠词.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,6 +171,7 @@
   },
   "active": "39c55c5fa98fdd97",
   "lastOpenFiles": [
+    "English/语法体系/词法/实词/格.md",
     "English/语法体系/other/逗号在英语中的作用.md",
     "English/语法体系/other/时间表达.md",
     "English/语法体系/词法/实词/动词/非谓语/独立主格.md",
@@ -197,7 +198,6 @@
     "IT/K8S/Network/multus.md",
     "IT",
     "English/雅思/口语/casual.md",
-    "English/雅思/口语/口语高频词汇&表达.md",
     "Pasted image 20260909221227.png",
     "English/语法体系/句法/句子成分",
     "English/语法体系/句法/三大结构/复合句/名词性从句",
