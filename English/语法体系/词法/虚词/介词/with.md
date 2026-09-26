@@ -120,9 +120,9 @@ With so much work, he had no time to rest.
 例子
 
 ```text
-> I agree with you.
+I agree with you.
 
-> What's wrong with him?
+What's wrong with him?
 
 She is angry with me.
 
