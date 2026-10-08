@@ -1,36 +1,6 @@
 ## Catalog
 
 <details>
-<summary>AI</summary>
-
-- [API.md](IT/AI/API.md)
-- [LLM.md](IT/AI/LLM.md)
-- [LangChain.md](IT/AI/LangChain.md)
-- [MCP vs RAG.md](IT/AI/MCP%20vs%20RAG.md)
-- [proper name.md](IT/AI/proper%20name.md)
-- OpenClaw
-  - [Install.md](IT/AI/OpenClaw/Install.md)
-  - [Configure.md](IT/AI/OpenClaw/Configure.md)
-
-</details>
-
-<details>
-<summary>Database</summary>
-
-- OLTP
-  - [MySQL.md](IT/Database/OLTP/MySQL.md)
-  - [MongoDB.md](IT/Database/OLTP/MongoDB.md)
-
-</details>
-
-<details>
-<summary>Docker</summary>
-
-- [Container.md](IT/Docker/Container.md)
-
-</details>
-
-<details>
 <summary>English</summary>
 
 - [Phrase.md](English/phrase.md)
@@ -135,16 +105,44 @@
 </details>
 
 <details>
-<summary>Git</summary>
+<summary>IT</summary>
 
-- [commit convention.md](IT/Git/commit%20convention.md)
+- [IAM.md](IT/IAM.md)
+
+<details>
+<summary>AI</summary>
+
+- [API.md](IT/AI/API.md)
+- [LLM.md](IT/AI/LLM.md)
+- [LangChain.md](IT/AI/LangChain.md)
+- [MCP vs RAG.md](IT/AI/MCP%20vs%20RAG.md)
+- [proper name.md](IT/AI/proper%20name.md)
+- OpenClaw
+  - [Install.md](IT/AI/OpenClaw/Install.md)
+  - [Configure.md](IT/AI/OpenClaw/Configure.md)
 
 </details>
 
 <details>
-<summary>IT</summary>
+<summary>Database</summary>
 
-- [IAM.md](IT/IAM.md)
+- OLTP
+  - [MySQL.md](IT/Database/OLTP/MySQL.md)
+  - [MongoDB.md](IT/Database/OLTP/MongoDB.md)
+
+</details>
+
+<details>
+<summary>Docker</summary>
+
+- [Container.md](IT/Docker/Container.md)
+
+</details>
+
+<details>
+<summary>Git</summary>
+
+- [commit convention.md](IT/Git/commit%20convention.md)
 
 </details>
 
@@ -213,5 +211,7 @@
   - Spring
     - [SpringBoot.md](IT/Programming/JAVA/Spring/SpringBoot.md)
     - [注解.md](IT/Programming/JAVA/Spring/注解.md)
+
+</details>
 
 </details>
