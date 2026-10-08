@@ -109,7 +109,6 @@ in + 专业 / 学科 / 领域
 - `experience in IT` — IT 领域的经验
 - `research in AI` — AI 领域的研究
 - `knowledge in computer science` — 计算机科学方面的知识
-    
 
 > She is highly skilled in culinary arts
 
