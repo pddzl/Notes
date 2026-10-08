@@ -166,8 +166,9 @@
 - [Metrics.md](IT/Monitor/Metrics.md)
 - [TSDB.md](IT/Monitor/TSDB.md)
 - [Grafana.md](IT/Monitor/Grafana.md)
-- [Zabbix.md](IT/Monitor/Zabbix.md)
 - [zabbix-architecture.md](IT/Monitor/zabbix-architecture.md)
+- Zabbix
+  - [permission.md](IT/Monitor/Zabbix/permission.md)
 - [node_exporter.md](IT/Monitor/node_exporter.md)
 - [kafka_exporter.md](IT/Monitor/kafka_exporter.md)
 - prometheus
