@@ -107,8 +107,6 @@
 <details>
 <summary>IT</summary>
 
-- [IAM.md](IT/IAM.md)
-
 <details>
 <summary>AI</summary>
 
@@ -211,6 +209,13 @@
   - Spring
     - [SpringBoot.md](IT/Programming/JAVA/Spring/SpringBoot.md)
     - [注解.md](IT/Programming/JAVA/Spring/注解.md)
+
+</details>
+
+<details>
+<summary>Security</summary>
+
+- [IAM.md](IT/Security/IAM.md)
 
 </details>
 
