@@ -1,6 +1,22 @@
 ## Definition
 
-**TCP (Transmission Control Protocol)** is a network protocol used to establish a reliable connection between two devices and deliver data correctly over an IP network.
+TCP (Transmission Control Protocol) is a transport-layer protocol that provides reliable, ordered, and error-checked data delivery between applications over an IP network.
+
+TCP provides:
+
+- **Connection establishment:** Establishes a logical connection before data transfer.
+    
+- **Reliable delivery:** Uses acknowledgments and retransmissions to recover from packet loss.
+    
+- **Ordered delivery:** Reassembles data in the correct sequence.
+    
+- **Flow control:** Prevents a sender from overwhelming the receiver.
+    
+- **Congestion control:** Adjusts transmission behavior according to network conditions.
+    
+- **Full-duplex communication:** Allows both sides to send and receive data independently.
+
+TCP does not guarantee that the application itself is healthy or that the remote application is processing requests successfully. A TCP connection can be established even when the application is overloaded or unable to handle business requests.
 
 ## Three-Way Handshake
 
@@ -19,18 +35,18 @@ sequenceDiagram
     Note over S: SYN-RECEIVED
 
     S->>C: SYN-ACK (seq=y, ack=x+1)
-    Note over C: SYN-RECEIVED
+    Note over C: SYN-SENT
 
     C->>S: ACK (ack=y+1)
     Note over C: ESTABLISHED
     Note over S: ESTABLISHED
 
-    Note over C,S: TCP Connection Established
+    Note over C,S: TCP connection established
 ```
 
 ### Step 1 — SYN
 
-The client sends a `SYN` packet to the server.
+The client sends a `SYN` segment to request a TCP connection.
 
 The client changes:
 
@@ -38,13 +54,13 @@ The client changes:
 CLOSED → SYN-SENT
 ```
 
-The SYN packet is used to:
+The SYN segment is used to:
 
-- Request a TCP connection
+- Request a TCP connection.
     
-- Synchronize sequence numbers
+- Synchronize sequence numbers.
     
-- Tell the server the client's initial sequence number
+- Communicate the client's initial sequence number (ISN).
 
 Example:
 
@@ -59,11 +75,12 @@ The server receives the SYN and responds with `SYN-ACK`.
 
 ```text
 Client                         Server
-  │──── SYN, seq=1000 ─────────->│
-  │                              │
-  │<── SYN-ACK ─────────────────-│
-  │    seq=5000                  │
-  │    ack=1001                  │
+  |                               |
+  |-------- SYN, seq=1000 ------->|
+  |                               |
+  |<------- SYN-ACK --------------|
+  |         seq=5000              |
+  |         ack=1001              |
 ```
 
 The server changes:
@@ -72,19 +89,19 @@ The server changes:
 LISTEN → SYN-RECEIVED
 ```
 
-The server's response contains:
+The response contains:
 
 ```text
 SYN
-seq = y
+seq = 5000
 
 ACK
-ack = x + 1
+ack = 1001
 ```
 
 Why `x + 1`?
 
-Because the `SYN` consumes one sequence number.
+Because a SYN consumes one sequence number.
 
 For example:
 
@@ -92,51 +109,49 @@ For example:
 Client SYN:
 seq = 1000
 
-Server:
+Server SYN-ACK:
 ack = 1001
 ```
 
 This means:
 
-> I received your SYN with sequence number 1000, and I expect the next sequence number to be 1001.
+> I acknowledge your SYN and expect the next sequence number to be 1001.
 
 ### Step 3 — ACK
 
 The client sends the final ACK.
 
-The client changes to:
+The client enters:
 
 ```text
-ESTABLISHED
+SYN-SENT → ESTABLISHED
 ```
 
-The server also changes to:
+The server enters:
 
 ```text
-ESTABLISHED
+SYN-RECEIVED → ESTABLISHED
 ```
 
-The TCP connection is now ready for data transfer.
+The client considers the connection established when it sends the final ACK. The server considers it established when it receives that ACK.
+
+The connection is now ready for data transfer.
 
 ## Four-Way TCP Termination
 
-TCP normally uses a four-step exchange to terminate a connection because TCP is **full-duplex**.
+TCP normally uses four segments to terminate a connection because TCP is full-duplex.
 
-Each side has its own direction of data transmission.
-
-Therefore:
+Each direction of data transmission can be closed independently:
 
 ```text
 Client → Server
-```
 
-and
-
-```text
 Server → Client
 ```
 
-are closed independently.
+Closing one direction does not automatically close the other direction.
+
+The following diagram illustrates a typical termination sequence in which the client initiates the close and the server responds later.
 
 ```mermaid
 sequenceDiagram
@@ -149,22 +164,25 @@ sequenceDiagram
     Note over C: FIN-WAIT-1
     Note over S: CLOSE-WAIT
 
-    S->>C: ACK (ack=x+1)
+    S-->>C: ACK (ack=x+1)
     Note over C: FIN-WAIT-2
+    Note over S: CLOSE-WAIT
 
+    Note over S: Server application closes its socket
     S->>C: FIN (seq=y)
     Note over S: LAST-ACK
     Note over C: TIME-WAIT
 
-    C->>S: ACK (ack=y+1)
+    C-->>S: ACK (ack=y+1)
     Note over S: CLOSED
+    Note over C: TIME-WAIT
 
-    Note over C: TIME-WAIT → CLOSED
+    Note over C: TIME-WAIT expires → CLOSED
 ```
 
 ### Step 1 — FIN
 
-The client wants to close its sending direction.
+The client finishes sending data and initiates a graceful shutdown of its sending direction.
 
 It sends:
 
@@ -178,15 +196,24 @@ The client changes:
 ESTABLISHED → FIN-WAIT-1
 ```
 
-The server receives the FIN and changes:
+When the server receives the FIN, its TCP state changes:
 
 ```text
 ESTABLISHED → CLOSE-WAIT
 ```
 
+The server has received an indication that the client will send no more data.
+
+The server may still send data to the client because TCP is full-duplex.
+
 ### Step 2 — ACK
 
-The server acknowledges the FIN.
+The server's TCP stack acknowledges the FIN.
+
+```text
+ACK
+ack = x + 1
+```
 
 The client changes:
 
@@ -194,7 +221,7 @@ The client changes:
 FIN-WAIT-1 → FIN-WAIT-2
 ```
 
-The server remains:
+The server remains in:
 
 ```text
 CLOSE-WAIT
@@ -202,19 +229,21 @@ CLOSE-WAIT
 
 This means:
 
-> The remote side has closed its sending direction, but the local application has not necessarily closed yet.
+> The remote side has closed its sending direction, but the local application has not necessarily closed its socket.
+
+The ACK is normally generated automatically by the TCP stack. The application does not need to send the ACK itself.
 
 ### Step 3 — Server FIN
 
-When the server's application is ready to close, the server sends its own FIN.
+When the server application is ready to close its sending direction, it closes the socket or otherwise initiates a graceful shutdown.
 
-The server changes:
+The server sends its own FIN:
 
 ```text
 CLOSE-WAIT → LAST-ACK
 ```
 
-The client changes:
+The client receives the FIN and changes:
 
 ```text
 FIN-WAIT-2 → TIME-WAIT
@@ -222,7 +251,7 @@ FIN-WAIT-2 → TIME-WAIT
 
 ### Step 4 — Final ACK
 
-The client sends the final ACK.
+The client acknowledges the server's FIN.
 
 The server changes:
 
@@ -236,35 +265,45 @@ The client remains in:
 TIME-WAIT
 ```
 
-and eventually becomes:
+After the TIME-WAIT timer expires, the client transitions to:
 
 ```text
-CLOSED
+TIME-WAIT → CLOSED
 ```
+
+TIME-WAIT helps ensure that delayed segments from an old connection do not interfere with a subsequent connection using the same socket endpoints.
+
+### Important notes
+
+- The four-segment exchange is the usual case, not an absolute rule.
+    
+- An ACK and FIN can be combined into one TCP segment.
+    
+- Both sides can initiate closure at nearly the same time. This is called simultaneous close and can involve the `CLOSING` state.
+    
+- An abrupt close, such as an application aborting a socket or a system failure, may produce a TCP reset (RST) instead of a graceful FIN exchange.
 
 ## TCP States
 
-### States
+TCP defines 11 connection states.
 
-TCP defines a number of connection states.
+|#|TCP state|Meaning|
+|---|---|---|
+|1|`CLOSED`|No active TCP connection exists.|
+|2|`LISTEN`|Waiting for incoming connection requests.|
+|3|`SYN-SENT`|SYN sent; waiting for a response.|
+|4|`SYN-RECEIVED`|SYN received and SYN-ACK sent; waiting for the final ACK.|
+|5|`ESTABLISHED`|Connection is established and data can be transferred.|
+|6|`FIN-WAIT-1`|Local side sent FIN and is waiting for an ACK or the peer's FIN.|
+|7|`FIN-WAIT-2`|Local FIN was acknowledged; waiting for the peer's FIN.|
+|8|`CLOSE-WAIT`|Peer sent FIN; local side has not completed its close.|
+|9|`CLOSING`|Both sides sent FIN before the local FIN was acknowledged; waiting for an ACK.|
+|10|`LAST-ACK`|Local side sent FIN after receiving the peer's FIN; waiting for the final ACK.|
+|11|`TIME-WAIT`|Waiting before fully releasing the connection state.|
 
-|   # | TCP State      | Meaning                                                                            |
-| --: | -------------- | ---------------------------------------------------------------------------------- |
-|   1 | `CLOSED`       | No connection exists                                                               |
-|   2 | `LISTEN`       | Server is waiting for incoming connections                                         |
-|   3 | `SYN-SENT`     | Local side sent `SYN` and is waiting for `SYN-ACK`                                 |
-|   4 | `SYN-RECEIVED` | `SYN` received, `SYN-ACK` sent, waiting for final `ACK`                            |
-|   5 | `ESTABLISHED`  | Connection is established and data can be transferred                              |
-|   6 | `FIN-WAIT-1`   | Local side sent `FIN`, waiting for `ACK` or `FIN`                                  |
-|   7 | `FIN-WAIT-2`   | Local `FIN` was acknowledged; waiting for peer's `FIN`                             |
-|   8 | `CLOSE-WAIT`   | Peer sent `FIN`; local application has not closed yet                              |
-|   9 | `CLOSING`      | Both sides sent `FIN`; waiting for final `ACK`                                     |
-|  10 | `LAST-ACK`     | Local side sent `FIN` after receiving peer's `FIN`; waiting for `ACK`              |
-|  11 | `TIME-WAIT`    | Waiting before fully closing to prevent delayed packets affecting a new connection |
+### LISTEN
 
-#### LISTEN
-
-The application is listening for incoming connections.
+The application has a listening TCP socket waiting for incoming connection requests.
 
 Example:
 
@@ -272,133 +311,183 @@ Example:
 0.0.0.0:8080
 ```
 
-This means a process may be accepting connections on TCP port `8080`.
+This means the socket is bound to all local IPv4 addresses on port 8080.
 
 Useful for checking:
 
-- Is the service running?
+- Whether a TCP port is listening.
     
-- Is the port listening?
+- Whether a service is bound to the expected address.
     
-- Is the application bound to the expected address?
+- Whether a service may be accepting incoming connections.
 
-#### ESTABLISHED
+A listening socket does not necessarily mean the application is healthy or that requests can be processed successfully.
 
-The TCP connection is active.
+### ESTABLISHED
+
+The TCP connection is established.
 
 Example:
 
 ```text
-10.10.1.10:8080
-        ↕
-10.10.1.20:52341
+Local Address       Peer Address
+10.10.1.10:8080     10.10.1.20:52341
 ```
 
-A high number of `ESTABLISHED` connections may indicate:
+A high number of established connections may indicate:
 
-- High traffic
+- High traffic.
     
-- Many clients
+- Many concurrent clients.
     
-- Long-lived connections
+- Long-lived connections.
     
-- Connection leaks
+- Connection leaks.
     
-- Application connection-pool issues
+- Application or connection-pool design issues.
 
-The number itself is not necessarily an error.
+The count alone does not indicate a problem.
 
-#### TIME-WAIT
+### TIME-WAIT
 
-The connection has been closed, but the local TCP stack is waiting before completely removing the connection.
+The connection is in the final waiting state after the local TCP endpoint has actively closed the connection or participated in simultaneous close.
 
-A large number may occur when:
+A large number can occur when:
 
-- A server creates many short-lived connections.
+- A server frequently handles short-lived connections.
     
-- The local host frequently acts as the active closer.
+- The local host frequently performs the active close.
     
 - Applications frequently create new TCP connections.
 
-High number time-wait doesn't automatically mean the system is broken.
+A large TIME-WAIT count is not inherently abnormal.
 
-You should investigate whether the number is:
+Investigate whether it is:
 
-- Increasing continuously
+- Increasing continuously.
     
-- Consuming local ephemeral ports
+- Contributing to ephemeral-port exhaustion.
     
-- Causing connection failures
+- Associated with failed outbound connections.
+    
+- Consuming significant kernel resources.
 
-#### CLOSE-WAIT
+TIME-WAIT sockets are managed by the TCP stack and do not necessarily correspond to open file descriptors held by the application.
 
-The remote side has already sent `FIN`, but the local application has not closed its side.
+### CLOSE-WAIT
 
-This state is particularly useful for finding **application-side connection leaks**.
+The local TCP stack has received a FIN from the remote endpoint and acknowledged it, but the local application has not completed its side of the connection closure.
 
-If `CLOSE-WAIT` keeps increasing, investigate the application.
+Typical sequence:
 
-> [!warning]  
-> A large or continuously increasing number of `CLOSE-WAIT` connections often indicates that the application is not properly closing sockets.
+```text
+Remote sends FIN
+       ↓
+Local TCP stack receives FIN
+       ↓
+Local TCP stack sends ACK
+       ↓
+Local TCP state becomes CLOSE-WAIT
+       ↓
+Local application closes its socket
+       ↓
+Local TCP stack sends FIN
+       ↓
+State becomes LAST-ACK
+```
 
-#### SYN-SENT
+CLOSE-WAIT is particularly useful for investigating possible application-side connection leaks.
 
-The local machine sent a SYN but has not received the expected SYN-ACK.
+A high or continuously increasing count may indicate:
+
+- Socket-closing logic is missing or incorrect.
+    
+- Application code is blocked before reaching the cleanup logic.
+    
+- An exception or error path bypasses resource cleanup.
+    
+- Connection-pool or network-library cleanup is malfunctioning.
+    
+- The application is overloaded and cannot process or release connections promptly.
+
+However, CLOSE-WAIT is not inherently an error. Some connections may remain in this state temporarily while the application finishes processing data or performing cleanup.
+
+**Important:** CLOSE-WAIT does not mean the ACK was never sent. The TCP stack normally sends the ACK automatically. It also does not prove that the application has exhausted file descriptors, memory, threads, or database connections.
+
+### SYN-SENT
+
+The local machine has sent a SYN but has not yet received the expected SYN-ACK.
 
 Possible causes include:
 
-- Remote server unavailable
+- Remote server unavailable.
     
-- Firewall dropping packets
+- Firewall dropping packets.
     
-- Network connectivity problems
+- Network connectivity problems.
     
-- Incorrect routing
+- Incorrect routing.
     
-- Server overloaded
+- Remote port not responding.
     
-- Port filtering
+- Packet loss or remote overload.
 
-#### SYN-RECEIVED
+A large or persistent SYN-SENT count can indicate outgoing connection problems.
 
-The server received a SYN and responded with SYN-ACK but has not received the client's final ACK.
+### SYN-RECEIVED
 
-A large number can sometimes indicate:
+The server received a SYN and sent a SYN-ACK but has not yet received the final ACK.
 
-- Network problems
+Possible causes include:
+
+- Network packet loss.
     
-- Client problems
+- Client problems.
     
-- Firewall behavior
+- Firewall behavior.
     
-- SYN-flood attacks
+- SYN-flood attacks.
     
-- Backlog exhaustion
+- Connection backlog pressure.
 
-### How to count
+A high count should be investigated alongside the server's listen backlog, network traffic, and kernel TCP metrics.
+### How to count TCP connections
 
-1. show all TCP connections
+#### 1. Show all TCP sockets
 
 ```bash
 ss -ant
 ```
 
-2. show only listening TCP ports
+The `-a` option includes listening and non-listening sockets, and `-n` avoids resolving addresses and ports into names.
+
+#### 2. Show only listening TCP sockets
 
 ```bash
 ss -lnt
 ```
 
-3. show ${status} TCP connections
+#### 3. Show sockets in a specific TCP state
 
 ```bash
-ss -Htan state ${status}
+ss -Htan state close-wait
 ```
 
-4. count TCP connections by state
+For example:
 
 ```bash
-ss -ant | awk 'NR>1 {print $1}' | sort | uniq -c | sort -nr
+ss -Htan state established
+ss -Htan state time-wait
+ss -Htan state syn-sent
+ss -Htan state syn-recv
+```
+
+Linux `ss` uses `syn-recv` as the state filter. Its displayed state names may differ from the formal TCP state names; for example, established connections are commonly displayed as `ESTAB`.
+
+#### 4. Count TCP sockets by state
+
+```bash
+ss -Htan | awk '{print $1}' | sort | uniq -c | sort -nr
 ```
 
 Example output:
@@ -411,19 +500,33 @@ Example output:
    2 SYN-SENT
 ```
 
-5. count connections by local IP for a specific TCP state, removing the port
+This counts TCP sockets reported by `ss`, including listening sockets. It is a useful overview but does not count only active connections.
+
+To count non-listening sockets by state, use:
 
 ```bash
-ss -Htan state ${tcp_status} | awk '{print $4}' | sed 's/:[^:]*$//' | sort | uniq -c | sort -nr | head -20
+ss -Htan state established | wc -l
+ss -Htan state time-wait | wc -l
+ss -Htan state close-wait | wc -l
+ss -Htan state syn-sent | wc -l
+ss -Htan state syn-recv | wc -l
 ```
 
-For example:
+#### 5. Count connections by local IP for a specific TCP state
 
 ```bash
-tcp_status=ESTAB
+tcp_status=established
+
+ss -Htan state "$tcp_status" |
+awk '{print $4}' |
+sed -E 's/:[0-9]+$//' |
+sort |
+uniq -c |
+sort -nr |
+head -20
 ```
 
-This can produce something like:
+Example output:
 
 ```text
 500 10.10.1.20
@@ -431,68 +534,291 @@ This can produce something like:
 120 10.10.1.22
 ```
 
-6. count connections by local IP:Port for a specific TCP state
+This removes the port from the local endpoint and groups the remaining addresses.
+
+For IPv6, endpoint formatting varies by output and should be checked before relying on this parsing method in automation.
+
+#### 6. Count connections by local IP and port for a specific TCP state
 
 ```bash
-ss -Htan state ${tcp_status} | awk '{print $4}' | sort | uniq -c | sort -nr | head -30
+tcp_status=established
+
+ss -Htan state "$tcp_status" |
+awk '{print $4}' |
+sort |
+uniq -c |
+sort -nr |
+head -30
 ```
 
-Example:
+Example output:
 
 ```text
-500  10.10.1.20:8080
-300  10.10.1.20:8443
-120  10.10.1.20:3306
+500 10.10.1.20:8080
+300 10.10.1.20:8443
+120 10.10.1.20:3306
 ```
 
-7. Count connections by local IP:Port across all TCP states
+This is useful for identifying local ports with large numbers of connections.
+
+#### 7. Count TCP sockets by local IP and port across all states
 
 ```bash
-ss -Htan | awk '{print $4}' | sort | uniq -c | sort -nr | head -20
+ss -Htan |
+awk '{print $4}' |
+sort |
+uniq -c |
+sort -nr |
+head -20
 ```
 
-Example:
+Example output:
 
 ```text
-1200  10.10.1.20:8080
- 800  10.10.1.20:8443
- 300  10.10.1.20:3306
+1200 10.10.1.20:8080
+ 800 10.10.1.20:8443
+ 300 10.10.1.20:3306
 ```
 
-### State Monitoring
+This includes listening sockets and connections in different states, so interpret the results accordingly.
 
-For general Linux monitoring, these are especially useful:
+#### 8. Identify the processes holding CLOSE-WAIT sockets
+
+```bash
+sudo ss -antp state close-wait
+```
+
+The process information may require root privileges.
+
+To summarize sockets by owning process, if `lsof` is installed:
+
+```bash
+sudo lsof -nP -iTCP -sTCP:CLOSE_WAIT
+```
+
+Review the process name, PID, local address, and peer address to identify the affected application and its connections.
+
+## Potential Causes of Abnormal Application Connection Closure
+
+A high CLOSE-WAIT count can be associated with an application failing to close sockets correctly. The underlying cause may be a coding problem, a blocked execution path, or a resource bottleneck.
+
+### 1. Missing socket cleanup
+
+Application code opens a socket but does not close it on every execution path.
+
+For example:
 
 ```text
-ESTABLISHED
-TIME-WAIT
-CLOSE-WAIT
-SYN-SENT
-SYN-RECV
+Open socket
+    ↓
+Process request
+    ↓
+Exception occurs
+    ↓
+Return early without closing socket
 ```
 
-A practical monitoring strategy is:
+The connection can remain in CLOSE-WAIT after the remote endpoint sends FIN.
+
+**Prevention:** Use structured resource management, such as Java try-with-resources, Go `defer conn.Close()`, or the appropriate cleanup mechanism in the application's networking library.
+
+### 2. Exceptions and error-handling defects
+
+An exception may interrupt normal processing before the cleanup logic runs.
+
+Potential scenarios:
+
+- An exception is caught and ignored.
+    
+- An early return bypasses cleanup.
+    
+- A timeout path forgets to release a resource.
+    
+- A cleanup operation itself fails.
+    
+- An asynchronous callback never executes its completion logic.
+
+**Investigation:** Review error logs and code paths around the time the CLOSE-WAIT count increases.
+
+### 3. Blocked or stalled application threads
+
+An application thread may be blocked on a network read, lock, downstream service, or other operation.
+
+If socket cleanup occurs only after the operation completes, the socket may remain open.
+
+Possible causes include:
+
+- Deadlocks.
+    
+- Long-running database queries.
+    
+- Unbounded waits.
+    
+- Missing read or connection timeouts.
+    
+- Thread-pool exhaustion.
+    
+- Slow downstream services.
+
+**Investigation:** Inspect thread dumps, request queues, operation timeouts, and the application's thread-pool metrics.
+
+Note that a CLOSE-WAIT socket does not necessarily have a dedicated thread blocked on it. The relationship depends on the application's design.
+
+### 4. Connection-pool problems
+
+Applications often use connection pools for databases, HTTP clients, or other services.
+
+Potential problems include:
+
+- Connections not returned to the pool.
+    
+- Improper cleanup of failed connections.
+    
+- Connection-pool limits being too low for the workload.
+    
+- Pool maintenance or eviction logic malfunctioning.
+    
+- Application code holding resources longer than necessary.
+
+A pool can be exhausted even if the process has plenty of file descriptors remaining.
+
+A CLOSE-WAIT socket does not automatically imply a database connection leak. Confirm that the socket belongs to the relevant downstream connection and correlate it with pool metrics.
+
+### 5. Missing or inappropriate timeouts
+
+Without appropriate timeouts, application operations may wait indefinitely.
+
+Useful timeout categories include:
+
+- TCP connection timeout.
+    
+- Socket read timeout.
+    
+- HTTP request timeout.
+    
+- Database query timeout.
+    
+- Connection-pool acquisition timeout.
+    
+- Application request deadline.
+
+A timeout can limit how long an operation waits, but it must be paired with correct resource cleanup. Configuring a timeout alone does not guarantee that sockets will be closed properly.
+
+### 6. Application overload
+
+An overloaded application may have difficulty processing requests and releasing resources promptly.
+
+Possible symptoms include:
+
+- CPU saturation.
+    
+- High garbage-collection overhead.
+    
+- Memory pressure.
+    
+- Thread-pool exhaustion.
+    
+- Request queue growth.
+    
+- Slow database or downstream calls.
+
+Overload can contribute to a growing CLOSE-WAIT count, but the count itself does not prove that overload is the root cause.
+
+### 7. Process or library lifecycle problems
+
+A network library or application component may mishandle socket closure during shutdown, reconnects, cancellation, or error recovery.
+
+Examples include:
+
+- Incorrect asynchronous connection lifecycle management.
+    
+- Callbacks that fail to release resources.
+    
+- Improper shutdown of HTTP clients.
+    
+- Defects in third-party networking libraries.
+    
+- Application components that retain references to obsolete connections.
+
+Investigate the application's networking implementation and library-specific diagnostics.
+
+### 8. File descriptor exhaustion
+
+Each socket generally consumes one file descriptor in the process that owns it.
+
+If CLOSE-WAIT sockets accumulate, they may contribute to reaching the process's open-file limit.
+
+When the limit is reached, operations that need new file descriptors can fail, potentially preventing new network connections, file access, or request handling.
+
+However, a CLOSE-WAIT count of 1,000 does not prove that the FD limit has been reached.
+
+Check the actual process usage and limit:
+
+```bash
+PID=<application_pid>
+
+grep -i "open files" /proc/$PID/limits
+ls /proc/$PID/fd | wc -l
+```
+
+Also investigate application errors such as:
 
 ```text
-TCP state count
-       │
-       ├── ESTABLISHED
-       │      └── Connection load
-       │
-       ├── TIME-WAIT
-       │      └── Connection churn
-       │
-       ├── CLOSE-WAIT
-       │      └── Possible application leak
-       │
-       ├── SYN-SENT
-       │      └── Outgoing connection problems
-       │
-       └── SYN-RECV
-              └── Incoming connection problems
+Too many open files
 ```
 
-#### Normal / healthy
+### 9. Memory and kernel resource pressure
+
+Open sockets consume kernel resources, and application code may retain memory associated with connections.
+
+Potential problems include:
+
+- Kernel socket memory pressure.
+    
+- Excessive socket buffering.
+    
+- Application objects retained by leaked connections.
+    
+- Java heap pressure or excessive garbage collection.
+    
+- General system memory exhaustion.
+
+A socket in CLOSE-WAIT does not necessarily consume a large amount of memory. Measure memory usage before concluding that these sockets are responsible.
+
+### 10. Resource exhaustion elsewhere
+
+The application may fail even when FD usage is below its limit.
+
+Other possible bottlenecks include:
+
+- Database connection-pool exhaustion.
+    
+- HTTP client connection-pool exhaustion.
+    
+- Worker or thread-pool exhaustion.
+    
+- Application request queue saturation.
+    
+- Outbound ephemeral-port exhaustion.
+    
+- CPU saturation or memory pressure.
+    
+
+These are separate resource limits and should be checked independently.
+
+## TCP State Monitoring Strategy
+
+For general Linux monitoring, the following states are especially useful:
+
+|TCP state|Monitoring purpose|When to investigate|
+|---|---|---|
+|`ESTABLISHED`|Connection load|Unexpected growth or application capacity issues|
+|`TIME-WAIT`|Connection churn|Ephemeral-port pressure or unusual growth|
+|`CLOSE-WAIT`|Peer-initiated closure awaiting local cleanup|Persistent or increasing count|
+|`SYN-SENT`|Outgoing connection establishment|Persistent unanswered connection attempts|
+|`SYN-RECV`|Incoming connection establishment|Unusual growth or backlog pressure|
+
+### Normal and healthy states
 
 ```text
 LISTEN
@@ -502,41 +828,33 @@ TIME-WAIT
 
 These states are not inherently abnormal.
 
-#### Potentially interesting
+### States worth investigating
 
 ```text
 CLOSE-WAIT
 SYN-SENT
-SYN-RECEIVED
+SYN-RECV
 ```
 
-These deserve investigation when their numbers are unusually high or continuously increasing.
+Investigate when their counts are unusually high, persist longer than expected, or grow continuously.
 
-#### Potential problem patterns
+### Common problem patterns
 
-```text
-CLOSE-WAIT ↑ continuously
-```
+**CLOSE-WAIT increases continuously**
 
-Possible application connection leak.
+Possible causes: missing socket cleanup, blocked application execution paths, connection lifecycle bugs, or resource pressure.
 
-```text
-SYN-SENT ↑ continuously
-```
+**SYN-SENT increases continuously**
 
-Possible network/connectivity problem.
+Possible causes: remote service unavailability, packet filtering, routing problems, or connection establishment timeouts.
 
-```text
-SYN-RECEIVED ↑ continuously
-```
+**SYN-RECV increases continuously**
 
-Possible client/network issue, backlog pressure, or SYN flood.
+Possible causes: client/network issues, backlog pressure, or a SYN-flood attack.
 
-```text
-TIME-WAIT ↑ significantly
-```
+**TIME-WAIT increases significantly**
 
-Possible high rate of short-lived connections or ephemeral-port pressure.
+Possible causes: high rates of short-lived connections or ephemeral-port pressure.
 
 ## FAQ
 

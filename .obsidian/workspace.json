@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/雅思/口语/Part1.md",
+                "file": "IT/OS/Linux/TCP.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Part1"
+              "title": "TCP"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/雅思/口语/Part1.md",
+                "file": "IT/OS/Linux/TCP.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -169,10 +169,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6721eeaf1fbd2efb",
+  "active": "70ebcbb8b062e294",
   "lastOpenFiles": [
-    "English/雅思/口语/Part1",
     "English/雅思/口语/Part1.md",
+    "English/雅思/口语/Part1",
     "English/synonym.md",
     "English/语法体系/词法/虚词/介词1.md",
     "IT/Programming/Convention.md",
@@ -207,7 +207,6 @@
     "English/语法体系/句法/三大结构",
     "IT/OS/Linux",
     "English/语法体系/词法/实词/动词/非谓语",
-    "IT/Database/OLAP",
     "Untitled.canvas",
     "p2.jpg"
   ]

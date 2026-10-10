@@ -1,274 +1,322 @@
-### Core table relationships (Zabbix 7.x)
+Yes — this is a good architectural model of **Zabbix 7.x permissions**. I would make one important terminology adjustment and simplify it into a model that is easier to use when configuring Zabbix.
+
+## Zabbix 7.x Permission Model
+
+Think of Zabbix permissions as **two layers**:
 
 ```text
-users ──< users_groups >── usrgrp ──< rights >── hstgrp
-  user      membership      user      granted      host
-                            group    permission    group
+                    ┌─────────────────────────┐
+                    │          User           │
+                    └────────────┬────────────┘
+                                 │
+                         member of groups
+                                 │
+              ┌──────────────────┴──────────────────┐
+              │                                     │
+      ┌───────▼────────┐                    ┌───────▼────────┐
+      │      Role      │                    │  User Group    │
+      │                │                    │                │
+      │ What can I do? │                    │ What data can  │
+      │                │                    │ I access?      │
+      └───────┬────────┘                    └───────┬────────┘
+              │                                     │
+       ┌──────▼──────┐                    ┌─────────▼─────────┐
+       │ UI / API /  │                    │ Host Group        │
+       │ Actions     │                    │ permissions       │
+       └─────────────┘                    └───────────────────┘
 ```
 
+### 1. Role = What can the user do?
 
-```sql
-SELECT
-    u.userid,
-    u.username,
-    ug.name       AS user_group,
-    hg.name       AS host_group,
-    r.permission
-FROM users u
-JOIN users_groups ugmap ON u.userid = ugmap.userid
-JOIN usrgrp ug ON ugmap.usrgrpid = ug.usrgrpid
-JOIN rights r ON ug.usrgrpid = r.groupid
-JOIN hstgrp hg ON r.id = hg.groupid
-WHERE hg.name = 'Your Host Group Name';
-```
+A **role** controls the user's capabilities.
 
-### `permission` value reference
+For example:
 
-|Value|Meaning|
-|---|---|
-|0|Deny|
-|2|Read|
-|3|Read-write|
+| Role permission | Meaning                                                                                 |
+| --------------- | --------------------------------------------------------------------------------------- |
+| UI elements     | Which Zabbix frontend sections/features are accessible                                  |
+| API methods     | Which API operations are allowed                                                        |
+| Actions         | Whether the user can acknowledge/close problems, execute scripts, edit dashboards, etc. |
+| Module access   | Access to frontend modules                                                              |
 
-In Zabbix, host group permissions are assigned to **user groups**, not to users;  
-to check a user's permissions, you must trace back from user group → host group permissions.
+So:
 
+> **Role answers: "What am I allowed to do?"**
 
-# 1. The Conclusion First (Most Important)
-
-> **Zabbix permissions are split into two completely separate lines:**
-> 
-> 🔹 **User group** → controls _which monitoring objects (host groups, templates, etc.) you can view / modify_  
-> 🔹 **Role** → controls _which features, pages, and APIs you can access / use_
-> 
-> 👉 **Role ≠ monitoring object permissions**
-
----
-
-# 2. The Overall Zabbix Permission Model (Core)
+For example:
 
 ```text
 User
-├── Role              → feature permissions (UI / API)
-└── User group(s)
-    └── Host group permission → monitoring object permissions
+  ↓
+Operator role
+  ↓
+Can:
+  ✓ View Monitoring
+  ✓ Acknowledge problems
+  ✓ Change severity
+  ✗ Manage users
+  ✗ Manage authentication
+  ✗ Modify system configuration
 ```
 
-**This is the official design, not a matter of configuration habit.**
+Importantly, hiding something in the UI is **not merely cosmetic**. Role restrictions also apply to the corresponding server-side/API operations.
 
 ---
 
-# 3. What Does a User Group Do? [Most Important]
+# 2. User Group = Where does the user get access?
 
-## ✅ User group = the only entry point for monitoring object permissions
-
-### What can a user group control?
-
-- Host groups
-    
-- Templates
-    
-- Visibility of monitoring data
-    
-- Whether hosts / triggers / graphs can be modified
-    
-
-### Permission levels (Zabbix 7.x)
-
-|Permission|Value|Meaning|
-|---|---|---|
-|Deny|0|Explicitly denied (highest priority)|
-|Read|2|View only|
-|Read-write|3|Can modify|
-
-### Precedence rules (very important)
-
-> **Deny > Read-write > Read**
-
-A user:
-
-- may belong to multiple user groups
-    
-- **as long as one group has Deny, access is denied outright**
-    
-
----
-
-### Where to configure it (Web UI)
-
-`Administration → User groups → Permissions`
-
-What you see here:
-
-- is exactly **"whether this user can see a given host group"**
-    
-
----
-
-## 🔑 Takeaway 1
-
-> **In Zabbix, every "can this user see this host?" question is answered by user groups alone.**
-
----
-
-# 4. What Does a Role Do? [Often Misunderstood]
-
-## ❌ What a role does NOT do
-
-- ❌ Does not control host groups
-    
-- ❌ Does not control templates
-    
-- ❌ Does not control monitoring data
-    
-
----
-
-## ✅ What a role actually controls: feature permissions
-
-### What does a role control?
-
-#### 1️⃣ Page access
-
-- Whether you can enter:
-    
-    - Configuration
-        
-    - Administration
-        
-    - Monitoring
-        
-    - Reports
-        
-
-#### 2️⃣ Action permissions
-
-- Whether you can:
-    
-    - Create hosts
-        
-    - Modify templates
-        
-    - Execute scripts
-        
-    - Acknowledge events
-        
-    - Mute alerts
-        
-
-#### 3️⃣ API permissions
-
-- Whether the API can be called
-    
-- Which API methods are available
-    
-
----
-
-### Where to configure it
-
-`Administration → User roles`
-
----
-
-## Common built-in roles (examples)
-
-|Role|Description|
-|---|---|
-|Super admin|All features|
-|Admin|Can manage configuration, but still limited by user groups|
-|User|Read-only monitoring|
-|Guest|Minimal permissions|
-
----
-
-## 🔑 Takeaway 2
-
-> **Roles decide "whether you can act";  
-> user groups decide "on whom / what you can act."**
-
----
-
-# 5. A Concrete Comparison Example
-
-### Scenario: you want someone to "only view monitoring of host group A, and change nothing"
-
-### Correct configuration ✅
-
-1️⃣ User group
+A user group connects users with both:
 
 ```text
-A-Viewers
-└── Host group A → Read
+User Group
+├── Role
+└── Host Group permissions
 ```
 
-2️⃣ Role
+For example:
 
-`User (read-only role)`
+```text
+Linux Operations
+│
+├── Role: Operator
+│
+├── Linux Production → Read-write
+├── Linux Development → Read
+└── Windows → Deny
+```
 
-✔ Can view A  
-✔ Cannot change any configuration  
-✔ Cannot see B / C
+Therefore, being an **Operator** does not automatically mean the user can operate every host in Zabbix.
 
----
+The role says:
 
-### ❌ Wrong understanding (a common misconception)
+> "You are allowed to perform this kind of operation."
 
-> "If I give him a read-only role, will he only see a subset of hosts?"
+The host-group permission says:
 
-❌ **No**  
-→ He would see **all host groups (if user groups impose no restriction)**
-
----
-
-# 6. Why Is Zabbix Designed This Way? (Design Motivation)
-
-### Reason 1: Decoupling
-
-- Role: function
-    
-- User group: resource
-    
-
-### Reason 2: Security
-
-- Operational permissions ≠ data visibility
-    
-- Prevents one role from affecting too many resources at once
-    
-
-### Reason 3: Backward compatibility
-
-- User group permissions have existed since early Zabbix versions
-    
-- Roles were added later (5.2+)
-    
+> "You are allowed to perform it on these hosts."
 
 ---
 
-# 7. The Official Permission Evaluation Order (Worth Memorizing)
+# 3. Host Group Permission = Which data can the user access?
 
-When a user accesses a host, Zabbix actually evaluates, in order:
+This is the **data-scope layer**.
 
-1. Is the user disabled?
-2. Does the role allow access to that feature page?
-3. Does the user group have permission on that host group?
-4. Is there a Deny?
+Typical permissions are:
+
+```text
+Deny
+Read
+Read-write
+Read-write + tag filter
+```
+
+For example:
+
+```text
+                    Operator role
+                         │
+                         ▼
+                  ┌──────────────┐
+                  │ User Group   │
+                  │ Linux Ops    │
+                  └──────┬───────┘
+                         │
+             ┌───────────┼───────────┐
+             ▼           ▼           ▼
+        Production     Dev       Windows
+        Read-write      Read       Deny
+```
+
+So the same user might be able to:
+
+```text
+Production Linux
+    → acknowledge problems
+    → close problems
+    → modify configuration
+
+Development Linux
+    → view problems
+    → cannot modify
+
+Windows
+    → cannot access
+```
 
 ---
 
-# 8. Common Misconceptions (Key Points)
+# 4. The key distinction
 
-|Misconception|Reality|
+This is probably the most important thing to remember:
+
+```text
+Role
+  ↓
+WHAT can I do?
+
+Host-group permission
+  ↓
+WHERE can I do it?
+```
+
+Or:
+
+```text
+Capability × Data Scope
+```
+
+For an operation to succeed, **both** need to allow it.
+
+For example:
+
+```text
+User wants to close a problem
+             │
+             ├── Role
+             │     └── "Close problems" = YES
+             │
+             └── Host-group permission
+                   └── Target host = Read-write
+                              │
+                              ▼
+                           SUCCESS
+```
+
+But:
+
+```text
+User wants to close a problem
+             │
+             ├── Role
+             │     └── "Close problems" = YES
+             │
+             └── Host-group permission
+                   └── Target host = Read
+                              │
+                              ▼
+                           DENIED
+```
+
+So your statement:
+
+> A user can have "Close problems" action but read-only host access — then they can't actually close anything.
+
+is exactly the useful way to think about it.
+
+---
+
+# 5. Your three headings
+
+If you're documenting this for your Zabbix notes, I would structure it as:
+
+````markdown
+# Zabbix 7.x Permissions
+
+Zabbix permissions consist of two main layers:
+
+1. Role-based capabilities
+2. Host-group-based data access
+
+## Role
+
+Controls **what the user can do**.
+
+### Access to UI elements
+
+Controls which frontend sections/features the user can access.
+
+### Access to API
+
+Controls which API methods the user's role can call.
+
+### Actions
+
+Controls specific operations such as:
+
+- Acknowledge problems
+- Close problems
+- Change severity
+- Execute scripts
+- Manage dashboards
+- Manage API tokens
+- Manage maintenance
+- Manage scheduled reports
+
+### Module access
+
+Controls access to frontend modules.
+
+---
+
+## User Group
+
+A user group connects users with:
+
+- Roles
+- Host-group permissions
+
+A user can belong to multiple groups.
+
+The effective permissions are determined from the user's group memberships.
+
+---
+
+## Host Group Permissions
+
+Controls **which monitoring data the user can access**.
+
+| Permission | Meaning |
 |---|---|
-|Roles control host groups|❌|
-|User groups are just a way to categorize users|❌|
-|To limit visible hosts → configure roles|❌|
-|To limit action capabilities → configure user groups|❌|
-|Permissions seem chaotic|Usually a Deny is at play|
+| Deny | No access |
+| Read | Can view monitoring data |
+| Read-write | Can view and modify |
+| Read-write + tag filter | Read-write access limited by tags |
+
+Host permissions are assigned between:
+
+`User Group → Host Group`
 
 ---
 
-# 9. One-Sentence Ultimate Summary (Strongly Recommended to Remember)
+## Permission Evaluation
 
-> **The core of Zabbix permissions lies in user groups; roles are just feature switches.**
+A user's effective access depends on both:
+
+`Role capability + Host-group permission`
+
+Role:
+
+> What can the user do?
+
+Host-group permission:
+
+> Where can the user do it?
+
+Example:
+
+```text
+Role:
+  Close problems = Yes
+
+Host group:
+  Production = Read-write
+  Development = Read
+  Windows = Deny
+````
+
+Result:
+
+```text
+Production → Can close problems
+Development → Cannot close problems
+Windows → Cannot access problems
+```
+
+```
+
+One small correction to your original architecture: I would **not describe Zabbix simply as "RBAC + ACL"** if this is intended as a precise technical document. A better description is:
+
+> **Zabbix uses role-based capability control combined with user-group/host-group-based data access control.**
+
+That makes the separation between **capability** and **scope** much clearer.
+```
