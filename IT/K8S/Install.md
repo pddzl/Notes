@@ -464,7 +464,7 @@ sudo rm -rf /etc/cni/net.d
 rm -rf "$HOME/.kube"
 ```
 
-Optionally flush leftover iptables rules before retrying:
+Optionally flush leftover traffic rules before retrying (`kubeadm reset` does not clean iptables, nftables, or IPVS rules applied by kube-proxy, but leaving them usually causes no issues when the host is reused as a Kubernetes node):
 
 ```bash
 sudo iptables -F && sudo iptables -t nat -F && sudo iptables -t mangle -F
@@ -573,6 +573,8 @@ Append the CRI socket option to the generated command:
 ```
 
 Execute the resulting command on each worker.
+
+If `kubeadm join` fails on a worker, the same reset procedure as in section 5.3 applies: run `sudo kubeadm reset --cri-socket=unix:///run/containerd/containerd.sock` and `sudo rm -rf /etc/cni/net.d`, then retry. The `$HOME/.kube` cleanup is not needed on workers.
 
 ## 8. Verify the cluster
 
