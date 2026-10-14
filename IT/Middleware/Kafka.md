@@ -9,12 +9,13 @@ sudo useradd -r -m -s /bin/bash kafka
 ```
 
 ```shell
-cd /data
+cd /data/middleware
 ln -s kafka_2.13-4.1.0 kafka
 chown -R kafka:kafka kafka*
 ```
 
 ### Install JDK
+
 kafka 4.1.0 works with JDK 11 or JDK 17
 
 Install Amazon Corretto 17 on CentOS 7
@@ -27,7 +28,7 @@ sudo curl -Lo /etc/yum.repos.d/corretto.repo https://yum.corretto.aws/corretto.r
 sudo yum install -y java-17-amazon-corretto java-17-amazon-corretto-devel
 ```
 
-`/data/kafka/config/server.properties`
+`/data/middleware/kafka/config/server.properties`
 
 ```shell
 process.roles=broker,controller
@@ -41,7 +42,7 @@ listener.security.protocol.map=PLAINTEXT:PLAINTEXT,CONTROLLER:PLAINTEXT
 controller.listener.names=CONTROLLER
 
 # logs and performance
-log.dirs=/data/kafka/data
+log.dirs=/data/middleware/kafka/data
 num.partitions=3
 num.network.threads=3
 num.io.threads=8
@@ -77,7 +78,7 @@ inter.broker.listener.name=PLAINTEXT_INTERNAL
 controller.listener.names=CONTROLLER
 
 # 日志与性能优化
-log.dirs=/data/app/kafka/data/
+log.dirs=/data/middleware/kafka/data/
 num.partitions=3
 num.network.threads=3
 num.io.threads=8
@@ -103,17 +104,19 @@ num.recovery.threads.per.data.dir=1
 
 generate random-uuid
 ```shell
-/data/kafka/bin/kafka-storage.sh random-uuid
+/data/middleware/kafka/bin/kafka-storage.sh random-uuid
 ```
 
-format storage in each node
+format storage in **each node**
+
 ```shell
-/data/kafka/bin/kafka-storage.sh format -t IaGRZyqFTQexJEDkauFEEQ -c /data/kafka/config/server.properties
+/data/middleware/kafka/bin/kafka-storage.sh format -t IaGRZyqFTQexJEDkauFEEQ -c /data/middleware/kafka/config/server.properties
 ```
 
 ### systemd service file
 
 `/etc/systemd/system/kafka.service`
+
 ```shell
 [Unit]
 Description=Apache Kafka Server
@@ -123,14 +126,17 @@ After=network.target
 Type=simple
 User=kafka
 Group=kafka
-ExecStart=/data/kafka/bin/kafka-server-start.sh /data/kafka/config/server.properties
-ExecStop=/data/kafka/bin/kafka-server-stop.sh
+ExecStart=/data/middleware/kafka/bin/kafka-server-start.sh /data/middleware/kafka/config/server.properties
+ExecStop=/data/middleware/kafka/bin/kafka-server-stop.sh
 Restart=on-failure
 RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
 ```
+
+`reload`
+
 ```shell
 systemctl daemon-reload
 systemctl enable kafka
@@ -142,7 +148,7 @@ journalctl -u kafka -n 100 --no-pager
 
 create topic
 ```shell
-/data/kafka/bin/kafka-topics.sh \
+/data/middleware/kafka/bin/kafka-topics.sh \
   --create \
   --topic cloudplatform-virtualhost \
   --bootstrap-server 10.168.99.39:19092,10.168.99.40:19092,10.168.99.41:19092 \
@@ -152,7 +158,7 @@ create topic
 
 Delete topic
 ```shell
-/data/kafka/bin/kafka-topics.sh \
+/data/middleware/kafka/bin/kafka-topics.sh \
   --delete \
   --topic cloudplatform-virtualhost \
   --bootstrap-server 10.168.99.39:19092,10.168.99.40:19092,10.168.99.41:19092
@@ -160,5 +166,5 @@ Delete topic
 
 List Topic
 ```shell
-/data/kafka/bin/kafka-topics.sh --list --bootstrap-server 10.168.99.39:19092
+/data/middleware/kafka/bin/kafka-topics.sh --list --bootstrap-server 10.168.99.39:19092
 ```
