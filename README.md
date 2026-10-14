@@ -20,7 +20,6 @@
     - [听力重点单词&词组.md](English/雅思/听力/听力重点单词%26词组.md)
 - 语法体系
   - [概述.md](English/语法体系/概述.md)
-  - [How.md](English/语法体系/How.md)
   - 词法
     - [概述.md](English/语法体系/词法/概述.md)
     - 实词
@@ -60,6 +59,8 @@
             - [would.md](English/语法体系/词法/实词/动词/谓语动词/情态动词/would.md)
     - 虚词
       - [冠词.md](English/语法体系/词法/虚词/冠词.md)
+      - 疑问词
+        - [How.md](English/语法体系/词法/虚词/疑问词/How.md)
       - 介词
         - [概述.md](English/语法体系/词法/虚词/介词/README.md)
         - [about.md](English/语法体系/词法/虚词/介词/about.md)
