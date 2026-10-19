@@ -1,3 +1,5 @@
+## Brief
+
 We'll build a three-node Kubernetes cluster using `kubeadm`, `containerd`, and `Calico` as the container runtime and network plugin.
 
 I'll use one machine as the control-plane node and the other two as worker nodes. The commands below assume a fresh Rocky Linux 9.8 installation and root or `sudo` access.
