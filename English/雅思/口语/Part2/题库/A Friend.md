@@ -1,0 +1,44 @@
+## Friends who are good at dressing up
+
+### Background
+
+`I'd like to talk about one of my friends who dresses really well.`
+
+`I first met him when we were at school. At first, I didn't like him very much because I thought he was a little proud. But after spending more time with him, I found out that he was actually a nice and friendly person.`
+
+### Main Description
+
+`One thing I really like about him is his sense of style. He always wears clean and fashionable clothes, and he knows how to match different colors. He doesn't always wear expensive clothes, but he still looks good.`
+
+`Sometimes, I ask him for advice about what to wear. He is always happy to help me, and his advice makes me feel more confident about my appearance.`
+
+### Details and Feelings
+
+`That's why I like him so much. He is not only good at dressing well, but also a good friend. I'm glad that I got to know him better.`
+
+### Story
+
+`school → proud → friendly → fashionable → match colors → advice → confident → good friend`
+
+## A friend i didn't like at first
+### Background
+
+I'd like to talk about a friend who I didn't like at first but became good friends with later.
+
+I first met him when we were at school. At that time, I thought he was a little proud because he always looked confident and dressed really well. So I didn't really want to talk to him.
+
+### Main Description
+
+However, after we spent more time together, I realized that I was wrong about him. He was actually very friendly and helpful.
+
+For example, he sometimes gave me advice about clothes, and he was always happy to help me.
+
+### Details and Feelings
+
+Gradually, we got to know each other better and became good friends. I learned that I shouldn't judge people by their appearance or first impressions.
+
+Now, I really appreciate our friendship. I'm glad that I gave him a chance and got to know the real person behind that first impression.
+
+### Story
+
+`school → proud → didn't want to talk → spend more time → wrong about him → helpful → good friends → don't judge`
