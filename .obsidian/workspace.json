@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/雅思/口语/Part1/题库/Work.md",
+                "file": "English/雅思/口语/Part1/题库/Hometown.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Work"
+              "title": "Hometown"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/雅思/口语/Part1/题库/Work.md",
+                "file": "English/雅思/口语/Part1/题库/Hometown.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,8 +171,15 @@
   },
   "active": "d7130f30481cae05",
   "lastOpenFiles": [
-    "English/雅思/口语/Part1/题库/Staying Up Late.md",
+    "English/雅思/口语/Part1/题库/Current City.md",
+    "English/雅思/口语/Part1/题库/Hometown.md",
     "English/雅思/口语/Part1/题库/Work.md",
+    "English/雅思/口语/Part1/题库/Living Environment.md",
+    "English/雅思/口语/Part2/题库/喜欢运动的人.md",
+    "English/雅思/口语/Part2/题库/A Friend.md",
+    "English/雅思/口语/100组日常口语词 vs 正式表达.md",
+    "English/雅思/口语/casual.md",
+    "English/雅思/口语/Part1/题库/Staying Up Late.md",
     "English/雅思/口语/Part1/答题方法讲解知识总结.md",
     "English/雅思/口语/Part1/答题方法.md",
     "English/雅思/写作/写作高频词汇&表达.md",
@@ -190,13 +197,6 @@
     "English/雅思/写作/Task1/概述段.md",
     "English/雅思/写作/Task1/概述段句型.md",
     "English/雅思/写作/Task1/LR & GRA 提分技巧.md",
-    "English/雅思/写作/Task1/流程图/README.md",
-    "English/雅思/写作/Task1/静态图/README.md",
-    "English/雅思/写作/Task1/动态图/README.md",
-    "English/雅思/写作/Task1/地图/README.md",
-    "English/雅思/写作/Task1/地图/1.md",
-    "English/雅思/写作/Task1/地图/词汇.md",
-    "English/雅思/写作/Task1/地图/句型.md",
     "English/雅思/写作/Task1/地图",
     "English/雅思/写作/Task1/动态图",
     "English/雅思/写作/Task1/静态图",

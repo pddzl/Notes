@@ -90,3 +90,21 @@ Possibly. I'd like to explore more opportunities and learn about new technologie
 - explore opportunities
 - new technologies
 - improve myself
+
+## Memory Keywords
+
+1. Background
+
+	`IT engineer → IT systems → Monitoring platforms`
+
+2. Advantages
+
+	`Interested in technology → Solve problems → Learn new things → Sense of achievement`
+
+3. Disadvantages
+
+	`Heavy workload → Urgent issues → Stressful`
+
+4. Future
+
+	`New technologies → Improve skills → Career opportunities`
