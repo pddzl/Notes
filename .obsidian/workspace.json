@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "English/雅思/口语/Part2/题库/地点类/城市公园.md",
+                "file": "English/雅思/口语/Part2/题库/人物类/朋友.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "城市公园"
+              "title": "朋友"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/雅思/口语/Part2/题库/地点类/城市公园.md",
+                "file": "English/雅思/口语/Part2/题库/人物类/朋友.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,6 +171,7 @@
   },
   "active": "24aab5d3a0f2fe17",
   "lastOpenFiles": [
+    "English/雅思/口语/Part2/题库/地点类/城市公园.md",
     "English/雅思/口语/Part2/题库/经历类/转行.md",
     "English/雅思/口语/Part2/题库/人物类/喜欢运动的人.md",
     "English/雅思/口语/Part2/题库/人物类/兴趣爱好.md",
@@ -206,7 +207,6 @@
     "IT/Middleware/Kafka/Architecture and Core Concepts.md",
     "IT/Middleware/Kafka/Install.md",
     "IT/Monitor/监控体系.md",
-    "IT/Monitor/TSDB.md",
     "Untitled.canvas",
     "Pasted image 20260909221227.png",
     "p2.jpg"
