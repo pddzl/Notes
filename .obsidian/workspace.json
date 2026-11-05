@@ -11,10 +11,14 @@
             "id": "dff5f70b84281154",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "English/雅思/口语/Part2/题库/媒体类/书籍&电影.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "书籍&电影"
             }
           }
         ]
@@ -76,7 +80,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 266.09375
+    "width": 330.8984375
   },
   "right": {
     "id": "030717baafeb33ef",
@@ -138,6 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "English/雅思/口语/Part2/题库/媒体类/书籍&电影.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -166,42 +171,41 @@
   },
   "active": "dff5f70b84281154",
   "lastOpenFiles": [
+    "English/雅思/口语/Part2/题库/职业类/Career Change.md",
+    "English/雅思/口语/Part2/题库/职业类",
+    "English/雅思/口语/Part2/题库/人物类/喜欢运动的人.md",
+    "English/雅思/口语/Part2/题库/媒体类/书籍&电影.md",
+    "English/雅思/口语/Part2/题库/经历类/聚会.md",
+    "English/雅思/口语/Part2/题库/人物类/影响我的人.md",
+    "English/雅思/口语/Part2/题库/地点类",
+    "English/雅思/口语/Part2/题库/聚会",
+    "English/雅思/口语/Part2/题库/经历类",
+    "English/雅思/口语/Part2/题库/媒体类",
+    "English/雅思/口语/Part2/题库/物品类",
+    "English/雅思/口语/Part2/题库/人物类/兴趣爱好.md",
+    "English/雅思/口语/Part2/题库/人物类/成功人士.md",
+    "English/雅思/口语/Part2/题库/人物类/朋友.md",
+    "English/雅思/口语/Part2/题库/人物类/家人.md",
+    "English/雅思/口语/Part2/题库/A Friend.md",
+    "English/雅思/口语/Part2/题库/人物/Firiends/大学喜欢阅读历史书的朋友.md",
+    "English/雅思/口语/Part2/题库/人物/Firiends/在比赛中表现出色的大学朋友.md",
+    "English/雅思/口语/Part2/题库/人物/Firiends/你欣赏的运动员 Ronaldo.md",
+    "English/雅思/口语/Part2/题库/人物/Firiends/Friends who are good at dressing up.md",
+    "English/雅思/口语/Part2/题库/人物/Firiends/A friend i didn't like at first.md",
+    "English/雅思/口语/Part2/题库/人物/People Who Influenced Me",
+    "English/雅思/口语/Part2/题库/人物/People with Hobbies",
+    "English/雅思/口语/Part2/题库/人物/Successful People",
+    "English/雅思/口语/Part2/题库/人物/Family",
+    "English/雅思/口语/Part2/题库/people/朋友 1/你欣赏的运动员 Ronaldo.md",
+    "English/雅思/口语/Part2/题库/people/朋友 1/一开始不喜欢，后来成为朋友的人.md",
+    "English/雅思/口语/Part2/题库/people/Friends.md",
+    "README.md",
     "IT/Monitor/VictoriaMetrics/Architecture.md",
     "IT/Middleware/Kafka/Message Ordering.md",
     "IT/Middleware/Kafka/Architecture and Core Concepts.md",
     "IT/Middleware/Kafka/Install.md",
-    "IT/Middleware/Kafka",
     "IT/Monitor/监控体系.md",
-    "IT/Monitor/VictoriaMetrics",
     "IT/Monitor/TSDB.md",
-    "IT/Monitor/Metrics.md",
-    "IT/Monitor/prometheus/exporter/kafka_exporter.md",
-    "IT/Monitor/prometheus/exporter",
-    "IT/Monitor/prometheus/exporter/node_exporter.md",
-    "IT/Monitor/Zabbix/Architecture.md",
-    "IT/Monitor/Grafana.md",
-    "IT/Monitor/Zabbix/permission.md",
-    "IT/Monitor/Zabbix/notification.md",
-    "IT/Monitor/prometheus/Install.md",
-    "IT/Monitor/prometheus/avg vs avg_over_time.md",
-    "IT/Monitor/prometheus/Architecture.md",
-    "English/雅思/口语/Part1/题库/Hometown.md",
-    "English/雅思/口语/Part2/题库/喜欢运动的人.md",
-    "English/雅思/口语/Part1/题库/Current City.md",
-    "English/雅思/口语/Part1/题库/Work.md",
-    "English/雅思/口语/Part1/题库/Living Environment.md",
-    "English/雅思/口语/Part2/题库/A Friend.md",
-    "English/雅思/口语/100组日常口语词 vs 正式表达.md",
-    "English/雅思/口语/casual.md",
-    "English/雅思/口语/Part1/题库/Staying Up Late.md",
-    "English/雅思/口语/Part1/答题方法讲解知识总结.md",
-    "English/雅思/写作/Task1/地图",
-    "English/雅思/写作/Task1/动态图",
-    "English/雅思/写作/Task1/静态图",
-    "English/雅思/写作/Task1/流程图",
-    "English/雅思/口语/Part2/题库",
-    "English/雅思/口语/Part1/题库",
-    "English/雅思/口语/Part1/题库",
     "Untitled.canvas",
     "Pasted image 20260909221227.png",
     "p2.jpg"
