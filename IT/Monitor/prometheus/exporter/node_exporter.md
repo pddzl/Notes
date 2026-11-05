@@ -46,9 +46,7 @@ In Linux, a small portion of disk space (usually 5%) is **reserved for the root 
 That’s why we have two metrics in node_exporter:
 
 - **`node_filesystem_free_bytes`** → total free space, _including_ root’s reserved part
-    
 - **`node_filesystem_avail_bytes`** → free space _excluding_ root’s reserved part (usable by normal users/apps)
-    
 
 So:
 

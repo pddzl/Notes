@@ -1,7 +1,7 @@
 
 `kafka_2.13-4.1.0.tgz`
 
-`KRaft 模式`
+`KRaft Mode`
 
 ```shell
 # 创建用户和组

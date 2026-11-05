@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "c9ca3d2ec68e340d",
+        "id": "5711896c00789dbd",
         "type": "tabs",
         "children": [
           {
-            "id": "d7130f30481cae05",
+            "id": "dff5f70b84281154",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "English/雅思/口语/Part1/题库/Hometown.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "Hometown"
+              "title": "New tab"
             }
           }
         ]
@@ -142,7 +138,6 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "English/雅思/口语/Part1/题库/Hometown.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -169,34 +164,37 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "d7130f30481cae05",
+  "active": "dff5f70b84281154",
   "lastOpenFiles": [
-    "English/雅思/口语/Part1/题库/Current City.md",
+    "IT/Monitor/VictoriaMetrics/Architecture.md",
+    "IT/Middleware/Kafka/Message Ordering.md",
+    "IT/Middleware/Kafka/Architecture and Core Concepts.md",
+    "IT/Middleware/Kafka/Install.md",
+    "IT/Middleware/Kafka",
+    "IT/Monitor/监控体系.md",
+    "IT/Monitor/VictoriaMetrics",
+    "IT/Monitor/TSDB.md",
+    "IT/Monitor/Metrics.md",
+    "IT/Monitor/prometheus/exporter/kafka_exporter.md",
+    "IT/Monitor/prometheus/exporter",
+    "IT/Monitor/prometheus/exporter/node_exporter.md",
+    "IT/Monitor/Zabbix/Architecture.md",
+    "IT/Monitor/Grafana.md",
+    "IT/Monitor/Zabbix/permission.md",
+    "IT/Monitor/Zabbix/notification.md",
+    "IT/Monitor/prometheus/Install.md",
+    "IT/Monitor/prometheus/avg vs avg_over_time.md",
+    "IT/Monitor/prometheus/Architecture.md",
     "English/雅思/口语/Part1/题库/Hometown.md",
+    "English/雅思/口语/Part2/题库/喜欢运动的人.md",
+    "English/雅思/口语/Part1/题库/Current City.md",
     "English/雅思/口语/Part1/题库/Work.md",
     "English/雅思/口语/Part1/题库/Living Environment.md",
-    "English/雅思/口语/Part2/题库/喜欢运动的人.md",
     "English/雅思/口语/Part2/题库/A Friend.md",
     "English/雅思/口语/100组日常口语词 vs 正式表达.md",
     "English/雅思/口语/casual.md",
     "English/雅思/口语/Part1/题库/Staying Up Late.md",
     "English/雅思/口语/Part1/答题方法讲解知识总结.md",
-    "English/雅思/口语/Part1/答题方法.md",
-    "English/雅思/写作/写作高频词汇&表达.md",
-    "English/雅思/写作/写作评分标准解读.md",
-    "English/雅思/写作/Task1/图表类型与数量表达.md",
-    "English/雅思/写作/Task1/图表主题词.md",
-    "English/雅思/写作/Task1/README.md",
-    "English/雅思/写作/Task1/主题段.md",
-    "English/雅思/写作/Task1/简介.md",
-    "English/雅思/写作/Task1/衔接词.md",
-    "English/雅思/写作/Task1/变化趋势-词汇.md",
-    "English/雅思/写作/Task1/图标极值-词汇.md",
-    "English/雅思/写作/Task1/词汇.md",
-    "English/雅思/写作/Task1/静态图/词汇.md",
-    "English/雅思/写作/Task1/概述段.md",
-    "English/雅思/写作/Task1/概述段句型.md",
-    "English/雅思/写作/Task1/LR & GRA 提分技巧.md",
     "English/雅思/写作/Task1/地图",
     "English/雅思/写作/Task1/动态图",
     "English/雅思/写作/Task1/静态图",
@@ -204,9 +202,6 @@
     "English/雅思/口语/Part2/题库",
     "English/雅思/口语/Part1/题库",
     "English/雅思/口语/Part1/题库",
-    "English/雅思/口语/Part1",
-    "English/雅思/写作/Task1",
-    "English/雅思/口语/Part2",
     "Untitled.canvas",
     "Pasted image 20260909221227.png",
     "p2.jpg"

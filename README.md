@@ -156,7 +156,7 @@
 <details>
 <summary>Middleware</summary>
 
-- [Kafka.md](IT/Middleware/Kafka.md)
+- [Kafka.md](IT/Middleware/Kafka/Install.md)
 
 </details>
 
@@ -167,11 +167,11 @@
 - [Metrics.md](IT/Monitor/Metrics.md)
 - [TSDB.md](IT/Monitor/TSDB.md)
 - [Grafana.md](IT/Monitor/Grafana.md)
-- [zabbix-architecture.md](IT/Monitor/zabbix-architecture.md)
+- [zabbix-architecture.md](IT/Monitor/Zabbix/Architecture.md)
 - Zabbix
   - [permission.md](IT/Monitor/Zabbix/permission.md)
-- [node_exporter.md](IT/Monitor/node_exporter.md)
-- [kafka_exporter.md](IT/Monitor/kafka_exporter.md)
+- [node_exporter.md](node_exporter.md)
+- [kafka_exporter.md](kafka_exporter.md)
 - prometheus
   - [Architecture.md](IT/Monitor/prometheus/Architecture.md)
   - [Install.md](IT/Monitor/prometheus/Install.md)
