@@ -7,49 +7,27 @@ LogEase
    |
    | selected logs
    v
-Kafka topics
+Kafka topic (logs)
    |
-   +------------------------------+
-   |                              |
-   v                              v
-ClickHouse Kafka Engine       External Go/Python consumer
-   |                              |
-   v                              v
-Materialized View             Parse / clean / transform
-   |                              |
-   v                              v
-ReplicatedMergeTree <-------------+
-   |
+   +------------------------------------------+
+   |                                          |
+   v                                          v
+ClickHouse Kafka Engine                External Go/Python consumer
+   | [consumes JSON messages]               |
+   v                                        v
+Materialized View                      Parse / clean / transform
+   | [extracts and transforms               |
+   | JSON fields]                           |
+   v                                        v
+ReplicatedMergeTree <-----------------------+
+   | [stores persistent log data]
    v
-Distributed query table
+Distributed table -- queries across the cluster (1 shard, 3 replicas)
 ```
 
 Choose one ingestion pattern based on where you want parsing and transformation to happen.
 
-### 1.1 Architecture overview
-
-For the Kafka Engine + Materialized View path, the concrete pipeline for your logging platform would look like this:
-
-```text
-LogEase
-   |
-   v
-Kafka Topic (logs)
-   |
-   v
-ClickHouse Kafka Engine -- consumes JSON messages
-   |
-   v
-Materialized View -- extracts and transforms JSON fields
-   |
-   v
-MergeTree Destination Table -- stores persistent log data
-   |
-   v
-Distributed Table -- queries across the cluster (1 shard, 3 replicas)
-```
-
-There are four important objects:
+The Kafka Engine + Materialized View path involves four important objects:
 
 |Table|Engine|Purpose|
 |---|---|---|
@@ -60,7 +38,7 @@ There are four important objects:
 
 One clarification: ClickHouse doesn't automatically create any of these objects just because you enable Kafka Engine. You create them using SQL. There is, however, an alternative syntax that lets a materialized view create its own internal destination table by omitting `TO`; see section 6.
 
-### 1.2 Option A: ClickHouse Kafka Engine plus Materialized View
+### 1.1 Option A: ClickHouse Kafka Engine plus Materialized View
 
 This lets ClickHouse consume Kafka topics and insert rows into a regular MergeTree-family table.
 
@@ -108,7 +86,7 @@ Important:
 - Do not create multiple competing consumers accidentally. Decide whether one Kafka Engine table per topic/consumer group is appropriate for your deployment.
 - Validate delivery and retry behavior under failures before relying on this path for production.
 
-### 1.3 Option B: external log-cleaning process
+### 1.2 Option B: external log-cleaning process
 
 If your existing process reads Kafka, cleans/transforms records, and writes to ClickHouse, it can insert directly into `logs.logs_all` or the local table, depending on your routing design.
 
@@ -121,7 +99,7 @@ Make sure the writer handles retries and duplicate delivery appropriately. For b
 
 Do not run both ingestion approaches for the same Kafka topic unless duplicate ingestion is intentional and controlled.
 
-### 1.4 Kafka Engine vs Go Consumer: Which should you choose?
+### 1.3 Kafka Engine vs Go Consumer: Which should you choose?
 
 For your 50–200 GB/day logging platform:
 

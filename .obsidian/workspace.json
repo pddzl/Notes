@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "7b19f16d3196650b",
+        "id": "55287807e3699fc0",
         "type": "tabs",
         "children": [
           {
-            "id": "0d2774a776a19eae",
+            "id": "c195bf886cb574a1",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -169,10 +169,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "6721eeaf1fbd2efb",
+  "active": "c195bf886cb574a1",
   "lastOpenFiles": [
-    "IT/Database/OLAP/ClickHouse/Installation.md",
     "IT/Database/OLAP/ClickHouse/Kafka Ingest.md",
+    "IT/Database/OLAP/ClickHouse/Installation.md",
     "IT/Database/OLAP/ClickHouse/Kafka Log Ingestion.md",
     "IT/Database/OLAP/ClickHouse",
     "English/雅思/写作/Task2/审题 & 列提纲讲解.md",
