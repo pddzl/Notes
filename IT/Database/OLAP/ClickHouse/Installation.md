@@ -30,7 +30,37 @@ A physical VM can run more than one ClickHouse instance, but two ports in a conf
 
 For a conventional replicated topology, each ClickHouse instance has one shard/replica identity for its replicated tables.
 
-### Option A — Three instances: one shard × three replicas
+### Option A — One shard × two replicas
+
+```text
+                    logs_cluster
+                         |
+                Shard 1 (one copy of data)
+                   /             \
+                  /               \
+             Replica 1        Replica 2
+                CH01             CH02
+
+      (clickhouse03 runs Keeper only)
+```
+
+| VM | Instance | Shard | Replica |
+|---|---|---:|---|
+| `clickhouse01` | One | 01 | `clickhouse01` |
+| `clickhouse02` | One | 01 | `clickhouse02` |
+| `clickhouse03` | None (Keeper only) | — | — |
+
+Advantages:
+- Stores only two copies of the data instead of three.
+- Keeps replica redundancy across two physical VMs.
+- Frees `clickhouse03` for other workloads or a lighter footprint.
+
+Trade-offs:
+- Still a single shard, so no horizontal scaling (same limitation as Option B).
+- Less redundancy than Option B: if both replicas are down at the same time, the data is unavailable.
+- Fewer ClickHouse instances overall means less total query and ingest capacity.
+
+### Option B — Three instances: one shard × three replicas
 
 ```text
                     logs_cluster
@@ -60,7 +90,7 @@ Trade-offs:
 
 This is the straightforward choice if you must keep exactly one ClickHouse instance on each of the three VMs and want replica redundancy.
 
-### Option B — Three shards × two replicas
+### Option C — Three shards × two replicas
 
 ```text
                          logs_cluster
@@ -101,7 +131,7 @@ Trade-offs:
 
 Do not configure three shards × two replicas by simply adding port `9001` to `remote_servers`. Port `9001` is only a port; it is not a second ClickHouse instance unless a second ClickHouse process is actually running there.
 
-If you are keeping one ClickHouse process per VM, use **one shard × three replicas** for replicated redundancy, or choose three shards × one replica if distribution is more important than replica-level availability. If you need both horizontal sharding and two replicas, plan for six instances.
+If you are keeping one ClickHouse process per VM, use **one shard × three replicas** (Option B) for replicated redundancy, or choose three shards × one replica if distribution is more important than replica-level availability. If two data copies are enough and one VM can go without a ClickHouse instance, choose **one shard × two replicas** (Option A). If you need both horizontal sharding and two replicas, plan for six instances (Option C).
 
 # 2. Prepare all three Rocky Linux VMs
 
@@ -314,7 +344,7 @@ The `<zookeeper>` section is the ClickHouse configuration interface for a ZooKee
 
 # 6. Configure the ClickHouse cluster
 
-The examples in this section implement **Option A: one shard × three replicas**, matching one ClickHouse instance on each of the three VMs.
+The examples in this section implement **Option B: one shard × three replicas**, matching one ClickHouse instance on each of the three VMs.
 
 ## 6.1 Allow remote connections
 
@@ -447,7 +477,7 @@ tail -n 100 /var/log/clickhouse-server/clickhouse-server.log
 tail -n 100 /var/log/clickhouse-server/clickhouse-server.err.log
 ```
 
-# 7. Configure the alternative three-shard, two-replica topology
+# 7. Configure the three-shard, two-replica topology (Option C)
 
 This is an alternative design, not the configuration to use with only three ClickHouse processes.
 
@@ -479,7 +509,7 @@ Each instance needs separate:
 
 The `remote_servers` layout would have three shard groups, each with two replica entries. The two replicas in each shard must point to the two actual independent instances assigned to that shard.
 
-Do not copy the three-node, one-instance-per-host `macros.xml` from Option A into this six-instance deployment. Every instance needs the macros for its own shard and replica identity.
+Do not copy the three-node, one-instance-per-host `macros.xml` from Option B into this six-instance deployment. Every instance needs the macros for its own shard and replica identity.
 
 A six-instance deployment requires a dedicated per-instance configuration and service design. Do not start a second process against the first process's data directory.
 
@@ -502,7 +532,7 @@ WHERE cluster = 'logs_cluster'
 ORDER BY shard_num, replica_num;
 ```
 
-For Option A, expect one shard and three replicas.
+For Option B, expect one shard and three replicas.
 
 List all configured clusters:
 
@@ -577,7 +607,7 @@ The path placeholders are substituted from each server's macros:
 - `{shard}` becomes the shard identifier.
 - `{replica}` becomes the replica identifier.
 
-For Option A, all replicas use the same Keeper table path because they share the same shard, but each has a unique replica name.
+For Option B, all replicas use the same Keeper table path because they share the same shard, but each has a unique replica name.
 
 ## 9.3 Create the Distributed table
 
