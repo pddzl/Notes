@@ -31,10 +31,10 @@ The Kafka Engine + Materialized View path involves four important objects:
 
 |Table|Engine|Purpose|
 |---|---|---|
-|`http_logs_kafka`|Kafka|Consume Kafka messages|
-|`http_logs_mv`|Materialized View|Transform and forward messages|
-|`http_logs_local`|ReplicatedMergeTree|Persist logs|
-|`http_logs`|Distributed|Query all shards|
+|`HA_SlicingMES_HTTP_KAFKA`|Kafka|Consume Kafka messages|
+|`HA_SlicingMES_HTTP_MV`|Materialized View|Transform and forward messages|
+|`HA_SlicingMES_HTTP`|ReplicatedMergeTree|Persist logs|
+|`HA_SlicingMES_HTTP_ALL`|Distributed|Query all shards|
 
 One clarification: ClickHouse doesn't automatically create any of these objects just because you enable Kafka Engine. You create them using SQL. There is, however, an alternative syntax that lets a materialized view create its own internal destination table by omitting `TO`; see section 6.
 
@@ -133,6 +133,44 @@ Replace the broker addresses with your actual Kafka addresses.
 
 Your Kafka message is already a JSON object, so `JSONEachRow` is the appropriate format. Each Kafka message represents one JSON row.
 
+The topic message format is:
+
+```json
+{
+  "agent_send_timestamp" : 1795072826202,
+  "collector_recv_timestamp" : 1795072827982,
+  "raw_message" : "10.16.33.255 - - [19/Nov/2026:15:20:23 +0800] \"GET /sweetMes/basisBill/bill HTTP/1.1\" 200 181 \"http://s1-ha.test.com/\" \"-\" \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0\" \"-\" 0.004",
+  "ip" : "10.16.3.56",
+  "index" : "ops-yotta-20261119",
+  "source" : "/usr/local/nginx-1.20.2/nginx.log",
+  "nginx_access" : {
+    "http_method" : "GET",
+    "request_time" : "0.004",
+    "request_timestamp" : "19/Nov/2026:15:20:23 +0800",
+    "http_code" : "200",
+    "size" : "181",
+    "http_referer" : "http://s1-ha.test.com/",
+    "http_x_forwarded_for" : "-",
+    "client_ip" : "10.16.33.255",
+    "http_request" : "GET /sweetMes/basisBill/bill HTTP/1.1",
+    "uri" : "/sweetMes/basisBill/bill",
+    "user_agent" : "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/157.0.0.0 Safari/537.36 Edg/157.0.0.0"
+  },
+  "logical_index" : "yotta",
+  "logtype" : "nginx_access",
+  "hostname" : "tshawnginx01",
+  "appname" : "ISC_HA_SlicingMES_PRD__Nginx__tshawnginx01__1001",
+  "domain" : "ops",
+  "context_id" : 1795072826202613965,
+  "tag" : [
+    "HA_SlicingMES"
+  ],
+  "id" : "AaHyrZtakdUujX9cLmb9",
+  "raw_message_length" : 271,
+  "timestamp" : 1795072826202
+}
+```
+
 ## 3. Create the destination table
 
 This is the actual table where your logs will be stored.
@@ -144,134 +182,66 @@ CREATE DATABASE IF NOT EXISTS logs
 ON CLUSTER logs_cluster;
 ```
 
-Then create the local table:
+Then create the local table — on **all three nodes**, so every replica has it:
 
 ```sql
-CREATE TABLE IF NOT EXISTS logs.http_logs_local
-ON CLUSTER logs_cluster
+CREATE TABLE logs.HA_SlicingMES_HTTP
 (
-    timestamp DateTime64(3, 'Asia/Shanghai'),
-
-    id String,
-    context_id UInt64,
-
-    hostname LowCardinality(String),
-    appname String,
-    service_instance_name String,
-
-    source String,
-    sourcetype LowCardinality(String),
-    logical_index LowCardinality(String),
-    `index` LowCardinality(String),
-
-    env LowCardinality(String),
-    domain LowCardinality(String),
-    tag Array(String),
-
-    client_ip IPv4,
-    ip IPv4,
-    host String,
-    vhost LowCardinality(String),
-
-    method LowCardinality(String),
-    uri String,
-    http_version LowCardinality(String),
-    http_code UInt16,
-
-    duration_ms UInt32,
-    response_body_bytes UInt64,
-    response_total_bytes UInt64,
-
-    process_info String,
-    raw_message String,
-    raw_message_length UInt32,
-
-    agent_send_timestamp DateTime64(3, 'Asia/Shanghai'),
-    collector_recv_timestamp DateTime64(3, 'Asia/Shanghai'),
-
-    ingested_at DateTime64(3, 'Asia/Shanghai')
-        DEFAULT now64(3)
+    `agent_send_timestamp` UInt64,
+    `collector_recv_timestamp` UInt64,
+    `raw_message` String,
+    `raw_message_length` UInt32,
+    `ip` IPv4,
+    `index` String,
+    `source` String,
+    `http_method` LowCardinality(String),
+    `request_time` Float64,
+    `request_timestamp` String,
+    `http_code` UInt16,
+    `size` UInt64,
+    `http_referer` String,
+    `http_x_forwarded_for` String,
+    `client_ip` IPv4,
+    `http_request` String,
+    `uri` String,
+    `user_agent` String,
+    `logical_index` LowCardinality(String),
+    `logtype` LowCardinality(String),
+    `hostname` LowCardinality(String),
+    `appname` String,
+    `domain` LowCardinality(String),
+    `context_id` UInt64,
+    `tag` Array(String),
+    `id` String,
+    `timestamp` DateTime64(3, 'Asia/Shanghai'),
+    INDEX idx_uri uri TYPE bloom_filter GRANULARITY 4,
+    INDEX idx_client_ip client_ip TYPE bloom_filter GRANULARITY 4
 )
-ENGINE = ReplicatedMergeTree(
-    '/clickhouse/tables/{shard}/logs/http_logs_local',
-    '{replica}'
-)
+ENGINE = ReplicatedMergeTree('/clickhouse/tables/{shard}/logs/HA_SlicingMES_HTTP', '{replica}')
 PARTITION BY toYYYYMMDD(timestamp)
-ORDER BY (env, sourcetype, hostname, timestamp, id)
-TTL timestamp + INTERVAL 180 DAY;
+ORDER BY (logtype, hostname, timestamp, id)
+TTL timestamp + toIntervalDay(180)
+SETTINGS index_granularity = 8192
 ```
 
 This table is replicated across your three ClickHouse instances.
 
 ## 4. Create the Kafka Engine table
 
+> **Note:** Create it on one or more nodes. To run multiple Kafka consumers, create the table on each node — all instances must use the same `kafka_group_name`, so Kafka distributes topic partitions among them. Different group names would each consume the whole topic independently and generate duplicate data.
+
 This is the most important part of the ingestion process.
 
 The Kafka Engine table is not a normal storage table. It acts as a Kafka consumer.
 
 ```sql
-CREATE TABLE logs.http_logs_kafka
-ON CLUSTER logs_cluster
-(
-    raw_message String,
-    source String,
-    hostname String,
-    response_body_bytes String,
-    appname String,
-    host String,
-    client_ip String,
-    sourcetype String,
-    tag Array(String),
-    id String,
-    service_instance_name String,
-
-    timestamp UInt64,
-    response_total_bytes String,
-    agent_send_timestamp UInt64,
-    method String,
-    collector_recv_timestamp UInt64,
-    ip String,
-    http_version String,
-    `index` String,
-    env String,
-    uri String,
-    logical_index String,
-    duration_ms String,
-    vhost String,
-    context_id UInt64,
-    http_code String,
-    process_info String,
-    domain String,
-    raw_message_length UInt32
-)
-ENGINE = Kafka
-SETTINGS
-    kafka_broker_list =
-        '192.168.1.101:9092,192.168.1.102:9092,192.168.1.103:9092',
-    kafka_topic_list = 'logs',
-    kafka_group_name = 'clickhouse_logs_consumer',
-    kafka_format = 'JSONEachRow',
-    kafka_num_consumers = 1;
+CREATE TABLE logs.HA_SlicingMES_HTTP_KAFKA  
+(  
+    `message` String  
+)  
+ENGINE = Kafka  
+SETTINGS kafka_broker_list = '192.168.1.101:9092,192.168.1.102:9092,192.168.1.103:9092', kafka_topic_list = 'HA_SlicingMES_HTTP', kafka_group_name = 'clickhouse_HA_SlicingMES_HTTP', kafka_format = 'JSONAsString', kafka_num_consumers = 1
 ```
-
-A few details worth understanding:
-
-**Why are some fields String instead of UInt64?**
-
-Look at your original message:
-
-```
-{
-  "response_body_bytes": "453",
-  "duration_ms": "258",
-  "http_code": "200",
-  "timestamp": 1794909170851
-}
-```
-
-The first three values are JSON strings, while `timestamp` is a JSON number.
-
-Therefore, I define the Kafka staging table according to the actual JSON types, then convert the values when inserting into the destination table.
 
 **What is** `kafka_group_name`**?**
 
@@ -281,64 +251,70 @@ All three ClickHouse nodes should use the same group name so Kafka distributes t
 
 ## 5. Create the Materialized View
 
+> **Note:** Create the MV on **every node that has a Kafka Engine table**. An MV only transforms messages consumed by the Kafka Engine table on the same node — if a node consumes messages without an MV, those messages are lost.
+
 Now connect the Kafka Engine table to the destination table.
 
 ```sql
-CREATE MATERIALIZED VIEW logs.http_logs_mv
-ON CLUSTER logs_cluster
-TO logs.http_logs_local
-AS
-SELECT
-    fromUnixTimestamp64Milli(
-        toInt64(timestamp),
-        'Asia/Shanghai'
-    ) AS timestamp,
-
-    id,
-    context_id,
-
-    hostname,
-    appname,
-    service_instance_name,
-
-    source,
-    sourcetype,
-    logical_index,
-    `index`,
-
-    env,
-    domain,
-    tag,
-
-    toIPv4(client_ip) AS client_ip,
-    toIPv4(ip) AS ip,
-    host,
-    vhost,
-
-    method,
-    uri,
-    http_version,
-    toUInt16(http_code) AS http_code,
-
-    toUInt32(duration_ms) AS duration_ms,
-    toUInt64(response_body_bytes) AS response_body_bytes,
-    toUInt64(response_total_bytes) AS response_total_bytes,
-
-    process_info,
-    raw_message,
-    raw_message_length,
-
-    fromUnixTimestamp64Milli(
-        toInt64(agent_send_timestamp),
-        'Asia/Shanghai'
-    ) AS agent_send_timestamp,
-
-    fromUnixTimestamp64Milli(
-        toInt64(collector_recv_timestamp),
-        'Asia/Shanghai'
-    ) AS collector_recv_timestamp
-
-FROM logs.http_logs_kafka;
+CREATE MATERIALIZED VIEW logs.HA_SlicingMES_HTTP_MV TO logs.HA_SlicingMES_HTTP
+(
+    `agent_send_timestamp` UInt64,
+    `collector_recv_timestamp` UInt64,
+    `raw_message` String,
+    `raw_message_length` UInt32,
+    `ip` IPv4,
+    `index` String,
+    `source` String,
+    `http_method` String,
+    `request_time` Float64,
+    `request_timestamp` String,
+    `http_code` UInt16,
+    `size` UInt64,
+    `http_referer` String,
+    `http_x_forwarded_for` String,
+    `client_ip` IPv4,
+    `http_request` String,
+    `uri` String,
+    `user_agent` String,
+    `logical_index` String,
+    `logtype` String,
+    `hostname` String,
+    `appname` String,
+    `domain` String,
+    `context_id` UInt64,
+    `tag` Array(String),
+    `id` String,
+    `timestamp` DateTime64(3, 'Asia/Shanghai')
+)
+AS SELECT
+    JSONExtractUInt(message, 'agent_send_timestamp') AS agent_send_timestamp,
+    JSONExtractUInt(message, 'collector_recv_timestamp') AS collector_recv_timestamp,
+    JSONExtractString(message, 'raw_message') AS raw_message,
+    toUInt32OrZero(JSONExtractString(message, 'raw_message_length')) AS raw_message_length,
+    toIPv4OrDefault(JSONExtractString(message, 'ip')) AS ip,
+    JSONExtractString(message, 'index') AS `index`,
+    JSONExtractString(message, 'source') AS source,
+    JSONExtractString(message, 'nginx_access', 'http_method') AS http_method,
+    toFloat64OrZero(JSONExtractString(message, 'nginx_access', 'request_time')) AS request_time,
+    JSONExtractString(message, 'nginx_access', 'request_timestamp') AS request_timestamp,
+    toUInt16OrZero(JSONExtractString(message, 'nginx_access', 'http_code')) AS http_code,
+    toUInt64OrZero(JSONExtractString(message, 'nginx_access', 'size')) AS size,
+    JSONExtractString(message, 'nginx_access', 'http_referer') AS http_referer,
+    JSONExtractString(message, 'nginx_access', 'http_x_forwarded_for') AS http_x_forwarded_for,
+    toIPv4OrDefault(JSONExtractString(message, 'nginx_access', 'client_ip')) AS client_ip,
+    JSONExtractString(message, 'nginx_access', 'http_request') AS http_request,
+    JSONExtractString(message, 'nginx_access', 'uri') AS uri,
+    JSONExtractString(message, 'nginx_access', 'user_agent') AS user_agent,
+    JSONExtractString(message, 'logical_index') AS logical_index,
+    JSONExtractString(message, 'logtype') AS logtype,
+    JSONExtractString(message, 'hostname') AS hostname,
+    JSONExtractString(message, 'appname') AS appname,
+    JSONExtractString(message, 'domain') AS domain,
+    JSONExtractUInt(message, 'context_id') AS context_id,
+    JSONExtract(message, 'tag', 'Array(String)') AS tag,
+    JSONExtractString(message, 'id') AS id,
+    fromUnixTimestamp64Milli(toInt64(JSONExtractUInt(message, 'timestamp')), 'Asia/Shanghai') AS timestamp
+FROM logs.HA_SlicingMES_HTTP_KAFKA
 ```
 
 That's it!
@@ -351,7 +327,7 @@ The process is now:
 2. ClickHouse Kafka Engine consumes it.
 3. Materialized View executes its SELECT statement.
 4. Data is converted into the destination schema.
-5. Data is inserted into `http_logs_local`.
+5. Data is inserted into `HA_SlicingMES_HTTP`.
 6. ReplicatedMergeTree replicates the data to the other two replicas.
 
 The MV runs continuously in the background.
@@ -391,16 +367,38 @@ For your architecture, explicitly creating the destination table and using `TO` 
 
 Your application and users should query a Distributed table rather than individual local tables.
 
-```
-CREATE TABLE logs.http_logs
-ON CLUSTER logs_cluster
-AS logs.http_logs_local
-ENGINE = Distributed(
-    logs_cluster,
-    logs,
-    http_logs_local,
-    cityHash64(hostname)
-);
+```sql
+CREATE TABLE logs.HA_SlicingMES_HTTP_ALL
+(
+    `agent_send_timestamp` UInt64,
+    `collector_recv_timestamp` UInt64,
+    `raw_message` String,
+    `raw_message_length` UInt32,
+    `ip` IPv4,
+    `index` String,
+    `source` String,
+    `http_method` LowCardinality(String),
+    `request_time` Float64,
+    `request_timestamp` String,
+    `http_code` UInt16,
+    `size` UInt64,
+    `http_referer` String,
+    `http_x_forwarded_for` String,
+    `client_ip` IPv4,
+    `http_request` String,
+    `uri` String,
+    `user_agent` String,
+    `logical_index` LowCardinality(String),
+    `logtype` LowCardinality(String),
+    `hostname` LowCardinality(String),
+    `appname` String,
+    `domain` LowCardinality(String),
+    `context_id` UInt64,
+    `tag` Array(String),
+    `id` String,
+    `timestamp` DateTime64(3, 'Asia/Shanghai')
+)
+ENGINE = Distributed('logs_cluster', 'logs', 'HA_SlicingMES_HTTP', cityHash64(id))
 ```
 
 ## 8. Verify ingestion
@@ -408,7 +406,7 @@ ENGINE = Distributed(
 First, check the Kafka Engine table:
 
 ```sql
-SELECT * FROM logs.http_logs_kafka LIMIT 10;
+SELECT * FROM logs.HA_SlicingMES_HTTP_KAFKA LIMIT 10;
 ```
 
 **Warning:** Don't use this query for routine monitoring. A direct SELECT from a Kafka Engine table consumes messages and advances Kafka offsets.
@@ -416,7 +414,7 @@ SELECT * FROM logs.http_logs_kafka LIMIT 10;
 Instead, check the destination table:
 
 ```sql
-SELECT count() FROM logs.http_logs;
+SELECT count() FROM logs.HA_SlicingMES_HTTP_ALL;
 ```
 
 Check the latest messages:
@@ -426,11 +424,11 @@ SELECT
     timestamp,
     hostname,
     appname,
-    method,
+    http_method,
     uri,
     http_code,
-    duration_ms
-FROM logs.http_logs
+    request_time
+FROM logs.HA_SlicingMES_HTTP_ALL
 ORDER BY timestamp DESC
 LIMIT 20;
 ```
@@ -441,9 +439,9 @@ Check Kafka ingestion by application:
 SELECT
     appname,
     count() AS total_requests,
-    avg(duration_ms) AS avg_duration,
-    max(duration_ms) AS max_duration
-FROM logs.http_logs
+    avg(request_time) AS avg_request_time,
+    max(request_time) AS max_request_time
+FROM logs.HA_SlicingMES_HTTP_ALL
 WHERE timestamp >= now() - INTERVAL 1 HOUR
 GROUP BY appname
 ORDER BY total_requests DESC;
@@ -473,7 +471,7 @@ All three nodes share the same Kafka consumer group.
 
 There are three things to pay attention to:
 
-1. **Same consumer group:** All three Kafka Engine tables must use `clickhouse_logs_consumer`. Otherwise, each different group may consume the same messages independently.
+1. **Same consumer group:** All three Kafka Engine tables must use `clickhouse_HA_SlicingMES_HTTP`. Otherwise, each different group may consume the same messages independently.
 2. **Kafka partitions:** With three nodes and one consumer per node, ideally your Kafka topic should have at least three partitions to use all three consumers concurrently.
 3. **Replication:** Each node inserts into its local ReplicatedMergeTree table. Its replica receives the data through ClickHouse replication.
 
