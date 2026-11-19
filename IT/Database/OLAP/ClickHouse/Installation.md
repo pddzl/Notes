@@ -186,6 +186,8 @@ systemctl enable --now chronyd
 
 Perform on all three VMs.
 
+> **Note:** If you chose Option A, `clickhouse03` runs only Keeper — still install the packages there (Keeper ships inside the `clickhouse-server` package), but do not enable the `clickhouse-server` service on that node.
+
 ## 3.1 Add the official RPM repository
 
 ```bash
@@ -609,6 +611,8 @@ The path placeholders are substituted from each server's macros:
 
 For Option B, all replicas use the same Keeper table path because they share the same shard, but each has a unique replica name.
 
+The production log table actually in use is `HA_SlicingMES_HTTP`; its real schema lives in [Kafka Ingest.md](Kafka%20Ingest.md).
+
 ## 9.3 Create the Distributed table
 
 ```sql
@@ -691,19 +695,17 @@ TTL deletion is asynchronous. Expired rows are removed during background merges;
 
 Choose partitioning and ordering keys based on query patterns. Daily partitions can be convenient for log retention and partition operations, but very high partition counts and many small parts should be monitored.
 
+# 11. User management and authentication
 
+## 11.1 XML-backed `default` user
 
-# 12. User management and authentication
-
-## 12.1 XML-backed `default` user
-
-The `default` account was found in:
+The `default` account is defined in:
 
 ```text
 /etc/clickhouse-server/users.xml
 ```
 
-An XML-backed user is read-only to SQL account-management statements. Therefore this can fail:
+An XML-backed user is read-only to SQL account-management statements, so attempting to change it with SQL fails:
 
 ```sql
 ALTER USER default
@@ -718,15 +720,15 @@ Cannot update user `default` in users_xml because this storage is readonly.
 
 To change an XML-backed user's password, edit the appropriate XML configuration file and restart/reload ClickHouse as required. Inspect all files under `users.d/` first to avoid conflicting definitions.
 
-## 12.2 Inspect grants
+## 11.2 Inspect grants
 
 ```sql
 SHOW GRANTS FOR default;
 ```
 
-The earlier output showed many privileges, including user/role management and grant options, but a broad grant failed because the account did not have every privilege required by `GRANT ALL`.
+`SHOW GRANTS` may report many privileges, including user/role management and grant options, yet a broad grant still fails because the account does not have every privilege required by `GRANT ALL`.
 
-The missing permission reported by the error was:
+For example, the error may report a missing permission such as:
 
 ```text
 SHOW NAMED COLLECTIONS SECRETS
@@ -734,17 +736,17 @@ SHOW NAMED COLLECTIONS SECRETS
 
 Do not assume that `CREATE USER` or `ALTER USER` automatically means the account can grant every privilege represented by `ALL`.
 
-## 12.3 SQL access management
+## 11.3 SQL access management
 
 ClickHouse supports SQL-managed users and roles. An XML-defined account can be configured to use SQL access management, but enabling access management does not magically give it every possible grant option.
 
-A configuration file was discussed at:
+Create or edit:
 
 ```text
 /etc/clickhouse-server/users.d/access-management.xml
 ```
 
-Example settings that were proposed:
+Example settings:
 
 ```xml
 <clickhouse>
@@ -775,7 +777,7 @@ SHOW GRANTS FOR default;
 
 Only after confirming the account has the necessary authority should you try creating a SQL-managed administrator.
 
-## 12.4 Create a SQL-managed administrator
+## 11.4 Create a SQL-managed administrator
 
 When the executing account has sufficient privileges:
 
@@ -807,7 +809,7 @@ clickhouse-client --user admin --password
 
 A SQL-managed user is stored in ClickHouse access-control storage and can be modified with SQL, subject to privileges.
 
-## 12.5 Apply access configuration across the cluster
+## 11.5 Apply access configuration across the cluster
 
 A local XML file on one VM does not automatically appear on the other two. Apply the corresponding configuration to each node if the user is locally defined there.
 
@@ -816,20 +818,22 @@ If you want SQL-managed users and roles replicated across the cluster, configure
 Keep `default` available until the new administrator is tested successfully. Do not lock yourself out by changing or disabling the only working account prematurely.
 
 ```sql
-CREATE USER observeM ON CLUSTER logs_cluster IDENTIFIED WITH sha256_password BY 'observeM@2026!';
+CREATE USER observeM ON CLUSTER logs_cluster IDENTIFIED WITH sha256_password BY 'REPLACE_WITH_A_STRONG_SECRET';
 
 GRANT ALL ON *.* TO observeM ON CLUSTER logs_cluster;
 ```
 
-# 13. DataGrip connectivity
+> **Warning:** Never commit real credentials in documentation or source control. A real password was previously stored in this file — if it was used in production, rotate it.
 
-The HTTP endpoint previously tested was:
+# 12. DataGrip connectivity
+
+The HTTP endpoint is:
 
 ```text
 10.160.180.160:8123
 ```
 
-The HTTP interface was confirmed working with:
+The HTTP interface can be verified with:
 
 ```bash
 curl "http://10.160.180.160:8123/?query=SELECT%201"
@@ -864,7 +868,7 @@ Suggested DataGrip settings:
 | Password | The configured password |
 | Database | `default` |
 
-An explicit HTTP JDBC URL was suggested:
+An explicit HTTP JDBC URL:
 
 ```text
 jdbc:clickhouse:http://10.160.180.160:8123/default
@@ -878,7 +882,9 @@ Magic is not correct - expect [-126] but got [82]
 
 can occur when the client/driver uses a protocol that does not match the port. Port `8123` is HTTP; port `9000` is the native ClickHouse protocol.
 
-# 14. Firewall ports
+The `jdbc:clickhouse:http://` form is the legacy driver syntax; the current official ClickHouse JDBC driver uses `jdbc:clickhouse://host:port/database`. Use the form that matches your driver version.
+
+# 13. Firewall ports
 
 Allow only the necessary traffic between trusted hosts and client networks.
 
@@ -911,7 +917,7 @@ Check:
 firewall-cmd --list-all
 ```
 
-# 15. Useful operational checks
+# 14. Useful operational checks
 
 ## Services
 
@@ -987,7 +993,7 @@ ORDER BY sum(data_compressed_bytes) DESC;
 SELECT * FROM system.disks;
 ```
 
-# 16. Troubleshooting checklist
+# 15. Troubleshooting checklist
 
 | Symptom | What to check |
 |---|---|
