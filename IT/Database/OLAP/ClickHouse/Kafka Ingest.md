@@ -26,9 +26,45 @@ Distributed query table
 
 Choose one ingestion pattern based on where you want parsing and transformation to happen.
 
-### 1.1 Option A: ClickHouse Kafka Engine plus Materialized View
+### 1.1 Architecture overview
+
+For the Kafka Engine + Materialized View path, the concrete pipeline for your logging platform would look like this:
+
+```text
+LogEase
+   |
+   v
+Kafka Topic (logs)
+   |
+   v
+ClickHouse Kafka Engine -- consumes JSON messages
+   |
+   v
+Materialized View -- extracts and transforms JSON fields
+   |
+   v
+MergeTree Destination Table -- stores persistent log data
+   |
+   v
+Distributed Table -- queries across the cluster (1 shard, 3 replicas)
+```
+
+There are four important objects:
+
+|Table|Engine|Purpose|
+|---|---|---|
+|`http_logs_kafka`|Kafka|Consume Kafka messages|
+|`http_logs_mv`|Materialized View|Transform and forward messages|
+|`http_logs_local`|ReplicatedMergeTree|Persist logs|
+|`http_logs`|Distributed|Query all shards|
+
+One clarification: ClickHouse doesn't automatically create any of these objects just because you enable Kafka Engine. You create them using SQL. There is, however, an alternative syntax that lets a materialized view create its own internal destination table by omitting `TO`; see section 6.
+
+### 1.2 Option A: ClickHouse Kafka Engine plus Materialized View
 
 This lets ClickHouse consume Kafka topics and insert rows into a regular MergeTree-family table.
+
+The biggest advantage is that **you don't need to write a Go Kafka consumer**. ClickHouse handles Kafka consumption in the background.
 
 Example Kafka source table (adjust broker, topic, consumer group, and format):
 
@@ -72,7 +108,7 @@ Important:
 - Do not create multiple competing consumers accidentally. Decide whether one Kafka Engine table per topic/consumer group is appropriate for your deployment.
 - Validate delivery and retry behavior under failures before relying on this path for production.
 
-### 1.2 Option B: external log-cleaning process
+### 1.3 Option B: external log-cleaning process
 
 If your existing process reads Kafka, cleans/transforms records, and writes to ClickHouse, it can insert directly into `logs.logs_all` or the local table, depending on your routing design.
 
@@ -85,40 +121,25 @@ Make sure the writer handles retries and duplicate delivery appropriately. For b
 
 Do not run both ingestion approaches for the same Kafka topic unless duplicate ingestion is intentional and controlled.
 
-ClickHouse's **Kafka Engine + Materialized View (MV)** allows ClickHouse to consume Kafka messages automatically, transform JSON fields, and insert the results into a MergeTree table.
+### 1.4 Kafka Engine vs Go Consumer: Which should you choose?
 
-The biggest advantage is that **you don't need to write a Go Kafka consumer**. ClickHouse handles Kafka consumption in the background.
+For your 50–200 GB/day logging platform:
 
-For your logging platform, the architecture would look like this:
+|Consideration|Kafka Engine + MV|Go Consumer|
+|---|---|---|
+|Development|Simple|More work|
+|Data transformation|SQL|Go code|
+|Performance|High|High|
+|Error handling|Less flexible|More flexible|
+|Complex business logic|Limited|Excellent|
+|External API calls|No|Yes|
+|Operational maintenance|Relatively simple|More components|
 
-```text
-LogEase
-   |
-   v
-Kafka Topic (logs)
-   |
-   v
-ClickHouse Kafka Engine -- consumes JSON messages
-   |
-   v
-Materialized View -- extracts and transforms JSON fields
-   |
-   v
-MergeTree Destination Table -- stores persistent log data
-   |
-   v
-Distributed Table -- queries across the cluster (1 shard, 3 replicas)
-```
+**My recommendation:** Start with Kafka Engine + Materialized View if your primary job is JSON-to-ClickHouse ingestion and straightforward data conversion.
 
-There are three important objects:
+If you later need complicated log parsing, enrichment, deduplication, routing, or integration with other systems, consider Go.
 
-|Object|Responsibility|
-|---|---|
-|Kafka Engine table|Reads messages from Kafka|
-|Materialized View|Transforms and forwards messages|
-|MergeTree table|Permanently stores messages|
-
-One clarification: ClickHouse doesn't automatically create all three objects just because you enable Kafka Engine. You create them using SQL. You can, however, let a materialized view create its own internal destination table by omitting `TO`; I'll show both approaches.
+For your current logging architecture, I'd first test Kafka Engine with one topic and one destination table before rolling it out across all three nodes.
 
 ## 2. Prepare the Kafka topic
 
@@ -280,8 +301,6 @@ It's the Kafka consumer group ID.
 
 All three ClickHouse nodes should use the same group name so Kafka distributes topic partitions among them rather than making every node consume the entire topic independently.
 
-GitHub+1
-
 ## 5. Create the Materialized View
 
 Now connect the Kafka Engine table to the destination table.
@@ -359,7 +378,38 @@ The process is now:
 
 The MV runs continuously in the background.
 
-## 6. Create the Distributed table
+## 6. Alternative: let ClickHouse automatically create the destination table
+
+There is another syntax:
+
+```sql
+CREATE MATERIALIZED VIEW logs.http_logs_mv
+ENGINE = MergeTree
+PARTITION BY toYYYYMMDD(timestamp)
+ORDER BY (hostname, timestamp)
+AS
+SELECT
+    timestamp,
+    hostname,
+    method,
+    uri,
+    http_code
+FROM logs.http_logs_kafka;
+```
+
+Notice that there is no `TO logs.http_logs_local`.
+
+In this case, ClickHouse creates an internal destination table associated with the materialized view.
+
+However, I don't recommend this for your production cluster because:
+
+- You have less control over the destination table.
+- Managing replication becomes less straightforward.
+- You cannot easily manage the destination table independently.
+
+For your architecture, explicitly creating the destination table and using `TO` is better.
+
+## 7. Create the Distributed table
 
 Your application and users should query a Distributed table rather than individual local tables.
 
@@ -375,16 +425,7 @@ ENGINE = Distributed(
 );
 ```
 
-Now you have:
-
-|Table|Engine|Purpose|
-|---|---|---|
-|`http_logs_kafka`|Kafka|Consume Kafka messages|
-|`http_logs_mv`|Materialized View|Transform and forward messages|
-|`http_logs_local`|ReplicatedMergeTree|Persist logs|
-|`http_logs`|Distributed|Query all shards|
-
-## 7. Verify ingestion
+## 8. Verify ingestion
 
 First, check the Kafka Engine table:
 
@@ -430,39 +471,6 @@ GROUP BY appname
 ORDER BY total_requests DESC;
 ```
 
-## 8. What if I want ClickHouse to automatically create the destination table?
-
-There is another syntax:
-
-```sql
-CREATE MATERIALIZED VIEW logs.http_logs_mv
-ENGINE = MergeTree
-PARTITION BY toYYYYMMDD(timestamp)
-ORDER BY (hostname, timestamp)
-AS
-SELECT
-    timestamp,
-    hostname,
-    method,
-    uri,
-    http_code
-FROM logs.http_logs_kafka;
-```
-
-Notice that there is no `TO logs.http_logs_local`.
-
-In this case, ClickHouse creates an internal destination table associated with the materialized view.
-
-However, I don't recommend this for your production cluster because:
-
-- You have less control over the destination table.
-- Managing replication becomes less straightforward.
-- You cannot easily manage the destination table independently.
-
-For your architecture, explicitly creating the destination table and using `TO` is better.
-
-GitHub+1
-
 ## 9. Important considerations for your 1-shard, 3-replica cluster
 
 My recommendation
@@ -494,23 +502,3 @@ There are three things to pay attention to:
 The Kafka Engine documentation describes how multiple table instances using the same consumer group distribute topic partitions.
 
 One more production consideration: design for possible duplicate ingestion during failure and retry scenarios. Don't assume Kafka consumption and ClickHouse storage provide end-to-end exactly-once delivery.
-
-## 10. Kafka Engine vs Go Consumer: Which should you choose?
-
-For your 50–200 GB/day logging platform:
-
-|Consideration|Kafka Engine + MV|Go Consumer|
-|---|---|---|
-|Development|Simple|More work|
-|Data transformation|SQL|Go code|
-|Performance|High|High|
-|Error handling|Less flexible|More flexible|
-|Complex business logic|Limited|Excellent|
-|External API calls|No|Yes|
-|Operational maintenance|Relatively simple|More components|
-
-**My recommendation:** Start with Kafka Engine + Materialized View if your primary job is JSON-to-ClickHouse ingestion and straightforward data conversion.
-
-If you later need complicated log parsing, enrichment, deduplication, routing, or integration with other systems, consider Go.
-
-For your current logging architecture, I'd first test Kafka Engine with one topic and one destination table before rolling it out across all three nodes.
