@@ -26,7 +26,7 @@ Distributed query table
 
 Choose one ingestion pattern based on where you want parsing and transformation to happen.
 
-## 1.1 Option A: ClickHouse Kafka Engine plus Materialized View
+### 1.1 Option A: ClickHouse Kafka Engine plus Materialized View
 
 This lets ClickHouse consume Kafka topics and insert rows into a regular MergeTree-family table.
 
@@ -72,7 +72,7 @@ Important:
 - Do not create multiple competing consumers accidentally. Decide whether one Kafka Engine table per topic/consumer group is appropriate for your deployment.
 - Validate delivery and retry behavior under failures before relying on this path for production.
 
-## 1.2 Option B: external log-cleaning process
+### 1.2 Option B: external log-cleaning process
 
 If your existing process reads Kafka, cleans/transforms records, and writes to ClickHouse, it can insert directly into `logs.logs_all` or the local table, depending on your routing design.
 
@@ -91,27 +91,24 @@ The biggest advantage is that **you don't need to write a Go Kafka consumer**. C
 
 For your logging platform, the architecture would look like this:
 
-**LogEase**
-
-**Kafka Topic**
-
-logs
-
-**ClickHouse Kafka Engine**
-
-Consumes JSON messages
-
-**Materialized View**
-
-Extracts and transforms JSON fields
-
-**MergeTree Destination Table**
-
-Stores persistent log data
-
-**Distributed Table**
-
-Queries across 3 shards
+```text
+LogEase
+   |
+   v
+Kafka Topic (logs)
+   |
+   v
+ClickHouse Kafka Engine -- consumes JSON messages
+   |
+   v
+Materialized View -- extracts and transforms JSON fields
+   |
+   v
+MergeTree Destination Table -- stores persistent log data
+   |
+   v
+Distributed Table -- queries across the cluster (1 shard, 3 replicas)
+```
 
 There are three important objects:
 
@@ -205,7 +202,7 @@ ORDER BY (env, sourcetype, hostname, timestamp, id)
 TTL timestamp + INTERVAL 180 DAY;
 ```
 
-This table is replicated across your six ClickHouse instances.
+This table is replicated across your three ClickHouse instances.
 
 ## 4. Create the Kafka Engine table
 
@@ -281,7 +278,7 @@ Therefore, I define the Kafka staging table according to the actual JSON types, 
 
 It's the Kafka consumer group ID.
 
-All six ClickHouse nodes should use the same group name so Kafka distributes topic partitions among them rather than making every node consume the entire topic independently.
+All three ClickHouse nodes should use the same group name so Kafka distributes topic partitions among them rather than making every node consume the entire topic independently.
 
 GitHub+1
 
@@ -358,7 +355,7 @@ The process is now:
 3. Materialized View executes its SELECT statement.
 4. Data is converted into the destination schema.
 5. Data is inserted into `http_logs_local`.
-6. ReplicatedMergeTree replicates the data to the other replica.
+6. ReplicatedMergeTree replicates the data to the other two replicas.
 
 The MV runs continuously in the background.
 
@@ -466,11 +463,11 @@ For your architecture, explicitly creating the destination table and using `TO` 
 
 GitHub+1
 
-## 9. Important considerations for your 3-shard, 2-replica cluster
+## 9. Important considerations for your 1-shard, 3-replica cluster
 
 My recommendation
 
-Your cluster has six ClickHouse instances:
+Your cluster has three ClickHouse instances:
 
 **Shard** **1**
 
@@ -482,32 +479,16 @@ Replica 2
 
 Kafka consumer
 
-**Shard** **2**
-
-Replica 1
+Replica 3
 
 Kafka consumer
 
-Replica 2
-
-Kafka consumer
-
-**Shard** **3**
-
-Replica 1
-
-Kafka consumer
-
-Replica 2
-
-Kafka consumer
-
-All six nodes share the same Kafka consumer group.
+All three nodes share the same Kafka consumer group.
 
 There are three things to pay attention to:
 
-1. **Same consumer group:** All six Kafka Engine tables must use `clickhouse_logs_consumer`. Otherwise, each different group may consume the same messages independently.
-2. **Kafka partitions:** With six nodes and one consumer per node, ideally your Kafka topic should have at least six partitions to use all six consumers concurrently.
+1. **Same consumer group:** All three Kafka Engine tables must use `clickhouse_logs_consumer`. Otherwise, each different group may consume the same messages independently.
+2. **Kafka partitions:** With three nodes and one consumer per node, ideally your Kafka topic should have at least three partitions to use all three consumers concurrently.
 3. **Replication:** Each node inserts into its local ReplicatedMergeTree table. Its replica receives the data through ClickHouse replication.
 
 The Kafka Engine documentation describes how multiple table instances using the same consumer group distribute topic partitions.
@@ -532,4 +513,4 @@ For your 50–200 GB/day logging platform:
 
 If you later need complicated log parsing, enrichment, deduplication, routing, or integration with other systems, consider Go.
 
-For your current logging architecture, I'd first test Kafka Engine with one topic and one destination table before rolling it out across all six nodes.
+For your current logging architecture, I'd first test Kafka Engine with one topic and one destination table before rolling it out across all three nodes.

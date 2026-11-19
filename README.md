@@ -126,8 +126,8 @@
 <summary>Database</summary>
 
 - OLTP
-  - [MySQL.md](IT/Database/OLTP/MySQL.md)
-  - [MongoDB.md](IT/Database/OLTP/MongoDB.md)
+  - [MySQL.md](MySQL.md)
+  - [MongoDB.md](MongoDB.md)
 
 </details>
 
