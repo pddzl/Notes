@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "IT/Database/OLAP/ClickHouse/Installation-Cluster.md",
+                "file": "IT/Database/OLAP/ClickHouse/Kafka Ingest.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "Installation-Cluster"
+              "title": "Kafka Ingest"
             }
           }
         ]
@@ -142,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "IT/Database/OLAP/ClickHouse/Installation-Cluster.md",
+                "file": "IT/Database/OLAP/ClickHouse/Kafka Ingest.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -171,6 +171,8 @@
   },
   "active": "0d2774a776a19eae",
   "lastOpenFiles": [
+    "IT/Database/OLAP/ClickHouse/Installation.md",
+    "IT/Database/OLAP/ClickHouse/Kafka Ingest.md",
     "IT/Database/OLAP/ClickHouse/Kafka Log Ingestion.md",
     "IT/Database/OLAP/ClickHouse",
     "English/雅思/写作/Task2/审题 & 列提纲讲解.md",
@@ -198,8 +200,6 @@
     "English/雅思/口语/Part2/题库/地点类/城市公园.md",
     "English/雅思/口语/Part2/题库/人物类/朋友.md",
     "English/雅思/口语/Part2/题库/媒体类/书籍&电影.md",
-    "English/雅思/口语/Part2/题库/人物类/成功人士.md",
-    "English/雅思/口语/Part2/题库/人物类/家人.md",
     "English/雅思/口语/Part2/题库/职业类",
     "English/雅思/口语/Part2/题库/地点类",
     "English/雅思/口语/Part2/题库/聚会",
