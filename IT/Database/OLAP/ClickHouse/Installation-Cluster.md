@@ -5,7 +5,6 @@
 **Hosts:** `clickhouse01`, `clickhouse02`, `clickhouse03` 
 **Example cluster name:** `logs_cluster`
 **Use case:** Centralized log analytics and aggregation
-**Expected ingest:** 50–200 GB/day
 **Retention target:** 180 days
 **Related components:** Kafka, LogEase, ClickHouse Keeper, DataGrip
 
@@ -104,39 +103,11 @@ Do not configure three shards × two replicas by simply adding port `9001` to `r
 
 If you are keeping one ClickHouse process per VM, use **one shard × three replicas** for replicated redundancy, or choose three shards × one replica if distribution is more important than replica-level availability. If you need both horizontal sharding and two replicas, plan for six instances.
 
-# 2. Capacity planning
-
-At the stated ingest range:
-
-| Daily incoming data | Raw data for 180 days |
-|---:|---:|
-| 50 GB/day | 9 TB |
-| 100 GB/day | 18 TB |
-| 200 GB/day | 36 TB |
-
-These are raw input-volume calculations, not final ClickHouse disk requirements.
-
-Actual disk consumption depends on:
-- Compression ratio of the log data.
-- Data types and table sort key.
-- Indexes, projections, and materialized columns.
-- Merge and mutation activity.
-- Replication factor.
-- Temporary disk space during merges.
-- Free-space and failure-recovery headroom.
-
-For example, if compressed stored data is `C` TB for one complete dataset:
-- One copy needs approximately `C` TB plus headroom.
-- Two replicas need approximately `2 × C` TB plus headroom.
-- Three replicas need approximately `3 × C` TB plus headroom.
-
-Measure the compression ratio with representative data before finalizing disk capacity. Do not size production disks using raw ingest volume alone.
-
-# 3. Prepare all three Rocky Linux VMs
+# 2. Prepare all three Rocky Linux VMs
 
 Perform the following on all three hosts.
 
-## 3.1 Configure hostnames
+## 2.1 Configure hostnames
 
 On each VM, set its own hostname:
 
@@ -173,7 +144,7 @@ Also verify time synchronization. Consistent system time is important for logs, 
 timedatectl
 ```
 
-## 3.2 Update the operating system
+## 2.2 Update the operating system
 
 ```bash
 dnf update -y
@@ -181,18 +152,18 @@ dnf install -y chrony
 systemctl enable --now chronyd
 ```
 
-# 4. Install ClickHouse packages
+# 3. Install ClickHouse packages
 
 Perform on all three VMs.
 
-## 4.1 Add the official RPM repository
+## 3.1 Add the official RPM repository
 
 ```bash
 dnf install -y yum-utils
 yum-config-manager --add-repo https://packages.clickhouse.com/rpm/clickhouse.repo
 ```
 
-## 4.2 Install server, client, and Keeper
+## 3.2 Install server, client, and Keeper
 
 `clickhouse-keeper` is contained in `clickhouse-server` package
 
@@ -212,11 +183,11 @@ Use the same ClickHouse version on all nodes. If you need a pinned version, insp
 
 Do not start all services before their configuration is ready.
 
-# 5. Configure the three-node ClickHouse Keeper ensemble
+# 4. Configure the three-node ClickHouse Keeper ensemble
 
 Keeper provides the coordination service used by replicated tables. Configure one Keeper member on each physical VM.
 
-## 5.1 Keeper configuration
+## 4.1 Keeper configuration
 
 Create or edit:
 
@@ -286,7 +257,7 @@ Use the same configuration, but change:
 
 The `server_id` must match the corresponding ID in the shared `raft_configuration`.
 
-## 5.2 Start Keeper
+## 4.2 Start Keeper
 
 On all three VMs:
 
@@ -306,7 +277,7 @@ The three Keeper members must be able to communicate with one another over TCP p
 
 Do not proceed with replicated-table creation until the Keeper ensemble is healthy.
 
-# 6. Configure ClickHouse to use Keeper
+# 5. Configure ClickHouse to use Keeper
 
 On each ClickHouse VM, create:
 
@@ -341,11 +312,11 @@ Use the same Keeper list on all three nodes:
 
 The `<zookeeper>` section is the ClickHouse configuration interface for a ZooKeeper-compatible coordination service; ClickHouse Keeper implements that protocol.
 
-# 7. Configure the ClickHouse cluster
+# 6. Configure the ClickHouse cluster
 
 The examples in this section implement **Option A: one shard × three replicas**, matching one ClickHouse instance on each of the three VMs.
 
-## 7.1 Allow remote connections
+## 6.1 Allow remote connections
 
 Create:
 
@@ -365,7 +336,7 @@ On `clickhouse02`, set `<interserver_http_host>clickhouse02</interserver_http_ho
 
 The inter-server host must resolve to the correct address from the other ClickHouse nodes.
 
-## 7.2 Define `logs_cluster`
+## 6.2 Define `logs_cluster`
 
 Create:
 
@@ -408,7 +379,7 @@ For one shard with three replicas:
 
 If the remote cluster connections require authentication, configure an appropriate dedicated inter-server/cluster user and credentials consistently. Do not put real passwords in documentation or source control.
 
-## 7.3 Configure macros
+## 6.3 Configure macros
 
 Macros identify the shard and replica for replicated table paths.
 
@@ -453,7 +424,7 @@ Create:
 
 All three nodes use shard `01`, because this example has one shard. Each replica value must be unique.
 
-## 7.4 Start ClickHouse
+## 6.4 Start ClickHouse
 
 After configuration is in place, start the server on all three nodes:
 
@@ -476,7 +447,7 @@ tail -n 100 /var/log/clickhouse-server/clickhouse-server.log
 tail -n 100 /var/log/clickhouse-server/clickhouse-server.err.log
 ```
 
-# 8. Configure the alternative three-shard, two-replica topology
+# 7. Configure the alternative three-shard, two-replica topology
 
 This is an alternative design, not the configuration to use with only three ClickHouse processes.
 
@@ -512,11 +483,11 @@ Do not copy the three-node, one-instance-per-host `macros.xml` from Option A int
 
 A six-instance deployment requires a dedicated per-instance configuration and service design. Do not start a second process against the first process's data directory.
 
-# 9. Verify the cluster
+# 8. Verify the cluster
 
 Run these queries after all three ClickHouse servers have started.
 
-## 9.1 Check configured clusters
+## 8.1 Check configured clusters
 
 ```sql
 SELECT
@@ -541,7 +512,7 @@ FROM system.clusters
 ORDER BY cluster;
 ```
 
-## 9.2 Check Keeper connectivity
+## 8.2 Check Keeper connectivity
 
 ```sql
 SELECT *
@@ -551,7 +522,7 @@ WHERE path = '/';
 
 If the query succeeds, ClickHouse can communicate with Keeper. If it fails, inspect Keeper service status, network connectivity, and the `<zookeeper>` configuration.
 
-## 9.3 Check replicated tables
+## 8.3 Check replicated tables
 
 After creating a replicated table, inspect:
 
@@ -571,18 +542,18 @@ FROM system.replicas;
 
 A healthy replica should normally not be read-only, and replication queues should eventually drain. Investigate nonzero delays or growing queues rather than assuming replication is healthy.
 
-# 10. Create a database and replicated log table
+# 9. Create a database and replicated log table
 
 The following is an example schema. Adapt the columns to the actual log format emitted by LogEase or your Kafka-cleaning process.
 
-## 10.1 Create database across the cluster
+## 9.1 Create database across the cluster
 
 ```sql
 CREATE DATABASE IF NOT EXISTS logs
 ON CLUSTER logs_cluster;
 ```
 
-## 10.2 Create the local replicated table
+## 9.2 Create the local replicated table
 
 ```sql
 CREATE TABLE logs.logs_local
@@ -608,7 +579,7 @@ The path placeholders are substituted from each server's macros:
 
 For Option A, all replicas use the same Keeper table path because they share the same shard, but each has a unique replica name.
 
-## 10.3 Create the Distributed table
+## 9.3 Create the Distributed table
 
 ```sql
 CREATE TABLE logs.logs_all
@@ -626,7 +597,7 @@ The `Distributed` table provides a cluster-level query/insert interface. The loc
 
 For a one-shard topology, the Distributed table still provides a convenient cluster-wide interface, but it does not create horizontal data distribution across multiple shards.
 
-## 10.4 Test inserts and reads
+## 9.4 Test inserts and reads
 
 ```sql
 INSERT INTO logs.logs_all
@@ -670,7 +641,7 @@ ORDER BY node;
 
 For a replicated one-shard cluster, the row should eventually be present on all healthy replicas.
 
-# 11. Configure 180-day retention
+# 10. Configure 180-day retention
 
 For the example table:
 
@@ -690,7 +661,7 @@ TTL deletion is asynchronous. Expired rows are removed during background merges;
 
 Choose partitioning and ordering keys based on query patterns. Daily partitions can be convenient for log retention and partition operations, but very high partition counts and many small parts should be monitored.
 
-# 12. Kafka ingestion options
+# 11. Kafka ingestion options
 
 The discussed data flow is:
 
@@ -718,7 +689,7 @@ Distributed query table
 
 Choose one ingestion pattern based on where you want parsing and transformation to happen.
 
-## 12.1 Option A: ClickHouse Kafka Engine plus Materialized View
+## 11.1 Option A: ClickHouse Kafka Engine plus Materialized View
 
 This lets ClickHouse consume Kafka topics and insert rows into a regular MergeTree-family table.
 
@@ -764,7 +735,7 @@ Important:
 - Do not create multiple competing consumers accidentally. Decide whether one Kafka Engine table per topic/consumer group is appropriate for your deployment.
 - Validate delivery and retry behavior under failures before relying on this path for production.
 
-## 12.2 Option B: external log-cleaning process
+## 11.2 Option B: external log-cleaning process
 
 If your existing process reads Kafka, cleans/transforms records, and writes to ClickHouse, it can insert directly into `logs.logs_all` or the local table, depending on your routing design.
 
@@ -777,9 +748,9 @@ Make sure the writer handles retries and duplicate delivery appropriately. For b
 
 Do not run both ingestion approaches for the same Kafka topic unless duplicate ingestion is intentional and controlled.
 
-# 13. User management and authentication
+# 12. User management and authentication
 
-## 13.1 XML-backed `default` user
+## 12.1 XML-backed `default` user
 
 The `default` account was found in:
 
@@ -802,7 +773,7 @@ Cannot update user `default` in users_xml because this storage is readonly.
 
 To change an XML-backed user's password, edit the appropriate XML configuration file and restart/reload ClickHouse as required. Inspect all files under `users.d/` first to avoid conflicting definitions.
 
-## 13.2 Inspect grants
+## 12.2 Inspect grants
 
 ```sql
 SHOW GRANTS FOR default;
@@ -818,7 +789,7 @@ SHOW NAMED COLLECTIONS SECRETS
 
 Do not assume that `CREATE USER` or `ALTER USER` automatically means the account can grant every privilege represented by `ALL`.
 
-## 13.3 SQL access management
+## 12.3 SQL access management
 
 ClickHouse supports SQL-managed users and roles. An XML-defined account can be configured to use SQL access management, but enabling access management does not magically give it every possible grant option.
 
@@ -859,7 +830,7 @@ SHOW GRANTS FOR default;
 
 Only after confirming the account has the necessary authority should you try creating a SQL-managed administrator.
 
-## 13.4 Create a SQL-managed administrator
+## 12.4 Create a SQL-managed administrator
 
 When the executing account has sufficient privileges:
 
@@ -891,7 +862,7 @@ clickhouse-client --user admin --password
 
 A SQL-managed user is stored in ClickHouse access-control storage and can be modified with SQL, subject to privileges.
 
-## 13.5 Apply access configuration across the cluster
+## 12.5 Apply access configuration across the cluster
 
 A local XML file on one VM does not automatically appear on the other two. Apply the corresponding configuration to each node if the user is locally defined there.
 
@@ -905,7 +876,7 @@ CREATE USER observeM ON CLUSTER logs_cluster IDENTIFIED WITH sha256_password BY 
 GRANT ALL ON *.* TO observeM ON CLUSTER logs_cluster;
 ```
 
-# 14. DataGrip connectivity
+# 13. DataGrip connectivity
 
 The HTTP endpoint previously tested was:
 
@@ -962,7 +933,7 @@ Magic is not correct - expect [-126] but got [82]
 
 can occur when the client/driver uses a protocol that does not match the port. Port `8123` is HTTP; port `9000` is the native ClickHouse protocol.
 
-# 15. Firewall ports
+# 14. Firewall ports
 
 Allow only the necessary traffic between trusted hosts and client networks.
 
@@ -995,7 +966,7 @@ Check:
 firewall-cmd --list-all
 ```
 
-# 16. Useful operational checks
+# 15. Useful operational checks
 
 ## Services
 
@@ -1071,7 +1042,7 @@ ORDER BY sum(data_compressed_bytes) DESC;
 SELECT * FROM system.disks;
 ```
 
-# 17. Troubleshooting checklist
+# 16. Troubleshooting checklist
 
 | Symptom | What to check |
 |---|---|
