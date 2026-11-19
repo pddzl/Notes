@@ -478,3 +478,42 @@ There are three things to pay attention to:
 The Kafka Engine documentation describes how multiple table instances using the same consumer group distribute topic partitions.
 
 One more production consideration: design for possible duplicate ingestion during failure and retry scenarios. Don't assume Kafka consumption and ClickHouse storage provide end-to-end exactly-once delivery.
+
+## 10. Debugging the Kafka Engine
+
+When the Kafka Engine table or the Materialized View doesn't behave as expected, start from the server log and recent errors.
+
+Search the server log for Kafka-related messages and exceptions:
+
+```sql
+SELECT
+    event_time,
+    level,
+    message
+FROM system.text_log
+WHERE event_time >= now() - INTERVAL 30 MINUTE
+  AND (
+      message ILIKE '%kafka%'
+--       OR message ILIKE '%HA_SlicingMES%'
+      OR message ILIKE '%exception%'
+  )
+ORDER BY event_time DESC
+LIMIT 20;
+```
+
+> **Note:** `system.text_log` is only populated if it is enabled in the server config (`<text_log>` element). If the query returns nothing, enable it first and restart the server.
+
+List recent server errors — the fastest way to spot MV insert failures:
+
+```sql
+SELECT
+    name,
+    code,
+    value,
+    last_error_time,
+    last_error_message
+FROM system.errors
+WHERE value > 0
+ORDER BY last_error_time DESC
+LIMIT 20;
+```
