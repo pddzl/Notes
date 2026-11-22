@@ -4,21 +4,17 @@
     "type": "split",
     "children": [
       {
-        "id": "ae1026dffdc2d1e6",
+        "id": "43f47dea03c271d1",
         "type": "tabs",
         "children": [
           {
-            "id": "5ba88579302d5b0e",
+            "id": "bc451e387e70cd6d",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "IT/Database/OLAP/ClickHouse/README.md",
-                "mode": "source",
-                "source": false
-              },
+              "type": "empty",
+              "state": {},
               "icon": "lucide-file",
-              "title": "README"
+              "title": "New tab"
             }
           }
         ]
@@ -142,7 +138,6 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "IT/Database/OLAP/ClickHouse/README.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -169,12 +164,14 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "5ba88579302d5b0e",
+  "active": "bc451e387e70cd6d",
   "lastOpenFiles": [
-    "IT/Database/OLAP/ClickHouse/Kafka Ingest.md",
-    "IT/Database/OLAP/ClickHouse/README.md",
-    "IT/Database/README.md",
     "IT/Database/OLAP/ClickHouse/Installation.md",
+    "IT/Database/OLTP/MySQL.md",
+    "IT/Database/OLTP/MongoDB.md",
+    "IT/Database/OLAP/ClickHouse/README.md",
+    "IT/Database/OLAP/ClickHouse/Kafka Ingest.md",
+    "IT/Database/README.md",
     "IT/Database/OLAP/ClickHouse/Kafka Log Ingestion.md",
     "IT/Database/OLAP/ClickHouse",
     "English/雅思/写作/Task2/审题 & 列提纲讲解.md",
@@ -198,8 +195,6 @@
     "English/雅思/写作/Task1/动态图/句型_词汇.md",
     "English/雅思/写作/Task1/主题段.md",
     "English/雅思/口语/Part2/题库/人物类/值得敬佩的家人&成长中的引导者.md",
-    "English/雅思/口语/Part2/题库/人物类/喜欢运动的人.md",
-    "English/雅思/口语/Part2/题库/地点类/城市公园.md",
     "English/雅思/口语/Part2/题库/职业类",
     "English/雅思/口语/Part2/题库/地点类",
     "English/雅思/口语/Part2/题库/聚会",

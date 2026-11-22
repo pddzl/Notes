@@ -1008,3 +1008,13 @@ SELECT * FROM system.disks;
 | `GRANT ALL` fails | The granting account lacks one or more required grant options |
 | DataGrip protocol error | Use HTTP on 8123 or native protocol on 9000 with a matching driver/URL |
 | Insert fails on type conversion | Compare Kafka/log field types with ClickHouse table types; validate and normalize input |
+
+```sql
+SELECT name, value  
+FROM system.server_settings  
+WHERE name IN (  
+    'path',  
+    'tmp_path',  
+    'user_files_path'  
+);
+```
