@@ -15,22 +15,22 @@
 
 以下将官方题型及常见填空形式拆分成 14 种便于学习的类别。
 
-| # | 题型 | 中文名称 | 核心考查 |
-|---:|---|---|---|
-| 1 | Sentence Completion | 句子填空 | 定位、同义替换、词性 |
-| 2 | Short Answer Questions | 简答题 | 定位和精准提取信息 |
-| 3 | Table Completion | 表格填空 | 信息提取、表格逻辑 |
-| 4 | Note Completion | 笔记填空 | 信息提取、概括 |
-| 5 | Summary Completion | 摘要填空 | 段落理解、同义替换 |
-| 6 | Flow-chart Completion | 流程图填空 | 步骤和顺序理解 |
-| 7 | Diagram Labeling / Label Completion | 图表标注填空 | 位置、结构、方位理解 |
-| 8 | Matching Sentence Endings | 句子配对 | 句意、逻辑关系 |
-| 9 | True / False / Not Given | 事实判断 | 判断原文事实是否一致 |
-| 10 | Yes / No / Not Given | 观点判断 | 判断作者观点或主张 |
-| 11 | Matching Headings | 段落标题匹配 | 段落中心思想 |
-| 12 | Matching Features | 特征匹配 | 人物、事物、观点与特征对应 |
-| 13 | Matching Information | 段落信息匹配 | 找出具体信息所在段落 |
-| 14 | Multiple Choice | 选择题 | 细节、主旨、推理、排除干扰 |
+|   # | 题型                                  | 中文名称   | 核心考查          |
+| --: | ----------------------------------- | ------ | ------------- |
+|   1 | Sentence Completion                 | 句子填空   | 定位、同义替换、词性    |
+|   2 | Short Answer Questions              | 简答题    | 定位和精准提取信息     |
+|   3 | Table Completion                    | 表格填空   | 信息提取、表格逻辑     |
+|   4 | Note Completion                     | 笔记填空   | 信息提取、概括       |
+|   5 | Summary Completion                  | 摘要填空   | 段落理解、同义替换     |
+|   6 | Flow-chart Completion               | 流程图填空  | 步骤和顺序理解       |
+|   7 | Diagram Labeling / Label Completion | 图表标注填空 | 位置、结构、方位理解    |
+|   8 | Matching Sentence Endings           | 句子配对   | 句意、逻辑关系       |
+|   9 | True / False / Not Given            | 事实判断   | 判断原文事实是否一致    |
+|  10 | Yes / No / Not Given                | 观点判断   | 判断作者观点或主张     |
+|  11 | Matching Headings                   | 段落标题匹配 | 段落中心思想        |
+|  12 | Matching Features                   | 特征匹配   | 人物、事物、观点与特征对应 |
+|  13 | Matching Information                | 段落信息匹配 | 找出具体信息所在段落    |
+|  14 | Multiple Choice                     | 选择题    | 细节、主旨、推理、排除干扰 |
 
 > 不同教材或资料可能把填空题细分、合并，或使用略有不同的题型名称，因此“14 种”是本学习计划使用的分类方式。
 
