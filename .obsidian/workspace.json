@@ -4,17 +4,21 @@
     "type": "split",
     "children": [
       {
-        "id": "43f47dea03c271d1",
+        "id": "654fcb0cea65495a",
         "type": "tabs",
         "children": [
           {
-            "id": "bc451e387e70cd6d",
+            "id": "3da8286033ffe29c",
             "type": "leaf",
             "state": {
-              "type": "empty",
-              "state": {},
+              "type": "markdown",
+              "state": {
+                "file": "English/雅思/阅读/填词题解题方法.md",
+                "mode": "source",
+                "source": false
+              },
               "icon": "lucide-file",
-              "title": "New tab"
+              "title": "填词题解题方法"
             }
           }
         ]
@@ -51,7 +55,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "feed",
+                "query": "解释因果",
                 "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -138,6 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
+                "file": "English/雅思/阅读/填词题解题方法.md",
                 "followCursor": true,
                 "showSearch": false,
                 "searchQuery": ""
@@ -164,8 +169,23 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "bc451e387e70cd6d",
+  "active": "3da8286033ffe29c",
   "lastOpenFiles": [
+    "English/雅思/阅读/README.md",
+    "English/雅思/阅读/填选项解题方法.md",
+    "English/雅思/阅读/重点短语&句式.md",
+    "English/雅思/写作/Task2/结论段句型带练.md",
+    "English/雅思/写作/Task2/结论段讲解.md",
+    "English/雅思/阅读/小标题方法讲解.md",
+    "English/雅思/写作/Task2/主体段写作方法讲解：衔接手段.md",
+    "English/雅思/阅读/篇章策略（先易后难）.md",
+    "English/雅思/写作/Task2/开头段讲解.md",
+    "English/雅思/写作/Task2/开头段讲解 - 常见同义替换词表.md",
+    "English/雅思/写作/Task2/开头段.md",
+    "English/雅思/阅读/段落配对方法讲解.md",
+    "README.md",
+    "Untitled.base",
+    "English/雅思/写作/Task2/主体段论证方法讲解.md",
     "IT/Database/OLAP/ClickHouse/Installation.md",
     "IT/Database/OLTP/MySQL.md",
     "IT/Database/OLTP/MongoDB.md",
@@ -175,33 +195,18 @@
     "IT/Database/OLAP/ClickHouse/Kafka Log Ingestion.md",
     "IT/Database/OLAP/ClickHouse",
     "English/雅思/写作/Task2/审题 & 列提纲讲解.md",
-    "English/雅思/写作/Task2/主体段论证方法讲解.md",
     "English/雅思/阅读/名词配对和句子配对方法讲解.md",
     "English/雅思/阅读/篇章策略（顺序做题）.md",
     "English/雅思/写作/Task2",
     "English/雅思/听力/地图题常用方位引导词.md",
     "English/雅思/口语/Part3/口语句型.md",
-    "English/雅思/口语/Part3/Part 3 答题方法.md",
     "English/雅思/口语/Part3",
-    "English/雅思/阅读/选择题方法讲解.md",
-    "English/雅思/听力/匹配题解题方法讲解.md",
-    "English/雅思/写作/Task1/地图/README.md",
-    "English/雅思/写作/Task1/地图/句型.md",
-    "English/雅思/写作/Task1/地图/词汇.md",
-    "English/雅思/写作/Task1/流程图/词汇.md",
-    "English/雅思/写作/Task1/动态图/README.md",
-    "English/雅思/写作/Task1/静态图/词汇.md",
-    "English/雅思/写作/Task1/流程图/README.md",
-    "English/雅思/写作/Task1/动态图/句型_词汇.md",
-    "English/雅思/写作/Task1/主题段.md",
-    "English/雅思/口语/Part2/题库/人物类/值得敬佩的家人&成长中的引导者.md",
     "English/雅思/口语/Part2/题库/职业类",
     "English/雅思/口语/Part2/题库/地点类",
     "English/雅思/口语/Part2/题库/聚会",
     "English/雅思/口语/Part2/题库/经历类",
     "English/雅思/口语/Part2/题库/媒体类",
     "English/雅思/口语/Part2/题库/物品类",
-    "English/雅思/口语/Part2/题库/人物/People Who Influenced Me",
     "Untitled.canvas",
     "Pasted image 20260909221227.png",
     "p2.jpg"
