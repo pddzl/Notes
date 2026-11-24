@@ -171,6 +171,8 @@
   },
   "active": "6632020de71f0c1d",
   "lastOpenFiles": [
+    "scripts/gen_catalog.py",
+    "scripts",
     "Catalog.base",
     "IT/Middleware/Kafka/README.md",
     "IT/Middleware/Kafka/Message Ordering.md",
@@ -205,7 +207,6 @@
     "English/雅思/口语/Part2/题库/地点类",
     "English/雅思/口语/Part2/题库/聚会",
     "English/雅思/口语/Part2/题库/经历类",
-    "English/雅思/口语/Part2/题库/媒体类",
     "Untitled.canvas",
     "Pasted image 20260909221227.png",
     "p2.jpg"
