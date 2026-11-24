@@ -172,6 +172,8 @@ An Offset is not a globally unique message ID.
 
 When a Producer publishes a message, Kafka determines the target Partition.
 
+**Important:** each message is written to exactly ONE Partition of the Topic — never to all Partitions.
+
 Common approaches:
 
 **1. Message Key**
@@ -232,6 +234,8 @@ Kafka uses a Leader-Follower replication model.
 - Leader: Handles normal read and write requests for the Partition.
 - Follower: Replicates data from the Leader.
 - ISR: In-Sync Replicas, which are sufficiently caught up with the Leader.
+
+Replication direction matters: Producers send only to the Leader, and Followers **fetch** new records from the Leader themselves (pull). Producers never push data to Followers directly.
 
 Example:
 
@@ -343,6 +347,65 @@ Consumers can reconnect and continue consuming from the new Leader.
 This assumes the replicas are distributed across different Brokers and the surviving replicas are healthy.
 
 Replication provides fault tolerance, but it is not a replacement for backups.
+
+### 4.7 End-to-End Example: Writing One Message
+
+Setup:
+
+- 3 Brokers.
+- Topic `orders` with 3 Partitions.
+- Replication Factor = 3.
+
+The Producer sends: `Key = user-001, Value = "order created"`.
+
+**Step 1 — Partition selection.**
+
+The default partitioner hashes the Key and maps it to one Partition:
+
+```
+hash(user-001) % 3 -> Partition 1
+```
+
+A message is written to exactly ONE Partition, never to all Partitions.
+
+**Step 2 — Write to the Partition Leader.**
+
+Suppose Partition 1's Leader is on Broker 2. The Producer sends the message to Broker 2 only:
+
+```
+Producer -> Broker 2 (Partition 1 Leader)
+```
+
+**Step 3 — Replication to Followers.**
+
+The Leader appends the message to its local log. The Followers continuously fetch from the Leader and copy the new record themselves:
+
+```
+Broker 2 (Leader):    appends the message locally
+Broker 1 (Follower):  fetches -> copies the message
+Broker 3 (Follower):  fetches -> copies the message
+```
+
+So the data ends up on all three Brokers — but only because of replication, and only within Partition 1. Partitions 0 and 2 never receive this message.
+
+**Step 4 — Acknowledgement.**
+
+- With `acks=1`: the Producer is acknowledged after the Leader writes it. Replication continues in the background; if the Leader fails before Followers copy the message, it can be lost.
+- With `acks=all`: the Producer is acknowledged only after all current ISR replicas have the message (see section 9).
+
+**Step 5 — Consumption.**
+
+Consumers read from the Partition Leader only (Broker 2 for Partition 1). They never read the same message from multiple replicas.
+
+Summary:
+
+|Question|Answer|
+|---|---|
+|Which Partition receives the message?|Exactly one — chosen by Key hash, or the sticky strategy without a Key|
+|Is the message written to all Partitions?|No — one Partition only|
+|Is the data replicated to other Brokers?|Yes — Followers fetch copies from the Leader (RF = 3 means three copies within the same Partition)|
+|Who does the Producer send to?|The Partition Leader only|
+|Who do Consumers read from?|The Partition Leader only|
 
 ## 5. Consumer and Consumer Group
 
@@ -721,3 +784,67 @@ Meaning:
 Together, these settings help prevent acknowledged writes from being lost during certain Broker failures.
 
 Note that `acks=all` does not necessarily mean all configured replicas must acknowledge. It means all current ISR replicas.
+
+## 10. Data Formats Supported by Kafka
+
+### 10.1 Kafka Does Not Enforce a Message Format
+
+At the broker level, Kafka treats messages as opaque byte arrays.
+
+A record consists of:
+
+- Key (bytes).
+- Value (bytes).
+- Headers (key-value pairs).
+- Timestamp.
+- Offset and other metadata.
+
+Brokers do not parse or validate message content. Format interpretation happens entirely on the client side.
+
+### 10.2 Client-Side Serialization and Deserialization
+
+Producers convert objects into bytes with a Serializer; Consumers convert bytes back with a Deserializer.
+
+```java
+props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, StringSerializer.class.getName());
+```
+
+The Serializer and Deserializer must match between producer and consumer, otherwise the consumer reads corrupted data.
+
+Built-in serializers of the Java client:
+
+|Serializer|Data type|
+|---|---|
+|StringSerializer|String (text, JSON strings)|
+|ByteArraySerializer|Raw bytes (any format)|
+|IntegerSerializer / LongSerializer / ...|Numeric types|
+|ByteBufferSerializer|Binary buffers|
+
+### 10.3 Common Data Formats
+
+|Format|Pros|Cons|Typical use|
+|---|---|---|---|
+|String / plain text|Simple, human-readable|No structure|Simple logging, prototypes|
+|JSON|Readable, widely supported|Larger payloads, no built-in schema validation|Web/API events, log shipping|
+|Avro|Compact binary, schema evolution with Schema Registry|Needs Schema Registry and tooling|High-volume data pipelines|
+|Protobuf|Compact, strongly typed|Needs code generation|Microservice communication|
+|CSV / TSV|Easy export and import|Weak typing, escaping issues|Flat records, batch exports|
+|Raw binary|Zero overhead|Opaque to every consumer|Images, blobs, proprietary formats|
+
+### 10.4 Schema Registry
+
+For structured binary formats (Avro, Protobuf, JSON Schema), a Confluent Schema Registry is commonly used:
+
+- Schemas are registered centrally and versioned.
+- Producers embed a schema ID in the message instead of the schema itself.
+- Consumers fetch the schema by ID and decode the payload.
+- Compatibility rules (backward/forward) allow safe schema evolution over time.
+
+### 10.5 Choosing a Format
+
+- Human-debuggable logs and simple use cases → JSON strings, as in this note's examples (`KafkaConsumer<String, String>`).
+- High-volume internal pipelines → Avro or Protobuf with Schema Registry.
+- Arbitrary binary payloads → ByteArraySerializer.
+
+Mixing formats inside one Topic is possible but discouraged — every consumer of the Topic must then handle multiple formats.
