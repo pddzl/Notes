@@ -4,11 +4,11 @@
     "type": "split",
     "children": [
       {
-        "id": "0f3262d921551444",
+        "id": "1a2260c51e952fe1",
         "type": "tabs",
         "children": [
           {
-            "id": "1bc25973f037d97e",
+            "id": "6632020de71f0c1d",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -169,8 +169,10 @@
       "command-palette:Open command palette": false
     }
   },
-  "active": "1bc25973f037d97e",
+  "active": "6632020de71f0c1d",
   "lastOpenFiles": [
+    "Catalog.base",
+    "IT/Middleware/Kafka/README.md",
     "IT/Middleware/Kafka/Message Ordering.md",
     "IT/Git/commit convention.md",
     "README.md",
@@ -196,8 +198,6 @@
     "IT/Database/OLTP/MongoDB.md",
     "IT/Database/OLAP/ClickHouse/README.md",
     "IT/Database/OLAP/ClickHouse/Kafka Ingest.md",
-    "IT/Database/README.md",
-    "IT/Database/OLAP/ClickHouse/Kafka Log Ingestion.md",
     "IT/Database/OLAP/ClickHouse",
     "English/雅思/写作/Task2",
     "English/雅思/口语/Part3",
@@ -206,7 +206,6 @@
     "English/雅思/口语/Part2/题库/聚会",
     "English/雅思/口语/Part2/题库/经历类",
     "English/雅思/口语/Part2/题库/媒体类",
-    "English/雅思/口语/Part2/题库/物品类",
     "Untitled.canvas",
     "Pasted image 20260909221227.png",
     "p2.jpg"

@@ -1,0 +1,37 @@
+views:
+  - type: table
+    name: All notes
+    order:
+      - file.name
+      - file.folder
+    sort:
+      - property: file.folder
+        direction: ASC
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: English
+    filters:
+      and:
+        - file.inFolder("English")
+    order:
+      - file.name
+      - file.folder
+    sort:
+      - property: file.folder
+        direction: ASC
+      - property: file.name
+        direction: ASC
+  - type: table
+    name: IT
+    filters:
+      and:
+        - file.inFolder("IT")
+    order:
+      - file.name
+      - file.folder
+    sort:
+      - property: file.folder
+        direction: ASC
+      - property: file.name
+        direction: ASC
