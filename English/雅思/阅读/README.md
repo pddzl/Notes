@@ -28,7 +28,7 @@
 |   9 | True / False / Not Given            | 事实判断   | 判断原文事实是否一致    |     |
 |  10 | Yes / No / Not Given                | 观点判断   | 判断作者观点或主张     |     |
 |  11 | Matching Headings                   | 段落标题匹配 | 段落中心思想        |     |
-|  12 | Matching Features                   | 特征匹配   | 人物、事物、观点与特征对应 |     |
+|  12 | Matching Features                   | 名词配对   | 人物、事物、观点与特征对应 |     |
 |  13 | Matching Information                | 段落信息匹配 | 找出具体信息所在段落    |     |
 |  14 | Multiple Choice                     | 选择题    | 细节、主旨、推理、排除干扰 |     |
 
@@ -121,13 +121,13 @@ IELTS 官方没有公布一份所有考试固定遵循的题型概率表，也�
 
 ### 5.1 顺序性较强的题型（ORDER）
 
-| 题型 | 顺序规律 | 做题策略 |
-|---|---|---|
-| Sentence Completion | 通常按原文信息顺序 | 找到上一题后，继续向后定位 |
-| Short Answer Questions | 通常按原文顺序 | 逐题向后定位 |
+| 题型                        | 顺序规律        | 做题策略            |
+| ------------------------- | ----------- | --------------- |
+| Sentence Completion       | 通常按原文信息顺序   | 找到上一题后，继续向后定位   |
+| Short Answer Questions    | 通常按原文顺序     | 逐题向后定位          |
 | Matching Sentence Endings | 题目开头通常按原文顺序 | 先定位句子前半部分，再匹配结尾 |
-| True / False / Not Given | 通常按原文顺序 | 一般可从上一题位置继续向后找 |
-| Yes / No / Not Given | 通常按原文顺序 | 顺着作者观点出现的顺序定位 |
+| True / False / Not Given  | 通常按原文顺序     | 一般可从上一题位置继续向后找  |
+| Yes / No / Not Given      | 通常按原文顺序     | 顺着作者观点出现的顺序定位   |
 
 ### 5.2 乱序题（NON-ORDER）
 
